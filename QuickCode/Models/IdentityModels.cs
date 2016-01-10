@@ -31,7 +31,7 @@ namespace QuickCode.Models
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext()
-            : base("ShiftReportsLocal", throwIfV1Schema: false)
+            : base("WDIBPW", throwIfV1Schema: false)
         // CHANGE THIS FOR LOCAL IRWINS
         {
         }
