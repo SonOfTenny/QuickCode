@@ -1,99 +1,108 @@
 ﻿@model IEnumerable<QuickCode.Models.Production>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Production";
 }
 
-<h2>Index</h2>
+<h2>Production Records</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Plant.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Shift.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ActualMix)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CrumbWaste)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cmp_Waste)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Manning)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalWaste)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalProdMins)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Plant.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Shift.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ActualMix)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CrumbWaste)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cmp_Waste)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Manning)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalWaste)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalProdMins)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProductionID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProductionID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProductionID })
-        </td>
-    </tr>
-}
-
-</table>
+<div style="overflow-x:auto;">
+    <table class="table table-bordered table-responsive table-striped" >
+        <thead style="background-color:#16a085; color:#ffffff;">
+            <tr>
+                <th class="text-align: left;padding: 8px;">
+                    @Html.DisplayNameFor(model => model.User.UserName)
+                </th>
+                <th class="text-align: left;padding: 8px;">
+                    @Html.DisplayNameFor(model => model.Plant.Name)
+                </th>
+                <th class="text-align: left;padding: 8px;">
+                    @Html.DisplayNameFor(model => model.Shift.Name)
+                </th>
+                <th class="text-align: left;padding: 8px;">
+                    @Html.DisplayNameFor(model => model.StartTime)
+                </th>
+                <th class="text-align: left;padding: 8px;">
+                    @Html.DisplayNameFor(model => model.EndTime)
+                </th>
+                <th class="text-align: left;padding: 8px;">
+                    @Html.DisplayNameFor(model => model.ActualMix)
+                </th>
+                <th class="text-align: left;padding: 8px;">
+                    @Html.DisplayNameFor(model => model.CrumbWaste)
+                </th>
+                <th class="text-align: left;padding: 8px;">
+                    @Html.DisplayNameFor(model => model.Cmp_Waste)
+                </th>
+                <th class="text-align: left;padding: 8px;">
+                    @Html.DisplayNameFor(model => model.Manning)
+                </th>
+                <th class="text-align: left;padding: 8px;">
+                    Total Waste (Kg)
+                </th>
+                <th class="text-align: left;padding: 8px;">
+                    Total Time (Mins)
+                </th>
+                <th class="text-align: left;padding: 8px;">
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th class="text-align: left;padding: 8px;">Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-align: left;padding: 8px;">
+                        @Html.DisplayFor(modelItem => item.User.UserName)
+                    </td>
+                    <td class="text-align: left;padding: 8px;">
+                        @Html.DisplayFor(modelItem => item.Plant.Name)
+                    </td>
+                    <td class="text-align: left;padding: 8px;">
+                        @Html.DisplayFor(modelItem => item.Shift.Name)
+                    </td>
+                    <td class="text-align: left;padding: 8px;">
+                        @Html.DisplayFor(modelItem => item.StartTime)
+                    </td>
+                    <td class="text-align: left;padding: 8px;">
+                        @Html.DisplayFor(modelItem => item.EndTime)
+                    </td>
+                    <td class="text-align: left;padding: 8px;">
+                        @Html.DisplayFor(modelItem => item.ActualMix)
+                    </td>
+                    <td class="text-align: left;padding: 8px;">
+                        @Html.DisplayFor(modelItem => item.CrumbWaste)
+                    </td>
+                    <td class="text-align: left;padding: 8px;">
+                        @Html.DisplayFor(modelItem => item.Cmp_Waste)
+                    </td>
+                    <td class="text-align: left;padding: 8px;">
+                        @Html.DisplayFor(modelItem => item.Manning)
+                    </td>
+                    <td class="text-align: left;padding: 8px;">
+                        @Html.DisplayFor(modelItem => item.TotalWaste)
+                    </td>
+                    <td class="text-align: left;padding: 8px;">
+                        @Html.DisplayFor(modelItem => item.TotalProdMins)
+                    </td>
+                    <td class="text-align: left;padding: 8px;">
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td class="text-align: left;padding: 8px;">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ProductionID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ProductionID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ProductionID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+    <hr />
+    <div>
+        @Html.ActionLink("Back to Homepage", "Index", "Home")
+    </div>

@@ -1,0 +1,24 @@
+﻿@model QuickCode.ViewModels.UserViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<p>All Users</p>
+<table>
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Users)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Roles)</td>
+            </tr>
+        }
+    </tbody>
+</table>

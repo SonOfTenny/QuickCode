@@ -21,41 +21,53 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+               @if (Request.IsAuthenticated)
+                            {
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Production <span class="caret"></span></a>
+                        <a href = "#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Production<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("View  Production Info", "Index", "Productions")</li>
                             <li>@Html.ActionLink("Add New Record", "Create", "Productions")</li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Downtime <span class="caret"></span></a>
+                        <a href = "#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Downtime<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("View  Downtime Info", "Index", "Downtimes")</li>
                             <li>@Html.ActionLink("Add New Record", "Create", "Downtimes")</li>
                         </ul>
                     </li>
+                }
+                    @if(User.IsInRole("Administrator"))
+                    {
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plants <span class="caret"></span></a>
+                        <a href = "#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plants<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("View Plants", "Index", "Plants")</li>
                             <li>@Html.ActionLink("Add New Plant", "Create", "Plants")</li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shifts <span class="caret"></span></a>
+                        <a href = "#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shifts<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("View Shifts", "Index", "Shifts")</li>
                             <li>@Html.ActionLink("Add New Shift", "Create", "Shifts")</li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DTypes <span class="caret"></span></a>
+                        <a href = "#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DTypes<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("View  DTypes", "Index", "DowntimeTypes")</li>
                             <li>@Html.ActionLink("Add New DTypes", "Create", "DowntimeTypes")</li>
                         </ul>
                     </li>
+                    }
+                    @*<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("View  Settings", "Index", "Settings")</li>
+                        </ul>
+                    </li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -65,7 +77,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - SonOfTenny</p>
         </footer>
     </div>
 

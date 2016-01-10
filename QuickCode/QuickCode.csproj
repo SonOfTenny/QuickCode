@@ -174,6 +174,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PlantsController.cs" />
     <Compile Include="Controllers\ProductionsController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\ShiftsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -206,6 +207,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\DashboardData.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -290,6 +292,7 @@
     <Content Include="Views\Downtimes\Details.cshtml" />
     <Content Include="Views\Downtimes\Edit.cshtml" />
     <Content Include="Views\Downtimes\Index.cshtml" />
+    <Content Include="Views\Settings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

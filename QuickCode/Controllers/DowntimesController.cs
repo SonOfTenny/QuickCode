@@ -21,8 +21,18 @@ namespace QuickCode.Controllers
         // GET: Downtimes
         public ActionResult Index()
         {
-            var downtime = db.Downtime.Include(d => d.DowntimeType).Include(d => d.Plant).Include(d => d.Shift).Include(d => d.User);
-            return View(downtime.ToList());
+            if (user.Roles.Equals("Administrator"))
+            {
+                var downtime = db.Downtime.Include(d => d.DowntimeType).Include(d => d.Plant).Include(d => d.Shift).Include(d => d.User);
+                return View(downtime.ToList());
+            }
+            else
+            {
+                var downtime = from s in db.Downtime
+                                   where s.UserID == user.Id.ToString()
+                                   select s;
+                return View(downtime.ToList());
+            }
         }
 
         // GET: Downtimes/Details/5
@@ -117,7 +127,7 @@ namespace QuickCode.Controllers
                 if (ModelState.IsValid)
                 {
                     downtime.TotalDownMins = totalMins;
-                    //downtime.UserID = user.Id;
+                    downtime.UserID = user.Id;
                     db.Entry(downtime).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");

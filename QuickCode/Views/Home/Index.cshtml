@@ -2,7 +2,17 @@
 @{
     ViewBag.Title = "Dashboard";
 }
-
+@if (!Request.IsAuthenticated)
+{
+    <div>
+        <div class="container">
+            <h1>Welcome</h1>
+            <p>Login to use this Application</p>
+            <br />
+            <p>@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-primary btn-lg" })</p>
+        </div>
+    </div>
+}
 
 <div class="row">
     <div class="col-md-4">

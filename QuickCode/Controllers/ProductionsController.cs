@@ -22,8 +22,17 @@ namespace QuickCode.Controllers
         // GET: Productions
         public ActionResult Index()
         {
-            var productions = db.Productions.Include(p => p.Plant).Include(p => p.Shift).Include(p => p.User);
-            return View(productions.ToList());
+            if (user.Roles.Equals("Administrator")) { var productions = db.Productions.Include(p => p.Plant).Include(p => p.Shift).Include(p => p.User);
+                return View(productions.ToList());
+            }
+            else {
+            
+            var productions = from s in db.Productions
+                              where s.UserID == user.Id.ToString()
+                              select s;
+                return View(productions.ToList());
+            }
+           
         }
 
         // GET: Productions/Details/5
@@ -122,7 +131,7 @@ namespace QuickCode.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    // production.UserID = user.Id;
+                    production.UserID = user.Id;
                     production.TotalWaste = sum;
                     production.TotalProdMins = totalMins;
                     db.Entry(production).State = EntityState.Modified;
