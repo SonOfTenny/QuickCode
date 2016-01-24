@@ -7,7 +7,7 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
@@ -17,7 +17,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         
                 <div class="form-group">
-                    @Html.LabelFor(model => model.ShiftID, "ShiftID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.ShiftID, "Shift Type", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownList("ShiftID", null, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.ShiftID, "", new { @class = "text-danger" })
@@ -25,26 +25,13 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.PlantID, "PlantID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.PlantID, "Plant Name", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownList("PlantID", null, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.PlantID, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.EndTime, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+            
                 <div class="form-group">
                     @Html.LabelFor(model => model.ActualMix, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
@@ -68,29 +55,110 @@
                         @Html.ValidationMessageFor(model => model.Cmp_Waste, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Manning, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.Pack_Waste, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Manning, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Manning, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.Pack_Waste, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Pack_Waste, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
+        <div class="form-group">
+            @Html.LabelFor(model => model.Gen_Pack_Waste, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Gen_Pack_Waste, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Gen_Pack_Waste, "", new { @class = "text-danger" })
+            </div>
+        </div>
+                
+        <div class="row">
+            <div class="col-md-offset-2 col-md-4">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-info" />
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <p><b>Calculate your manning here</b></p>
+                            <p style="font-size: 9pt;">How it works: No. of People x Hours worked - any Deductable hours = Manning</p>
+                        </div>
+                        <div class="panel-body">
+                            <table border="0">
+                                <thead>
+                                    <tr>
+                                        <th style="margin-right: 10px;">People</th>
+                                        <th style="margin-right: 10px;">Hours</th>
+                                        <th style="margin-right: 30px;">Deductables</th>
+                                        <th style="color: #27ae60;">Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input style="margin-right: 10px;text-align: center; width:75px;" id="box1" type="number" oninput="calculate()" /></td>
+                                        <td><input style="margin-right: 10px;text-align: center;width:75px;"id="box2" type="number" oninput="calculate()" /></td>
+                                        <td><input  style="margin-right: 30px;text-align: center; width:75px;" id="box3" type="number" oninput="calculate()" /></td>
+                                        <td><input style="text-align: center;border-color:#27ae60; opacity: 0.9; border-width:1px; width :75px; font-weight:500;" type="number" name="manning" id="manning" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <hr />
+                            <div>
+                                <p style="margin-top:10px;"><b>Use this for working out instead</b></p>
+                                <textarea style="width: 400px; height: 100px;" id="manningAlt"></textarea>
+                            </div>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <script type="text/javascript">
+                function calculate() {
+                    var myBox1 = document.getElementById('box1').value;
+                    var myBox2 = document.getElementById('box2').value;
+                    var myBox3 = document.getElementById('box3').value;
+                    var result = document.getElementById('result');
+                    var myResult = myBox1 * myBox2 - myBox3;
+                    manning.value = myResult;
+                }
+                
+                </script>
+                
+            @*<div class="form-group">
+                
+                @Html.LabelFor(model => model.Manning, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("",Model, new { htmlAttributes = new { id = "manning", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Manning, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.EndTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+
 }
 
 <div>
@@ -99,4 +167,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
 }

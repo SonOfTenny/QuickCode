@@ -3,93 +3,116 @@
 @{
     ViewBag.Title = "Downtime";
 }
+@if (Request.IsAuthenticated)
+{
+<div class="row">
+     <div class="col-lg-12">
+         <h2>Downtime Records</h2>
+         <p>Create a New Record</p>
+             <a href="@Url.Action("Create", "Downtimes")" class="btn btn-primary">
+                 Add
+                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+             </a>
+     </div>
+</div>
 
-<h2>Downtime Records</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<div style="overflow-x:auto;">
-    <table class="table table table-bordered table-responsive table-striped">
-        <thead style="background-color:#16a085; color:#ffffff;">
-            <tr>
-                <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.User.UserName)
-                </th>
-                <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.DowntimeType.Name)
-                </th>
-                <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.Plant.Name)
-                </th>
-                <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.Shift.Name)
-                </th>
-                <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.StartTime)
-                </th>
-                <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.EndTime)
-                </th>
-                <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.Reason)
-                </th>
-                <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.Action)
-                </th>
-                <th class="text-align: left;padding: 8px;">
-                    Total Time (Mins)
-                </th>
-                <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.Date)
-                </th>
-                <th class="text-align: left;padding: 8px;">Options</th>
-            </tr>
-        </thead>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DowntimeType.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Plant.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Shift.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Reason)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Action)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalDownMins)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.DowntimeID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.DowntimeID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.DowntimeID })
-                </td>
-            </tr>
-        }
+</p>*@
 
-    </table>
+@*<div class="row">
+    <div class="col-md-12">
+        <a href="@Url.Action("Create", "Downtimes")" class="btn btn-primary">
+            Add
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        </a>
     </div>
-    <hr />
+</div>*@
+<div  class="row" style="overflow-x:scroll;">
+        <table class="table table table-bordered table-responsive table-striped">
+            <thead style="background-color:#16a085; color:#ffffff;">
+                <tr>
+                    <th class="text-align: left;padding: 8px;">
+                        @Html.DisplayNameFor(model => model.User.UserName)
+                    </th>
+                    <th class="text-align: left;padding: 8px;">
+                        @Html.DisplayNameFor(model => model.DowntimeType.Name)
+                    </th>
+                    <th class="text-align: left;padding: 8px;">
+                        @Html.DisplayNameFor(model => model.Plant.Name)
+                    </th>
+                    <th class="text-align: left;padding: 8px;">
+                        @Html.DisplayNameFor(model => model.Shift.Name)
+                    </th>
+                    <th class="text-align: left;padding: 8px;">
+                        @Html.DisplayNameFor(model => model.Reason)
+                    </th>
+                    <th class="text-align: left;padding: 8px;">
+                        @Html.DisplayNameFor(model => model.Action)
+                    </th>
+                    <th class="text-align: left;padding: 8px;">
+                        Total Time (Mins)
+                    </th>
+                    <th class="text-align: left;padding: 8px;">
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+                    <th class="text-align: left;padding: 8px;">
+                        @Html.DisplayNameFor(model => model.StartTime)
+                    </th>
+                    <th class="text-align: left;padding: 8px;">
+                        @Html.DisplayNameFor(model => model.EndTime)
+                    </th>
+                    <th class="text-align: left;padding: 8px;">Options</th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DowntimeType.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Plant.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Shift.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Reason)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Action)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalDownMins)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndTime)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.DowntimeID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.DowntimeID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.DowntimeID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <div class="row">
+        <hr/>
     <div>
         @Html.ActionLink("Back to Homepage", "Index", "Home")
     </div>
+        </div>
+}

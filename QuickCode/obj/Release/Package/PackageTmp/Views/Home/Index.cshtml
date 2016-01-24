@@ -4,6 +4,7 @@
 }
 @if (!Request.IsAuthenticated)
 {
+
     <div>
         <div class="container">
             <h1>Welcome</h1>
@@ -11,17 +12,47 @@
             <br />
             <p>@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-primary btn-lg" })</p>
         </div>
+       
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+
+            @if (User.IsInRole("Administrator"))
+                {
+                <h4>Select one of the following</h4>
+                    <ul>
+                        <li>@Html.ActionLink("View  Production Info", "Index", "Productions")</li>
+                        <li>@Html.ActionLink("View  Downtime Info", "Index", "Downtimes")</li>
+                        <li>@Html.ActionLink("View Plants", "Index", "Plants")</li>
+                        <li>@Html.ActionLink("View  DTypes", "Index", "DowntimeTypes")</li>
+                    </ul>
+            }
+            @if (Request.IsAuthenticated && !User.IsInRole("Administrator"))
+                {
+                <h4>Select one of the following</h4>
+                    <ul>
+                        <li>@Html.ActionLink("View  Production Info", "Index", "Productions")</li>
+                        <li>@Html.ActionLink("View  Downtime Info", "Index", "Downtimes")</li>
+                    </ul>
+            }
+        </div>
     </div>
 }
 
+@*<div class="row">
+    <h1>Become more efficient with your time</h1>
+</div>
 <div class="row">
     <div class="col-md-4">
-      
+      <h2>Add Records</h2>
+        <h2><span class="glyphicon glyphicon-glyphicon-pencil"></span></h2>
     </div>
     <div class="col-md-4">
-        
+         <h2>View Results</h2>
+       <h2><span class="glyphicon glyphicon-glyphicon-stats"></span></h2>
     </div>
     <div class="col-md-4">
-       
+       <h2>Save time & Money <span class="glyphicon glyphicon-glyphicon-stats"></span></h2> 
+        <h2><span class="glyphicon glyphicon-glyphicon-stats" ></span></h2>
     </div>
-</div>
+</div>*@

@@ -3,7 +3,8 @@
 @{
     ViewBag.Title = "Index";
 }
-
+@if (Request.IsAuthenticated)
+{
 <h2>Index</h2>
 
 <p>
@@ -17,17 +18,19 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ShiftID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ShiftID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ShiftID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ShiftID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ShiftID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ShiftID })
         </td>
     </tr>
 }
 
 </table>
+}

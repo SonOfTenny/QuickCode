@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\Mark\Desktop\Sites\TestSite02</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\Mark\Desktop\Sites\TestSite04</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
@@ -67,7 +67,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/09/2016 18:25:13</publishTime>
     </File>
     <File Include="bin/QuickCode.dll">
-      <publishTime>01/10/2016 14:54:55</publishTime>
+      <publishTime>01/23/2016 16:49:14</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>01/09/2016 18:25:14</publishTime>
@@ -127,13 +127,31 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/09/2016 18:25:05</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
-      <publishTime>01/09/2016 18:25:06</publishTime>
+      <publishTime>01/16/2016 15:17:25</publishTime>
+    </File>
+    <File Include="Content/bootstrap-datetimepicker.css">
+      <publishTime>01/16/2016 15:05:37</publishTime>
+    </File>
+    <File Include="Content/bootstrap-datetimepicker.min.css">
+      <publishTime>01/16/2016 15:05:37</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.css">
+      <publishTime>01/16/2016 15:05:36</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.css.map">
+      <publishTime>01/16/2016 15:05:36</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.min.css">
+      <publishTime>01/16/2016 15:05:36</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>01/09/2016 18:25:01</publishTime>
+      <publishTime>01/16/2016 15:05:36</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css.map">
+      <publishTime>01/16/2016 15:05:36</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css">
-      <publishTime>01/09/2016 18:25:01</publishTime>
+      <publishTime>01/16/2016 15:05:36</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>01/10/2016 13:41:51</publishTime>
@@ -142,28 +160,34 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/09/2016 18:24:57</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
-      <publishTime>01/09/2016 18:25:01</publishTime>
+      <publishTime>01/16/2016 15:05:36</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.svg">
-      <publishTime>01/09/2016 18:25:01</publishTime>
+      <publishTime>01/16/2016 15:05:36</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.ttf">
-      <publishTime>01/09/2016 18:25:01</publishTime>
+      <publishTime>01/16/2016 15:05:36</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff">
-      <publishTime>01/09/2016 18:25:01</publishTime>
+      <publishTime>01/16/2016 15:05:36</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>01/09/2016 18:24:57</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>01/09/2016 18:25:16</publishTime>
+      <publishTime>01/16/2016 15:40:18</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap-datetimepicker.js">
+      <publishTime>01/16/2016 15:05:37</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap-datetimepicker.min.js">
+      <publishTime>01/16/2016 15:05:37</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
-      <publishTime>01/09/2016 18:25:01</publishTime>
+      <publishTime>01/16/2016 15:05:36</publishTime>
     </File>
     <File Include="Scripts/bootstrap.min.js">
-      <publishTime>01/09/2016 18:25:01</publishTime>
+      <publishTime>01/16/2016 15:05:36</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.js">
       <publishTime>01/09/2016 18:25:01</publishTime>
@@ -189,6 +213,21 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/modernizr-2.6.2.js">
       <publishTime>01/09/2016 18:25:06</publishTime>
     </File>
+    <File Include="Scripts/moment-with-locales.js">
+      <publishTime>01/16/2016 15:40:18</publishTime>
+    </File>
+    <File Include="Scripts/moment-with-locales.min.js">
+      <publishTime>01/16/2016 15:40:18</publishTime>
+    </File>
+    <File Include="Scripts/moment.js">
+      <publishTime>01/16/2016 15:40:18</publishTime>
+    </File>
+    <File Include="Scripts/moment.min.js">
+      <publishTime>01/16/2016 15:40:18</publishTime>
+    </File>
+    <File Include="Scripts/npm.js">
+      <publishTime>01/16/2016 15:05:36</publishTime>
+    </File>
     <File Include="Scripts/respond.js">
       <publishTime>01/09/2016 18:25:06</publishTime>
     </File>
@@ -196,7 +235,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/09/2016 18:25:06</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>01/09/2016 18:25:06</publishTime>
+      <publishTime>01/16/2016 15:40:18</publishTime>
     </File>
     <File Include="Views/Account/ConfirmEmail.cshtml">
       <publishTime>01/09/2016 18:25:08</publishTime>
@@ -235,34 +274,34 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/09/2016 18:25:08</publishTime>
     </File>
     <File Include="Views/Downtimes/Create.cshtml">
-      <publishTime>01/09/2016 20:37:44</publishTime>
+      <publishTime>01/16/2016 16:57:18</publishTime>
     </File>
     <File Include="Views/Downtimes/Delete.cshtml">
-      <publishTime>01/09/2016 20:29:33</publishTime>
+      <publishTime>01/16/2016 16:13:49</publishTime>
     </File>
     <File Include="Views/Downtimes/Details.cshtml">
       <publishTime>01/09/2016 20:29:34</publishTime>
     </File>
     <File Include="Views/Downtimes/Edit.cshtml">
-      <publishTime>01/10/2016 14:53:11</publishTime>
+      <publishTime>01/16/2016 16:03:52</publishTime>
     </File>
     <File Include="Views/Downtimes/Index.cshtml">
-      <publishTime>01/10/2016 14:51:50</publishTime>
+      <publishTime>01/23/2016 16:38:00</publishTime>
     </File>
     <File Include="Views/DowntimeTypes/Create.cshtml">
       <publishTime>01/09/2016 19:18:08</publishTime>
     </File>
     <File Include="Views/DowntimeTypes/Delete.cshtml">
-      <publishTime>01/09/2016 19:18:09</publishTime>
+      <publishTime>01/16/2016 16:15:55</publishTime>
     </File>
     <File Include="Views/DowntimeTypes/Details.cshtml">
       <publishTime>01/09/2016 19:18:10</publishTime>
     </File>
     <File Include="Views/DowntimeTypes/Edit.cshtml">
-      <publishTime>01/09/2016 19:18:11</publishTime>
+      <publishTime>01/16/2016 16:02:21</publishTime>
     </File>
     <File Include="Views/DowntimeTypes/Index.cshtml">
-      <publishTime>01/09/2016 19:18:11</publishTime>
+      <publishTime>01/23/2016 16:38:27</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>01/09/2016 18:24:57</publishTime>
@@ -271,7 +310,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/09/2016 18:24:57</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>01/10/2016 14:50:10</publishTime>
+      <publishTime>01/23/2016 16:47:48</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>01/09/2016 18:25:08</publishTime>
@@ -292,34 +331,34 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/09/2016 18:25:08</publishTime>
     </File>
     <File Include="Views/Plants/Create.cshtml">
-      <publishTime>01/09/2016 19:01:29</publishTime>
+      <publishTime>01/16/2016 15:45:12</publishTime>
     </File>
     <File Include="Views/Plants/Delete.cshtml">
-      <publishTime>01/09/2016 19:01:30</publishTime>
+      <publishTime>01/16/2016 16:16:08</publishTime>
     </File>
     <File Include="Views/Plants/Details.cshtml">
       <publishTime>01/09/2016 19:01:30</publishTime>
     </File>
     <File Include="Views/Plants/Edit.cshtml">
-      <publishTime>01/09/2016 19:01:30</publishTime>
+      <publishTime>01/16/2016 16:04:09</publishTime>
     </File>
     <File Include="Views/Plants/Index.cshtml">
-      <publishTime>01/09/2016 19:01:31</publishTime>
+      <publishTime>01/23/2016 16:38:45</publishTime>
     </File>
     <File Include="Views/Productions/Create.cshtml">
-      <publishTime>01/09/2016 20:18:45</publishTime>
+      <publishTime>01/23/2016 16:10:34</publishTime>
     </File>
     <File Include="Views/Productions/Delete.cshtml">
-      <publishTime>01/09/2016 19:21:29</publishTime>
+      <publishTime>01/16/2016 16:16:23</publishTime>
     </File>
     <File Include="Views/Productions/Details.cshtml">
       <publishTime>01/09/2016 19:21:29</publishTime>
     </File>
     <File Include="Views/Productions/Edit.cshtml">
-      <publishTime>01/10/2016 14:53:05</publishTime>
+      <publishTime>01/16/2016 16:04:26</publishTime>
     </File>
     <File Include="Views/Productions/Index.cshtml">
-      <publishTime>01/10/2016 14:44:29</publishTime>
+      <publishTime>01/23/2016 16:38:58</publishTime>
     </File>
     <File Include="Views/Settings/Index.cshtml">
       <publishTime>01/10/2016 13:06:32</publishTime>
@@ -331,10 +370,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/09/2016 18:25:08</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>01/10/2016 14:49:12</publishTime>
+      <publishTime>01/16/2016 16:38:00</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
-      <publishTime>01/10/2016 13:02:19</publishTime>
+      <publishTime>01/23/2016 16:37:25</publishTime>
     </File>
     <File Include="Views/Shifts/Create.cshtml">
       <publishTime>01/09/2016 19:13:17</publishTime>
@@ -349,7 +388,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/09/2016 19:13:19</publishTime>
     </File>
     <File Include="Views/Shifts/Index.cshtml">
-      <publishTime>01/09/2016 19:13:20</publishTime>
+      <publishTime>01/23/2016 16:39:11</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>01/09/2016 18:24:57</publishTime>
@@ -358,7 +397,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/09/2016 18:24:57</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/10/2016 11:58:01</publishTime>
+      <publishTime>01/16/2016 17:24:48</publishTime>
     </File>
   </ItemGroup>
 </Project>

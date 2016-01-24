@@ -64,12 +64,21 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductionID,UserID,ShiftID,PlantID,StartTime,EndTime,ActualMix,CrumbWaste,Cmp_Waste,Manning,Date,TotalWaste,TotalProdMins")] Production production)
+        public ActionResult Create(String manning, String manningAlt, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,StartTime,EndTime,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,Date,TotalWaste,TotalProdMins")] Production production)
         {
             int sum = production.Cmp_Waste + production.CrumbWaste;
             TimeSpan span = (production.EndTime - production.StartTime);
             double totalMins = span.TotalMinutes;
-         
+            //int mann = Int32.Parse(manning);
+            String mann = manning;
+            if (String.IsNullOrEmpty(manning))
+            {
+                 mann = manningAlt;
+            }
+            else if(String.IsNullOrEmpty(manningAlt))
+            {
+                 mann = manning;
+            }
             try
             {
 
@@ -78,6 +87,7 @@ namespace QuickCode.Controllers
                     production.TotalWaste = sum;
                     production.TotalProdMins = totalMins;
                     production.UserID = user.Id;
+                    production.Manning = mann;
                     db.Productions.Add(production);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -120,7 +130,7 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductionID,UserID,ShiftID,PlantID,StartTime,EndTime,ActualMix,CrumbWaste,Cmp_Waste,Manning,Date,TotalWaste,TotalProdMins")] Production production)
+        public ActionResult Edit([Bind(Include = "ProductionID,UserID,ShiftID,PlantID,StartTime,EndTime,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_WasteManning,Date,TotalWaste,TotalProdMins")] Production production)
         {
             int sum = production.Cmp_Waste + production.CrumbWaste;
             TimeSpan span = (production.EndTime - production.StartTime);

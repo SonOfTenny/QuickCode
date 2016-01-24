@@ -71,3 +71,4 @@ C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.Migrations.newdo
 C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.csproj.GenerateResource.Cache
 C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.dll
 C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.pdb
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.Migrations.updatedproduction.resources

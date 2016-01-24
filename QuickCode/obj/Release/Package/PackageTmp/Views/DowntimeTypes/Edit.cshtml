@@ -4,8 +4,8 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-
+<h2>Edit Downtime Types</h2>
+<p>Edit the Existing name and save</p>
 
 @using (Html.BeginForm())
 {
@@ -27,7 +27,9 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <button type="submit"  class="btn btn-success">
+                    Save
+                   <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
             </div>
         </div>
     </div>

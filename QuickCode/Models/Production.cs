@@ -31,7 +31,11 @@ namespace QuickCode.Models
         public int CrumbWaste { get; set; }
         [DisplayName("Compactor Waste")]
         public int Cmp_Waste { get; set; }
-        public int Manning { get; set; }
+        [DisplayName("Packaging Waste")]
+        public int Pack_Waste { get; set; }
+        [DisplayName("General Packaging Waste")]
+        public int Gen_Pack_Waste { get; set; }
+        public string Manning { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }

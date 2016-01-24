@@ -3,13 +3,25 @@
 @{
     ViewBag.Title = "Production";
 }
-
-<h2>Production Records</h2>
+@if (Request.IsAuthenticated)
+{
+@*<h2>Production Records</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<div style="overflow-x:auto;">
+</p>*@
+<div class="row">
+    <div class="col-lg-12">
+        <h2>Downtime Records</h2>
+        <p>Create a New Record</p>
+        <a href="@Url.Action("Create", "Productions")" class="btn btn-primary">
+            Add
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        </a>
+    </div>
+</div>
+
+<div style="overflow-x:scroll;">
     <table class="table table-bordered table-responsive table-striped" >
         <thead style="background-color:#16a085; color:#ffffff;">
             <tr>
@@ -23,12 +35,6 @@
                     @Html.DisplayNameFor(model => model.Shift.Name)
                 </th>
                 <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.StartTime)
-                </th>
-                <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.EndTime)
-                </th>
-                <th class="text-align: left;padding: 8px;">
                     @Html.DisplayNameFor(model => model.ActualMix)
                 </th>
                 <th class="text-align: left;padding: 8px;">
@@ -36,6 +42,12 @@
                 </th>
                 <th class="text-align: left;padding: 8px;">
                     @Html.DisplayNameFor(model => model.Cmp_Waste)
+                </th>
+                <th class="text-align: left;padding: 8px;">
+                    @Html.DisplayNameFor(model => model.Pack_Waste)
+                </th>
+                <th class="text-align: left;padding: 8px;">
+                    @Html.DisplayNameFor(model => model.Gen_Pack_Waste)
                 </th>
                 <th class="text-align: left;padding: 8px;">
                     @Html.DisplayNameFor(model => model.Manning)
@@ -46,8 +58,14 @@
                 <th class="text-align: left;padding: 8px;">
                     Total Time (Mins)
                 </th>
-                <th class="text-align: left;padding: 8px;">
+                <th class="text-align: left;padding: 8px;"style="width:100px;">
                     @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th class="text-align: left;padding: 8px;">
+                    @Html.DisplayNameFor(model => model.StartTime)
+                </th>
+                <th class="text-align: left;padding: 8px;">
+                    @Html.DisplayNameFor(model => model.EndTime)
                 </th>
                 <th class="text-align: left;padding: 8px;">Options</th>
             </tr>
@@ -59,38 +77,44 @@
                     <td class="text-align: left;padding: 8px;">
                         @Html.DisplayFor(modelItem => item.User.UserName)
                     </td>
-                    <td class="text-align: left;padding: 8px;">
+                    <td class="text-align: left;padding: 8px;" style="text-align:center;">
                         @Html.DisplayFor(modelItem => item.Plant.Name)
                     </td>
-                    <td class="text-align: left;padding: 8px;">
+                    <td class="text-align: left;padding: 8px;" style="text-align:center;">
                         @Html.DisplayFor(modelItem => item.Shift.Name)
                     </td>
-                    <td class="text-align: left;padding: 8px;">
-                        @Html.DisplayFor(modelItem => item.StartTime)
-                    </td>
-                    <td class="text-align: left;padding: 8px;">
-                        @Html.DisplayFor(modelItem => item.EndTime)
-                    </td>
-                    <td class="text-align: left;padding: 8px;">
+                    <td class="text-align: left;padding: 8px;" style="text-align:center;">
                         @Html.DisplayFor(modelItem => item.ActualMix)
                     </td>
-                    <td class="text-align: left;padding: 8px;">
+                    <td class="text-align: left;padding: 8px;" style="text-align:center;">
                         @Html.DisplayFor(modelItem => item.CrumbWaste)
                     </td>
-                    <td class="text-align: left;padding: 8px;">
+                    <td class="text-align: left;padding: 8px;" style="text-align:center;">
                         @Html.DisplayFor(modelItem => item.Cmp_Waste)
                     </td>
-                    <td class="text-align: left;padding: 8px;">
+                    <td class="text-align: left;padding: 8px;" style="text-align:center;">
+                        @Html.DisplayFor(modelItem => item.Pack_Waste)
+                    </td>
+                    <td class="text-align: left;padding: 8px;" style="text-align:center;">
+                        @Html.DisplayFor(modelItem => item.Gen_Pack_Waste)
+                    </td>
+                    <td class="text-align: left;padding: 8px;" style="text-align:center;">
                         @Html.DisplayFor(modelItem => item.Manning)
                     </td>
-                    <td class="text-align: left;padding: 8px;">
+                    <td class="text-align: left;padding: 8px;" style="text-align:center;">
                         @Html.DisplayFor(modelItem => item.TotalWaste)
                     </td>
-                    <td class="text-align: left;padding: 8px;">
+                    <td class="text-align: left;padding: 8px;" style="text-align:center;">
                         @Html.DisplayFor(modelItem => item.TotalProdMins)
                     </td>
-                    <td class="text-align: left;padding: 8px;">
+                    <td class="text-align: left;padding: 8px;" style="text-align:center; width:100px;">
                         @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td class="text-align: left;padding: 8px;" style="text-align:center;">
+                        @Html.DisplayFor(modelItem => item.StartTime)
+                    </td>
+                    <td class="text-align: left;padding: 8px;" style="text-align:center;">
+                        @Html.DisplayFor(modelItem => item.EndTime)
                     </td>
                     <td class="text-align: left;padding: 8px;">
                         @Html.ActionLink("Edit", "Edit", new { id = item.ProductionID }) |
@@ -106,3 +130,4 @@
     <div>
         @Html.ActionLink("Back to Homepage", "Index", "Home")
     </div>
+}
