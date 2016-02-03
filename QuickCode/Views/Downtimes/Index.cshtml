@@ -1,12 +1,11 @@
-﻿@model IEnumerable<QuickCode.Models.Downtime>
+﻿@model PagedList.IPagedList<QuickCode.Models.Downtime>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
-@{
-    ViewBag.Title = "Downtime";
-}
 @if (Request.IsAuthenticated)
 {
 <div class="row">
-     <div class="col-lg-12">
+     <div class="col-md-4">
          <h2>Downtime Records</h2>
          <p>Create a New Record</p>
              <a href="@Url.Action("Create", "Downtimes")" class="btn btn-primary">
@@ -14,6 +13,16 @@
                  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
              </a>
      </div>
+    <div class="col-md-offset-1 col-md-7">
+        @using (Html.BeginForm("Index", "Downtimes", FormMethod.Get))
+        {
+            <h2>
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                <input type="submit" value="Search" />
+            </h2>
+        }
+    </div>
+
 </div>
 
 
@@ -34,34 +43,43 @@
             <thead style="background-color:#16a085; color:#ffffff;">
                 <tr>
                     <th class="text-align: left;padding: 8px;">
-                        @Html.DisplayNameFor(model => model.User.UserName)
+                        @*@Html.DisplayNameFor(model => model.User.UserName)*@
+                        @Html.ActionLink("Username", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
                     </th>
                     <th class="text-align: left;padding: 8px;">
-                        @Html.DisplayNameFor(model => model.DowntimeType.Name)
+                        @*@Html.DisplayNameFor(model => model.DowntimeType.Name)*@
+                        @Html.ActionLink("Downtime Type", "Index", new { sortOrder = ViewBag.DownSortParm, currentFilter = ViewBag.CurrentFilter })
                     </th>
                     <th class="text-align: left;padding: 8px;">
-                        @Html.DisplayNameFor(model => model.Plant.Name)
+                        @*@Html.DisplayNameFor(model => model.Plant.Name)*@
+                        @Html.ActionLink("Plant Name", "Index", new { sortOrder = ViewBag.PlantSortParm, currentFilter = ViewBag.CurrentFilter })
                     </th>
                     <th class="text-align: left;padding: 8px;">
-                        @Html.DisplayNameFor(model => model.Shift.Name)
+                        @*@Html.DisplayNameFor(model => model.Shift.Name)*@
+                        @Html.ActionLink("Shift Type", "Index", new { sortOrder = ViewBag.ShiftSortParm, currentFilter = ViewBag.CurrentFilter })
                     </th>
                     <th class="text-align: left;padding: 8px;">
-                        @Html.DisplayNameFor(model => model.Reason)
+                        @*@Html.DisplayNameFor(model => model.Reason)*@
+                        Reason
                     </th>
                     <th class="text-align: left;padding: 8px;">
-                        @Html.DisplayNameFor(model => model.Action)
+                        @*@Html.DisplayNameFor(model => model.Action)*@
+                        Action
                     </th>
                     <th class="text-align: left;padding: 8px;">
                         Total Time (Mins)
                     </th>
                     <th class="text-align: left;padding: 8px;">
-                        @Html.DisplayNameFor(model => model.Date)
+                        @*@Html.DisplayNameFor(model => model.Date)*@
+                        @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
                     </th>
                     <th class="text-align: left;padding: 8px;">
-                        @Html.DisplayNameFor(model => model.StartTime)
+                        @*@Html.DisplayNameFor(model => model.StartTime)*@
+                        Start Time
                     </th>
                     <th class="text-align: left;padding: 8px;">
-                        @Html.DisplayNameFor(model => model.EndTime)
+                        @*@Html.DisplayNameFor(model => model.EndTime)*@
+                        End Time
                     </th>
                     <th class="text-align: left;padding: 8px;">Options</th>
                 </tr>
@@ -110,7 +128,12 @@
         </table>
     </div>
     <div class="row">
+        <br />
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",  new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
         <hr/>
+        
     <div>
         @Html.ActionLink("Back to Homepage", "Index", "Home")
     </div>

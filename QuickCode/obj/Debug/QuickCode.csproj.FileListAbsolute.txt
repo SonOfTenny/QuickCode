@@ -73,3 +73,8 @@ C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.newtabl
 C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.removedplantfkfromdtpye.resources
 C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.newdowntimetable.resources
 C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.updatedproduction.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\PagedList.dll
+C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\PagedList.xml
+C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\PagedList.Mvc.dll
+C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\PagedList.Mvc.xml
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.changedallprodwastetodouble.resources

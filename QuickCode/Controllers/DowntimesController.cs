@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using QuickCode.Models;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity;
+using PagedList;
 
 namespace QuickCode.Controllers
 {
@@ -19,20 +20,103 @@ namespace QuickCode.Controllers
         private User user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
 
         // GET: Downtimes
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            //------------- sorting parameters ---------------
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.UserSortParm = String.IsNullOrEmpty(sortOrder) ? "user_desc" : "";
+            ViewBag.DownSortParm = String.IsNullOrEmpty(sortOrder) ? "Down_desc" : "";
+            ViewBag.ShiftSortParm = String.IsNullOrEmpty(sortOrder) ? "shift_desc" : "";
+            ViewBag.PlantSortParm = String.IsNullOrEmpty(sortOrder) ? "Plant_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
             if (user.Roles.Equals("Administrator"))
             {
                 var downtime = db.Downtime.Include(d => d.DowntimeType).Include(d => d.Plant).Include(d => d.Shift).Include(d => d.User);
-                return View(downtime.ToList());
+
+                // ---SEARCH FOR WHATEVER YOU FEEL LIKE HERE -------
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    downtime = downtime.Where(s => s.User.UserName.ToUpper().Contains(searchString.ToUpper()) ||
+                                                        s.Shift.Name.ToUpper().Contains(searchString.ToUpper()) ||
+                                                        s.DowntimeType.Name.ToUpper().Contains(searchString.ToUpper()) ||
+                                                        s.Plant.Name.ToUpper().Contains(searchString.ToUpper()));
+
+                }
+
+                // SWITCH STATEMENT --- WHEN USER SELECTS TO SORT DATA
+                switch (sortOrder)
+                {
+                    case "name_desc":
+                        downtime = downtime.OrderByDescending(s => s.User);
+                        break;
+                    case "Date":
+                        downtime = downtime.OrderBy(s => s.Date);
+                        break;
+                    case "date_desc":
+                        downtime = downtime.OrderByDescending(s => s.Date);
+                        break;
+                    default:                 
+                        downtime = downtime.OrderBy(s => s.Date);
+                        break;
+                }
+
+                int pageSize = 3;
+                int pageNumber = (page ?? 1);
+                return View(downtime.ToPagedList(pageNumber, pageSize));
+                //return View(downtime.ToList());
+
             }
             else
             {
                 var downtime = from s in db.Downtime
                                    where s.UserID == user.Id.ToString()
                                    select s;
-                return View(downtime.ToList());
-            }
+
+                // ---SEARCH FOR WHATEVER YOU FEEL LIKE HERE -------
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    downtime = downtime.Where(s => s.User.UserName.ToUpper().Contains(searchString.ToUpper()) ||
+                                                        s.Shift.Name.ToUpper().Contains(searchString.ToUpper()) ||
+                                                        s.DowntimeType.Name.ToUpper().Contains(searchString.ToUpper()) ||
+                                                        s.Plant.Name.ToUpper().Contains(searchString.ToUpper()));
+
+                }
+
+                // SWITCH STATEMENT --- WHEN USER SELECTS TO SORT DATA
+                switch (sortOrder)
+                {
+                    case "name_desc":
+                        downtime = downtime.OrderByDescending(s => s.User);
+                        break;
+                    case "Date":
+                        downtime = downtime.OrderBy(s => s.Date);
+                        break;
+                    case "date_desc":
+                        downtime = downtime.OrderByDescending(s => s.Date);
+                        break;
+                    default:
+                        downtime = downtime.OrderBy(s => s.Date);
+                        break;
+                }
+
+                int pageSize = 3;
+                int pageNumber = (page ?? 1);
+                return View(downtime.ToPagedList(pageNumber, pageSize));
+                //return View(downtime.ToList());
+
+            }                      
         }
 
         // GET: Downtimes/Details/5

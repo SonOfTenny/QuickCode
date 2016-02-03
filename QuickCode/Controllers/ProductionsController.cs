@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using QuickCode.Models;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity;
+using PagedList;
 
 namespace QuickCode.Controllers
 {
@@ -20,17 +21,96 @@ namespace QuickCode.Controllers
         protected UserManager<User> UserManager { get; set; }
         /// <returns></returns>
         // GET: Productions
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            //------------- sorting parameters ---------------
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.UserSortParm = String.IsNullOrEmpty(sortOrder) ? "user_desc" : "";       
+            ViewBag.ShiftSortParm = String.IsNullOrEmpty(sortOrder) ? "shift_desc" : "";
+            ViewBag.PlantSortParm = String.IsNullOrEmpty(sortOrder) ? "Plant_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
             if (user.Roles.Equals("Administrator")) { var productions = db.Productions.Include(p => p.Plant).Include(p => p.Shift).Include(p => p.User);
-                return View(productions.ToList());
+
+                // ---SEARCH FOR WHATEVER YOU FEEL LIKE HERE -------
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    productions = productions.Where(s => s.User.UserName.ToUpper().Contains(searchString.ToUpper()) ||
+                                                        s.Shift.Name.ToUpper().Contains(searchString.ToUpper()) ||                                        
+                                                        s.Plant.Name.ToUpper().Contains(searchString.ToUpper()));
+
+                }
+
+                // SWITCH STATEMENT --- WHEN USER SELECTS TO SORT DATA
+                switch (sortOrder)
+                {
+                    case "name_desc":
+                        productions = productions.OrderByDescending(s => s.User);
+                        break;
+                    case "Date":
+                        productions = productions.OrderBy(s => s.Date);
+                        break;
+                    case "date_desc":
+                        productions = productions.OrderByDescending(s => s.Date);
+                        break;
+                    default:
+                        productions = productions.OrderBy(s => s.Date);
+                        break;
+                }
+
+                int pageSize = 3;
+                int pageNumber = (page ?? 1);
+                return View(productions.ToPagedList(pageNumber, pageSize));
+                //return View(productions.ToList());
             }
             else {
             
             var productions = from s in db.Productions
                               where s.UserID == user.Id.ToString()
                               select s;
-                return View(productions.ToList());
+
+                // ---SEARCH FOR WHATEVER YOU FEEL LIKE HERE -------
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    productions = productions.Where(s => s.User.UserName.ToUpper().Contains(searchString.ToUpper()) ||
+                                                        s.Shift.Name.ToUpper().Contains(searchString.ToUpper()) ||
+                                                        s.Plant.Name.ToUpper().Contains(searchString.ToUpper()));
+
+                }
+
+                // SWITCH STATEMENT --- WHEN USER SELECTS TO SORT DATA
+                switch (sortOrder)
+                {
+                    case "name_desc":
+                        productions = productions.OrderByDescending(s => s.User);
+                        break;
+                    case "Date":
+                        productions = productions.OrderBy(s => s.Date);
+                        break;
+                    case "date_desc":
+                        productions = productions.OrderByDescending(s => s.Date);
+                        break;
+                    default:
+                        productions = productions.OrderBy(s => s.Date);
+                        break;
+                }
+
+                int pageSize = 3;
+                int pageNumber = (page ?? 1);
+                return View(productions.ToPagedList(pageNumber, pageSize));
+                //return View(productions.ToList());
             }
            
         }
