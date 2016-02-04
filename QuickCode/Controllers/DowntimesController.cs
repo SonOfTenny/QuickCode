@@ -149,8 +149,9 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DowntimeID,UserID,ShiftID,DowntimeTypeID,PlantID,StartTime,EndTime,Reason,Action,Date,TotalDownMins")] Downtime downtime)
+        public ActionResult Create(String MyDate, [Bind(Include = "DowntimeID,UserID,ShiftID,DowntimeTypeID,PlantID,StartTime,EndTime,Reason,Action,Date,TotalDownMins")] Downtime downtime)
         {
+            DateTime dt = Convert.ToDateTime(MyDate);
             TimeSpan span = (downtime.EndTime - downtime.StartTime);
             double totalMins = span.TotalMinutes;
             try
@@ -158,6 +159,7 @@ namespace QuickCode.Controllers
 
                 if (ModelState.IsValid)
                 {
+                    downtime.Date = dt;
                     downtime.TotalDownMins = totalMins;
                     downtime.UserID = user.Id;
                     db.Downtime.Add(downtime);
@@ -202,14 +204,16 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DowntimeID,UserID,ShiftID,DowntimeTypeID,PlantID,StartTime,EndTime,Reason,Action,Date,TotalDownMins")] Downtime downtime)
+        public ActionResult Edit(String MyDate,[Bind(Include = "DowntimeID,UserID,ShiftID,DowntimeTypeID,PlantID,StartTime,EndTime,Reason,Action,Date,TotalDownMins")] Downtime downtime)
         {
+            DateTime dt = Convert.ToDateTime(MyDate);
             TimeSpan span = (downtime.EndTime - downtime.StartTime);
             double totalMins = span.TotalMinutes;
             try
             {
                 if (ModelState.IsValid)
                 {
+                    downtime.Date = dt;
                     downtime.TotalDownMins = totalMins;
                     downtime.UserID = user.Id;
                     db.Entry(downtime).State = EntityState.Modified;

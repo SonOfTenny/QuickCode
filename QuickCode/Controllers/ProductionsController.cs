@@ -144,8 +144,9 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(String manning, String manningAlt, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,StartTime,EndTime,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,Date,TotalWaste,TotalProdMins")] Production production)
+        public ActionResult Create(String manning, String MyDate,String manningAlt, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,StartTime,EndTime,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,Date,TotalWaste,TotalProdMins")] Production production)
         {
+            DateTime dt = Convert.ToDateTime(MyDate);
             int sum = production.Cmp_Waste + production.CrumbWaste;
             TimeSpan span = (production.EndTime - production.StartTime);
             double totalMins = span.TotalMinutes;
@@ -164,6 +165,7 @@ namespace QuickCode.Controllers
 
                 if (ModelState.IsValid)
                 {
+                    production.Date = dt;
                     production.TotalWaste = sum;
                     production.TotalProdMins = totalMins;
                     production.UserID = user.Id;
@@ -210,17 +212,19 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductionID,UserID,ShiftID,PlantID,StartTime,EndTime,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_WasteManning,Date,TotalWaste,TotalProdMins")] Production production)
+        public ActionResult Edit(String MyDate, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,StartTime,EndTime,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_WasteManning,Date,TotalWaste,TotalProdMins")] Production production)
         {
+            DateTime dt = Convert.ToDateTime(MyDate);
             int sum = production.Cmp_Waste + production.CrumbWaste;
             TimeSpan span = (production.EndTime - production.StartTime);
             double totalMins = span.TotalMinutes;
             User user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-
+            
             try
             {
                 if (ModelState.IsValid)
                 {
+                    production.Date = dt;
                     production.UserID = user.Id;
                     production.TotalWaste = sum;
                     production.TotalProdMins = totalMins;

@@ -5,6 +5,8 @@
 @{
     ViewBag.Title = "Production";
 }
+
+
 @if (Request.IsAuthenticated)
 {
 @*<h2>Production Records</h2>
@@ -12,16 +14,16 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>*@
-<div class="row">
+<div class="row" style="margin-top:30px;">
     <div class="col-lg-4">
         <h2>Production Records</h2>
         <p>Create a New Record</p>
-        <a href="@Url.Action("Create", "Productions")" class="btn btn-primary">
+        <a href="@Url.Action("Create", "Productions")" class="btn btn-lg btn-primary" style="margin-bottom:10px;">
             Add
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
         </a>
     </div>
-    <div class="col-md-offset-1 col-md-7">
+    <div class="col-md-7 col-md-offset-1">
         @using (Html.BeginForm("Index", "Productions", FormMethod.Get))
         {
             <h2>
@@ -34,7 +36,7 @@
 
 <div style="overflow-x:scroll;">
     <table class="table table-bordered table-responsive table-striped" >
-        <thead style="background-color:#16a085; color:#ffffff;">
+        <thead style="background-color:#bdc3c7; color:#ffffff;">
             <tr>
                 <th class="text-align: left;padding: 8px;">
                     @*@Html.DisplayNameFor(model => model.User.UserName)*@
@@ -132,6 +134,9 @@
                     </td>
                     <td class="text-align: left;padding: 8px;" style="text-align:center; width:100px;">
                         @Html.DisplayFor(modelItem => item.Date)
+                        
+                     
+                    
                     </td>
                     <td class="text-align: left;padding: 8px;" style="text-align:center;">
                         @Html.DisplayFor(modelItem => item.StartTime)
@@ -149,9 +154,15 @@
         </tbody>
     </table>
 </div>
-    
+<div class="row">
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
     <hr />
+
     <div>
         @Html.ActionLink("Back to Homepage", "Index", "Home")
     </div>
+</div>
 }

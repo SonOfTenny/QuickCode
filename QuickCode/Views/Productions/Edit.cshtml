@@ -4,6 +4,10 @@
     ViewBag.Title = "Edit";
 }
 
+@*//-----------CDN FOR DATEPICKER--------*@
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.js"></script>
+
 <h2>Edit</h2>
 
 
@@ -74,6 +78,20 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Gen_Pack_Waste, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Gen_Pack_Waste, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Gen_Pack_Waste, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Pack_Waste, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Pack_Waste, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Pack_Waste, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
             @Html.LabelFor(model => model.Manning, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Manning, new { htmlAttributes = new { @class = "form-control" } })
@@ -84,8 +102,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                @*@Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })*@
+                <input type="text" id="MyDate" placeholder="dd/mm/yy" name="MyDate" />
             </div>
         </div>
         <div class="form-group">
@@ -102,6 +121,15 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+<!-- Code to wire up  DatePicker -->
+<script type="text/javascript">
+
+        $(function () {
+            $('#MyDate').datetimepicker();
+        });
+</script>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
