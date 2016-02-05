@@ -72,3 +72,14 @@ C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.csproj.GenerateR
 C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.dll
 C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.pdb
 C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.Migrations.updatedproduction.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\PagedList.dll
+C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\PagedList.Mvc.dll
+C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\PagedList.xml
+C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\PagedList.Mvc.xml
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.Migrations.changedallprodwastetodouble.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.csprojResolveAssemblyReference.cache
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.Migrations.addednotes.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.Migrations.addedmanningtypes.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.Migrations._double.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.Migrations.doublept2.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.Migrations.remdouble.resources

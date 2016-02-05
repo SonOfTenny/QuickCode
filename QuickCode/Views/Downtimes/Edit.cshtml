@@ -82,7 +82,7 @@
             <div class="col-md-10">
                 @*@Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })*@
-                <input type="text" id="MyDate" placeholder="dd/mm/yy" name="MyDate" />
+                <input type="text" id="MyDate" placeholder="dd/mm/yy" name="MyDate" class="input-group-lg"/>
             </div>
         </div>
         <div class="form-group">
@@ -97,7 +97,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" style="color:dodgerblue"></span>&nbsp;&nbsp;@Html.ActionLink("Back to List", "Index")
 </div>
 
 <!-- Code to wire up  DatePicker -->
@@ -112,3 +112,5 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+glyphicon glyphicon-pencil

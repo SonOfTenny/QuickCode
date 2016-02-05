@@ -1,8 +1,12 @@
-﻿@model IEnumerable<QuickCode.Models.Production>
+﻿@model PagedList.IPagedList<QuickCode.Models.Production>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Production";
 }
+
+
 @if (Request.IsAuthenticated)
 {
 @*<h2>Production Records</h2>
@@ -10,47 +14,71 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>*@
-<div class="row">
-    <div class="col-lg-12">
-        <h2>Downtime Records</h2>
+<div class="row" style="margin-top:30px;">
+    <div class="col-lg-4">
+        <h2>Production Records</h2>
         <p>Create a New Record</p>
-        <a href="@Url.Action("Create", "Productions")" class="btn btn-primary">
+        <a href="@Url.Action("Create", "Productions")" class="btn btn-lg btn-primary" style="margin-bottom:10px;">
             Add
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
         </a>
     </div>
+    <div class="col-md-8" style="text-align:right;">
+        <p style="margin-right:50px;color:#7f8c8d;"><span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:#7f8c8d;"></span>  Can't find what you're looking for? Search here</p>
+        @using (Html.BeginForm("Index", "Productions", FormMethod.Get))
+        {
+            <h2>
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                <input type="submit" value="Search" class="btn btn-primary btn-lg" style="height:37px;" />
+            </h2>
+        }
+    </div>
 </div>
 
-<div style="overflow-x:scroll;">
+<div class="row" style="overflow-x:scroll;">
+    <div class="col-lg-12" >
     <table class="table table-bordered table-responsive table-striped" >
-        <thead style="background-color:#16a085; color:#ffffff;">
+        <thead style="background-color:#bdc3c7; color:#ffffff;">
             <tr>
                 <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.User.UserName)
+                    @*@Html.DisplayNameFor(model => model.User.UserName)*@
+                    @Html.ActionLink("Username", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.Plant.Name)
+                    @*@Html.DisplayNameFor(model => model.Plant.Name)*@
+                    @Html.ActionLink("Plant Name", "Index", new { sortOrder = ViewBag.PlantSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.Shift.Name)
+                    @*@Html.DisplayNameFor(model => model.Shift.Name)*@
+                    @Html.ActionLink("Shift Type", "Index", new { sortOrder = ViewBag.ShiftSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.ActualMix)
+                    @*@Html.DisplayNameFor(model => model.ActualMix)*@
+                    Actual Mix
                 </th>
                 <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.CrumbWaste)
+                    @*@Html.DisplayNameFor(model => model.CrumbWaste)*@
+                    Crumb Waste
                 </th>
                 <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.Cmp_Waste)
+                    @*@Html.DisplayNameFor(model => model.Cmp_Waste)*@
+                    Comp. Waste
                 </th>
                 <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.Pack_Waste)
+                    @*@Html.DisplayNameFor(model => model.Pack_Waste)*@
+                    Pack. Waste
                 </th>
                 <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.Gen_Pack_Waste)
+                    @*@Html.DisplayNameFor(model => model.Gen_Pack_Waste)*@
+                    Gen. Waste
                 </th>
                 <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.Manning)
+                    @*@Html.DisplayNameFor(model => model.Manning)*@
+                    Manning
+                </th>
+                <th class="text-align: left;padding: 8px;">
+                    @*@Html.DisplayNameFor(model => model.Notes)*@
+                    Notes
                 </th>
                 <th class="text-align: left;padding: 8px;">
                     Total Waste (Kg)
@@ -59,13 +87,16 @@
                     Total Time (Mins)
                 </th>
                 <th class="text-align: left;padding: 8px;"style="width:100px;">
-                    @Html.DisplayNameFor(model => model.Date)
+                    @*@Html.DisplayNameFor(model => model.Date)*@
+                    @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.StartTime)
+                    @*@Html.DisplayNameFor(model => model.StartTime)*@
+                    Start Time
                 </th>
                 <th class="text-align: left;padding: 8px;">
-                    @Html.DisplayNameFor(model => model.EndTime)
+                    @*@Html.DisplayNameFor(model => model.EndTime)*@
+                    End Time
                 </th>
                 <th class="text-align: left;padding: 8px;">Options</th>
             </tr>
@@ -102,6 +133,9 @@
                         @Html.DisplayFor(modelItem => item.Manning)
                     </td>
                     <td class="text-align: left;padding: 8px;" style="text-align:center;">
+                        @Html.DisplayFor(modelItem => item.Notes)
+                    </td>
+                    <td class="text-align: left;padding: 8px;" style="text-align:center;">
                         @Html.DisplayFor(modelItem => item.TotalWaste)
                     </td>
                     <td class="text-align: left;padding: 8px;" style="text-align:center;">
@@ -109,6 +143,8 @@
                     </td>
                     <td class="text-align: left;padding: 8px;" style="text-align:center; width:100px;">
                         @Html.DisplayFor(modelItem => item.Date)
+                                  
+                    
                     </td>
                     <td class="text-align: left;padding: 8px;" style="text-align:center;">
                         @Html.DisplayFor(modelItem => item.StartTime)
@@ -125,9 +161,20 @@
             }
         </tbody>
     </table>
+        </div>
 </div>
-    <hr />
-    <div>
-        @Html.ActionLink("Back to Homepage", "Index", "Home")
+<div class="row">
+    <div class="col-md-12" style="text-align:right;">
+        <br />
+        Page @(Model.PageCount < Model.PageNumber ? 1 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        <hr />
+    </div>
+
+
+        <div>
+            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" style="color:dodgerblue"></span>&nbsp;&nbsp;@Html.ActionLink("Back to Homepage", "Index", "Home")
+        </div>
     </div>
 }

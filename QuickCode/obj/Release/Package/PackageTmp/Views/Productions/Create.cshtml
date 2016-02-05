@@ -4,6 +4,13 @@
     ViewBag.Title = "Create";
 }
 
+@*//-----------CDN FOR DATEPICKER--------*@
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.js"></script>
+@* //----------CDN FOR BOOTSTRAP ---------------------------------------------------------- *@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
+
 <h2>Create</h2>
 
 
@@ -76,31 +83,40 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <p><b>Calculate your manning here</b></p>
-                            <p style="font-size: 9pt;">How it works: No. of People x Hours worked - any Deductable hours = Manning</p>
+                            <p style="font-size: 9pt;">How it works: Enter manning for each category and your total will be calculated</p>
                         </div>
                         <div class="panel-body">
-                            <table border="0">
+                            <table border="0" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="margin-right: 10px;">People</th>
-                                        <th style="margin-right: 10px;">Hours</th>
-                                        <th style="margin-right: 30px;">Deductables</th>
-                                        <th style="color: #27ae60;">Result</th>
+                                        <th style="margin: 10px;">Type</th>
+                                        <th style="margin: 10px;">Hours</th>                                 
+                                        <th style="color: #27ae60;">Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><input style="margin-right: 10px;text-align: center; width:75px;" id="box1" type="number" oninput="calculate()" /></td>
-                                        <td><input style="margin-right: 10px;text-align: center;width:75px;"id="box2" type="number" oninput="calculate()" /></td>
-                                        <td><input  style="margin-right: 30px;text-align: center; width:75px;" id="box3" type="number" oninput="calculate()" /></td>
-                                        <td><input style="text-align: center;border-color:#27ae60; opacity: 0.9; border-width:1px; width :75px; font-weight:500;" type="number" name="manning" id="manning" /></td>
+                                    <tr style="margin-left:30px;">
+                                        <td>Standard</td>
+                                        <td><input  required style="width:100px;" id="box1" name="box1" type="number" oninput="calculate(box1.value, box2.value, box3.value)" /></td>
+                                        <td><input   style="border-color: #27ae60;width:100px;" type="number" name="manning" id="manning" /></td>
                                     </tr>
+                                    <tr style="margin-left:20px;">
+                                        <td>Agency</td>
+                                        <td><input  required style="width:100px;" id="box2" name="box2" type="number" oninput="calculate(box1.value, box2.value, box3.value)" /></td>
+                                        <td><input  type="button" class="btn btn-primary" value="Calculate" onClick="calculate(box1.value,box2.value,box3.value)" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Operator<br /> cover
+                                        </td>
+                                        <td><input required style="width:100px;" id="box3" name="box3" type="number" oninput="calculate(box1.value, box2.value, box3.value)" /></td>
+                                    </tr>   
                                 </tbody>
                             </table>
                             <hr />
                             <div>
-                                <p style="margin-top:10px;"><b>Use this for working out instead</b></p>
-                                <textarea style="width: 400px; height: 100px;" id="manningAlt"></textarea>
+                                <p style="margin-top:10px;"><b>Additional Notes:</b></p>
+                                <textarea style="width: 400px; height: 100px;" id="notes" name="notes"></textarea>
                             </div>
                         </div>
                         </div>
@@ -108,13 +124,19 @@
                 </div>
             </div>
             <script type="text/javascript">
-                function calculate() {
-                    var myBox1 = document.getElementById('box1').value;
-                    var myBox2 = document.getElementById('box2').value;
-                    var myBox3 = document.getElementById('box3').value;
-                    var result = document.getElementById('result');
-                    var myResult = myBox1 * myBox2 - myBox3;
-                    manning.value = myResult;
+                function calculate(b1, b2, b3) {
+                    var n1 = parseFloat(b1);
+                    var n2 = parseFloat(b2);
+                    var n3 = parseFloat(b3);
+                    var res = n1 + n2 + n3;
+                    manning.value = res;
+                    //var stand = document.getElementById('box1').value;
+                    //var agency = document.getElementById('box2').value;
+                    //var oper = document.getElementById('box3').value;
+                    ////var result = document.getElementById('result');
+                    //var myResult = stand + agency + oper;
+                    //document.getElementById("manning").value = myResult;
+                    //manning.value = myResult;
                 }
                 
                 </script>
@@ -131,8 +153,9 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                    @*@Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })*@
+                       <input type="text" id="MyDate" placeholder="dd/mm/yy" name="MyDate" />
                 </div>
             </div>
 
@@ -164,6 +187,14 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+<!-- Code to wire up  DatePicker -->
+<script type="text/javascript">
+
+        $(function () {
+            $('#MyDate').datetimepicker();
+            
+        });
+</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

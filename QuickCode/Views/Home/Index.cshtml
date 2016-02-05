@@ -5,7 +5,9 @@
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.js"></script>
-
+@* //----------CDN FOR BOOTSTRAP ---------------------------------------------------------- *@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
 @if (!Request.IsAuthenticated)
 {
 
@@ -14,81 +16,161 @@
             <div class="row">
                 <div class="col-md-12" style="text-align:center; vertical-align:middle;">
                     <div style="margin-top:45px; padding:15px; ">
-                        <div >
+                        <div>
                             <h1>Welcome</h1>
 
                             <h3>Login to use this Application</h3>
                             <br />
                             <p>@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-primary btn-lg" })</p>
                         </div>
-                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
+
+    </div>
 }
 
 
-        <div class="container">
-@if (Request.IsAuthenticated)
-{
-            <div class="row" style="margin-top:40px;">
-                <div class="col-md-12" style="text-align:center;">
-                    <h1>Your Dashboard</h1>
-                </div>
-            </div>}
+<div class="container">
+    @if (Request.IsAuthenticated)
+    {
+        <div class="row" style="margin-top:40px;">
+            <div class="col-md-12" style="text-align:center;">
+                <h1>Your Dashboard</h1>
+            </div>
+        </div>}
 
-            <div class="row">
-                <div class="col-md-4">
+    <div class="row">
+        <div class="col-md-3">
 
-                    @if (User.IsInRole("Administrator"))
-                    {
+            @if (User.IsInRole("Administrator"))
+            {
+                <div class="panel panel-default">
+                    <div class="panel-body">
                         <h4>Select one of the following</h4>
                         <ul>
                             <li>@Html.ActionLink("View  Production Info", "Index", "Productions")</li>
                             <li>@Html.ActionLink("View  Downtime Info", "Index", "Downtimes")</li>
                             <li>@Html.ActionLink("View Plants", "Index", "Plants")</li>
-                            <li>@Html.ActionLink("View  DTypes", "Index", "DowntimeTypes")</li>
+                            <li>@Html.ActionLink("View  Downtime Types", "Index", "DowntimeTypes")</li>
                         </ul>
-                    }
-                    @if (Request.IsAuthenticated && !User.IsInRole("Administrator"))
-                    {
+                    </div>
+                </div>
+            }
+            @if (Request.IsAuthenticated && !User.IsInRole("Administrator"))
+            {
+                <div class="panel panel-default">
+                    <div class="panel-body">
                         <h4>Select one of the following</h4>
                         <ul>
                             <li>@Html.ActionLink("View  Production Info", "Index", "Productions")</li>
                             <li>@Html.ActionLink("View  Downtime Info", "Index", "Downtimes")</li>
                         </ul>
-                    }
+                    </div>
                 </div>
-                <div class="col-md-8">
-
-
-                </div>
+            }
+        </div>
+        <div class="col-md-6">
+            @if (Request.IsAuthenticated)
+            {
+                <h3>Total waste by Plant</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Plant</th>
+                            <th>Crumb</th>
+                            <th>Compactor</th>
+                            <th>General Packaging</th>
+                            <th>Packaging</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sample</td>
+                            <td>Sample</td>
+                            <td>Sample</td>
+                            <td>Sample</td>
+                            <td>Sample</td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        </div>
+        <div class="col-md-3">
+            @if (Request.IsAuthenticated)
+            {
+                <h3>Total mixes by plant</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Plant</th>
+                            <th>Actual Mix</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sample</td>
+                            <td>Sample</td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            </div>
+         <div class="col-md-3">
+                @if (Request.IsAuthenticated)
+            {
+                    <h3>Total production time per plant</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Plant</th>
+                                <th>Time (mins)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+            </div>
+            <div class="col-md-3">
+                @if (Request.IsAuthenticated)
+            {
+                    <h3>Total downtime time per plant</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Plant</th>
+                                <th>Time (mins)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
             </div>
         </div>
+</div>
 
-        <script type="text/javascript">
 
-            $(function () {
-                $('#MyDate').datetimepicker();
-            });
-        </script>
 
-        @*<div class="row">
-                <h1>Become more efficient with your time</h1>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                  <h2>Add Records</h2>
-                    <h2><span class="glyphicon glyphicon-glyphicon-pencil"></span></h2>
-                </div>
-                <div class="col-md-4">
-                     <h2>View Results</h2>
-                   <h2><span class="glyphicon glyphicon-glyphicon-stats"></span></h2>
-                </div>
-                <div class="col-md-4">
-                   <h2>Save time & Money <span class="glyphicon glyphicon-glyphicon-stats"></span></h2>
-                    <h2><span class="glyphicon glyphicon-glyphicon-stats" ></span></h2>
-                </div>
-            </div>*@
+<script type="text/javascript">
+
+    $(function () {
+        $('#MyDate').datetimepicker();
+    });
+</script>
+
+

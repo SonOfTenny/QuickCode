@@ -11,44 +11,49 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>*@
-<div class="row">
-    <div class="col-lg-12">
-        <h2>Downtime Types</h2>
-        <p>Create a New Record</p>
-        <a href="@Url.Action("Create", "DowntimeTypes")" class="btn btn-primary">
-            Add
-            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-        </a>
-    </div>
-</div>
+    <div class="container">
+        <div class="row" style="margin-bottom: 10px;">
+            <div class="col-lg-12">
+                <h2>Downtime Types</h2>
+                <p>Create a New Record</p>
+                <a href="@Url.Action("Create", "DowntimeTypes")" class="btn btn-primary">
+                    Add
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
 
 
+        <div class="row">
+            <div class="col-lg-12">
 
+                <table class="table table-bordered table-responsive table-striped">
+                    <thead style="background-color:#16a085; color:#ffffff;">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td style="width: 250px;">
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.DowntimeTypeID }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.DowntimeTypeID }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.DowntimeTypeID })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
 
-<table class="table table-bordered table-responsive table-striped">
-    <thead style="background-color:#16a085; color:#ffffff;">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>Options</th>
-        </tr>
-        </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td style="width: 250px;">
-                    @Html.ActionLink("Edit", "Edit", new { id = item.DowntimeTypeID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.DowntimeTypeID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.DowntimeTypeID })
-                </td>
-            </tr>
-        }
-    </tbody>
-
-</table>
-}
+                </table>
+                </div>
+            </div>
+            </div>
+            }

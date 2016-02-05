@@ -211,6 +211,26 @@
     <Compile Include="Migrations\201602032106124_changed all prod waste to double.Designer.cs">
       <DependentUpon>201602032106124_changed all prod waste to double.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602051346071_added notes.cs" />
+    <Compile Include="Migrations\201602051346071_added notes.Designer.cs">
+      <DependentUpon>201602051346071_added notes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602051409062_added manning types.cs" />
+    <Compile Include="Migrations\201602051409062_added manning types.Designer.cs">
+      <DependentUpon>201602051409062_added manning types.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602051450304_double.cs" />
+    <Compile Include="Migrations\201602051450304_double.Designer.cs">
+      <DependentUpon>201602051450304_double.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602051451526_double pt 2.cs" />
+    <Compile Include="Migrations\201602051451526_double pt 2.Designer.cs">
+      <DependentUpon>201602051451526_double pt 2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602051454415_rem double.cs" />
+    <Compile Include="Migrations\201602051454415_rem double.Designer.cs">
+      <DependentUpon>201602051454415_rem double.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Downtime.cs" />
@@ -388,6 +408,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602032106124_changed all prod waste to double.resx">
       <DependentUpon>201602032106124_changed all prod waste to double.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602051346071_added notes.resx">
+      <DependentUpon>201602051346071_added notes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602051409062_added manning types.resx">
+      <DependentUpon>201602051409062_added manning types.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602051450304_double.resx">
+      <DependentUpon>201602051450304_double.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602051451526_double pt 2.resx">
+      <DependentUpon>201602051451526_double pt 2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602051454415_rem double.resx">
+      <DependentUpon>201602051454415_rem double.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

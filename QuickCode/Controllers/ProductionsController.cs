@@ -144,22 +144,19 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(String manning, String MyDate,String manningAlt, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,StartTime,EndTime,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,Date,TotalWaste,TotalProdMins")] Production production)
+        public ActionResult Create(String manning, String MyDate,String notes, String box1, String box2, String box3, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,StartTime,EndTime,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,Date,TotalWaste,TotalProdMins")] Production production)
         {
+            // box1 = std box2 = agency box3 = operator
+            int std = Int32.Parse(box1);
+            int agency = Int32.Parse(box2);
+            int op = Int32.Parse(box3);
             DateTime dt = Convert.ToDateTime(MyDate);
             int sum = production.Cmp_Waste + production.CrumbWaste;
             TimeSpan span = (production.EndTime - production.StartTime);
             double totalMins = span.TotalMinutes;
             //int mann = Int32.Parse(manning);
             String mann = manning;
-            if (String.IsNullOrEmpty(manning))
-            {
-                 mann = manningAlt;
-            }
-            else if(String.IsNullOrEmpty(manningAlt))
-            {
-                 mann = manning;
-            }
+           
             try
             {
 
@@ -170,6 +167,10 @@ namespace QuickCode.Controllers
                     production.TotalProdMins = totalMins;
                     production.UserID = user.Id;
                     production.Manning = mann;
+                    production.StdManning = std;
+                    production.AgencyManning = agency;
+                    production.OpManning = op;
+                    production.Notes = notes;
                     db.Productions.Add(production);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -212,7 +213,7 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(String MyDate, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,StartTime,EndTime,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_WasteManning,Date,TotalWaste,TotalProdMins")] Production production)
+        public ActionResult Edit(String MyDate, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,StartTime,EndTime,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,StdManning,OpManning,AgencyManning,Manning,Date,TotalWaste,TotalProdMins")] Production production)
         {
             DateTime dt = Convert.ToDateTime(MyDate);
             int sum = production.Cmp_Waste + production.CrumbWaste;
