@@ -1,4 +1,6 @@
-﻿using System;
+﻿using QuickCode.Models;
+using QuickCode.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +12,13 @@ namespace QuickCode.Controllers
     {
         public ActionResult Index()
         {
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var weeklyProdTime = ctx.Productions.SqlQuery("Select *  from Productions").ToList();
+                ViewBag.weeklyProdTime = weeklyProdTime;
+            }
+
             return View();
         }
 

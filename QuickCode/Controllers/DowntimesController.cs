@@ -72,7 +72,7 @@ namespace QuickCode.Controllers
                         break;
                 }
 
-                int pageSize = 3;
+                int pageSize = 15;
                 int pageNumber = (page ?? 1);
                 return View(downtime.ToPagedList(pageNumber, pageSize));
                 //return View(downtime.ToList());
@@ -149,9 +149,11 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(String MyDate, [Bind(Include = "DowntimeID,UserID,ShiftID,DowntimeTypeID,PlantID,StartTime,EndTime,Reason,Action,Date,TotalDownMins")] Downtime downtime)
+        public ActionResult Create(String MyDate, String startTime, String endTime, [Bind(Include = "DowntimeID,UserID,ShiftID,DowntimeTypeID,PlantID,Reason,Action,Date,TotalDownMins")] Downtime downtime)
         {
             DateTime dt = Convert.ToDateTime(MyDate);
+            DateTime st = Convert.ToDateTime(startTime);
+            DateTime et = Convert.ToDateTime(endTime);
             TimeSpan span = (downtime.EndTime - downtime.StartTime);
             double totalMins = span.TotalMinutes;
             try
@@ -160,6 +162,8 @@ namespace QuickCode.Controllers
                 if (ModelState.IsValid)
                 {
                     downtime.Date = dt;
+                    downtime.StartTime = st;
+                    downtime.EndTime = et;
                     downtime.TotalDownMins = totalMins;
                     downtime.UserID = user.Id;
                     db.Downtime.Add(downtime);
@@ -204,9 +208,11 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(String MyDate,[Bind(Include = "DowntimeID,UserID,ShiftID,DowntimeTypeID,PlantID,StartTime,EndTime,Reason,Action,Date,TotalDownMins")] Downtime downtime)
+        public ActionResult Edit(String MyDate, String startTime, String endTime, [Bind(Include = "DowntimeID,UserID,ShiftID,DowntimeTypeID,PlantID,Reason,Action,Date,TotalDownMins")] Downtime downtime)
         {
             DateTime dt = Convert.ToDateTime(MyDate);
+            DateTime st = Convert.ToDateTime(startTime);
+            DateTime et = Convert.ToDateTime(endTime);
             TimeSpan span = (downtime.EndTime - downtime.StartTime);
             double totalMins = span.TotalMinutes;
             try
@@ -214,6 +220,8 @@ namespace QuickCode.Controllers
                 if (ModelState.IsValid)
                 {
                     downtime.Date = dt;
+                    downtime.StartTime = st;
+                    downtime.EndTime = et;
                     downtime.TotalDownMins = totalMins;
                     downtime.UserID = user.Id;
                     db.Entry(downtime).State = EntityState.Modified;

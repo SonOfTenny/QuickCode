@@ -21,7 +21,7 @@ namespace QuickCode.Controllers
         protected UserManager<User> UserManager { get; set; }
         /// <returns></returns>
         // GET: Productions
-        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page, DateTime? FirstDate, DateTime? SecondDate)
         {
             //------------- sorting parameters ---------------
             ViewBag.CurrentSort = sortOrder;
@@ -38,7 +38,7 @@ namespace QuickCode.Controllers
             else
             {
                 searchString = currentFilter;
-            }
+            }    
 
             ViewBag.CurrentFilter = searchString;
 
@@ -52,6 +52,15 @@ namespace QuickCode.Controllers
                                                         s.Plant.Name.ToUpper().Contains(searchString.ToUpper()));
 
                 }
+
+                //--- Date search for the cool dudes -----
+                FirstDate = null;
+                if (!FirstDate.HasValue)
+                {
+                    productions = productions.Where(s => s.Date == FirstDate);
+                }
+
+                // ViewBag.DateFilter = FirstDate;
 
                 // SWITCH STATEMENT --- WHEN USER SELECTS TO SORT DATA
                 switch (sortOrder)
@@ -70,7 +79,7 @@ namespace QuickCode.Controllers
                         break;
                 }
 
-                int pageSize = 3;
+                int pageSize = 20;
                 int pageNumber = (page ?? 1);
                 return View(productions.ToPagedList(pageNumber, pageSize));
                 //return View(productions.ToList());
@@ -107,7 +116,7 @@ namespace QuickCode.Controllers
                         break;
                 }
 
-                int pageSize = 3;
+                int pageSize = 20;
                 int pageNumber = (page ?? 1);
                 return View(productions.ToPagedList(pageNumber, pageSize));
                 //return View(productions.ToList());
@@ -144,14 +153,16 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(String manning, String MyDate,String notes, String box1, String box2, String box3, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,StartTime,EndTime,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,Date,TotalWaste,TotalProdMins")] Production production)
+        public ActionResult Create(String manning, String MyDate,String notes, String box1, String box2, String box3, String startTime, String endTime, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,Date,TotalWaste,TotalProdMins")] Production production)
         {
             // box1 = std box2 = agency box3 = operator
             int std = Int32.Parse(box1);
             int agency = Int32.Parse(box2);
             int op = Int32.Parse(box3);
+            DateTime st = Convert.ToDateTime(startTime);
+            DateTime et = Convert.ToDateTime(endTime);
             DateTime dt = Convert.ToDateTime(MyDate);
-            int sum = production.Cmp_Waste + production.CrumbWaste;
+            int sum = production.Cmp_Waste + production.CrumbWaste + production.Pack_Waste + production.Gen_Pack_Waste;
             TimeSpan span = (production.EndTime - production.StartTime);
             double totalMins = span.TotalMinutes;
             //int mann = Int32.Parse(manning);
@@ -163,6 +174,8 @@ namespace QuickCode.Controllers
                 if (ModelState.IsValid)
                 {
                     production.Date = dt;
+                    production.StartTime = st;
+                    production.EndTime = et;
                     production.TotalWaste = sum;
                     production.TotalProdMins = totalMins;
                     production.UserID = user.Id;
@@ -213,10 +226,12 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(String MyDate, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,StartTime,EndTime,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,StdManning,OpManning,AgencyManning,Manning,Date,TotalWaste,TotalProdMins")] Production production)
+        public ActionResult Edit(String MyDate, String startTime, String endTime, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,StdManning,OpManning,AgencyManning,Manning,Date,TotalWaste,TotalProdMins")] Production production)
         {
             DateTime dt = Convert.ToDateTime(MyDate);
-            int sum = production.Cmp_Waste + production.CrumbWaste;
+            DateTime st = Convert.ToDateTime(startTime);
+            DateTime et = Convert.ToDateTime(endTime);
+            int sum = production.Cmp_Waste + production.CrumbWaste + production.Pack_Waste + production.Pack_Waste;
             TimeSpan span = (production.EndTime - production.StartTime);
             double totalMins = span.TotalMinutes;
             User user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
@@ -226,6 +241,8 @@ namespace QuickCode.Controllers
                 if (ModelState.IsValid)
                 {
                     production.Date = dt;
+                    production.StartTime = st;
+                    production.EndTime = et;
                     production.UserID = user.Id;
                     production.TotalWaste = sum;
                     production.TotalProdMins = totalMins;
