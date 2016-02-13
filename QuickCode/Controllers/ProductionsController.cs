@@ -153,7 +153,7 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(String manning, String MyDate,String notes, String box1, String box2, String box3, String startTime, String endTime, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,Date,TotalWaste,TotalProdMins")] Production production)
+        public ActionResult Create(String manning, String MyDate,String notes, String box1, String box2, String box3, DateTime startTime, DateTime endTime, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,Date,TotalWaste,TotalProdMins")] Production production)
         {
             // box1 = std box2 = agency box3 = operator
             int std = Int32.Parse(box1);
@@ -163,7 +163,8 @@ namespace QuickCode.Controllers
             DateTime et = Convert.ToDateTime(endTime);
             DateTime dt = Convert.ToDateTime(MyDate);
             int sum = production.Cmp_Waste + production.CrumbWaste + production.Pack_Waste + production.Gen_Pack_Waste;
-            TimeSpan span = (production.EndTime - production.StartTime);
+            //TimeSpan span = (production.EndTime - production.StartTime);
+            TimeSpan span = endTime - startTime;
             double totalMins = span.TotalMinutes;
             //int mann = Int32.Parse(manning);
             String mann = manning;
@@ -226,14 +227,17 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(String MyDate, String startTime, String endTime, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,StdManning,OpManning,AgencyManning,Manning,Date,TotalWaste,TotalProdMins")] Production production)
+        public ActionResult Edit(String MyDate, DateTime startTime, DateTime endTime, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,StdManning,OpManning,AgencyManning,Manning,Date,TotalWaste,StartTime,EndTime")] Production production)
         {
-            DateTime dt = Convert.ToDateTime(MyDate);
+         
             DateTime st = Convert.ToDateTime(startTime);
             DateTime et = Convert.ToDateTime(endTime);
-            int sum = production.Cmp_Waste + production.CrumbWaste + production.Pack_Waste + production.Pack_Waste;
-            TimeSpan span = (production.EndTime - production.StartTime);
+            DateTime dt = Convert.ToDateTime(MyDate);
+            int sum = production.Cmp_Waste + production.CrumbWaste + production.Pack_Waste + production.Gen_Pack_Waste;
+            //TimeSpan span = (production.EndTime - production.StartTime);
+            TimeSpan span = endTime - startTime;
             double totalMins = span.TotalMinutes;
+            //int mann = Int32.Parse(manning);
             User user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
             
             try

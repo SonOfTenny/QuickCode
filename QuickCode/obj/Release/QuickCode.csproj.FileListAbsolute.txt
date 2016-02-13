@@ -83,3 +83,8 @@ C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.Migrations.added
 C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.Migrations._double.resources
 C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.Migrations.doublept2.resources
 C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.Migrations.remdouble.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Dapper.dll
+C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Dapper.pdb
+C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Dapper.xml
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.Migrations.addmigration.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.Migrations.changedprodminstodouble.resources

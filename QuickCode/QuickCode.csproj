@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -230,6 +234,14 @@
     <Compile Include="Migrations\201602051454415_rem double.cs" />
     <Compile Include="Migrations\201602051454415_rem double.Designer.cs">
       <DependentUpon>201602051454415_rem double.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602131548114_add-migration.cs" />
+    <Compile Include="Migrations\201602131548114_add-migration.Designer.cs">
+      <DependentUpon>201602131548114_add-migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602131623410_changed prod mins to double.cs" />
+    <Compile Include="Migrations\201602131623410_changed prod mins to double.Designer.cs">
+      <DependentUpon>201602131623410_changed prod mins to double.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -423,6 +435,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602051454415_rem double.resx">
       <DependentUpon>201602051454415_rem double.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602131548114_add-migration.resx">
+      <DependentUpon>201602131548114_add-migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602131623410_changed prod mins to double.resx">
+      <DependentUpon>201602131623410_changed prod mins to double.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
