@@ -7,13 +7,13 @@ namespace QuickCode.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class changedprodminstodouble : IMigrationMetadata
+    public sealed partial class updatedefault : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(changedprodminstodouble));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updatedefault));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602131623410_changed prod mins to double"; }
+            get { return "201602181612229_update default"; }
         }
         
         string IMigrationMetadata.Source

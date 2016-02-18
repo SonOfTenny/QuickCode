@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Dashboard";
 }
 
@@ -9,39 +8,29 @@
 @* //----------CDN FOR BOOTSTRAP ---------------------------------------------------------- *@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
-@if (!Request.IsAuthenticated)
-{
-
-    <div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12" style="text-align:center; vertical-align:middle;">
-                    <div style="margin-top:45px; padding:15px; ">
-                        <div>
-                            <h1>Welcome</h1>
-
-                            <h3>Login to use this Application</h3>
-                            <br />
-                            <p>@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-primary btn-lg" })</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-}
-
 
 <div class="container">
     @if (Request.IsAuthenticated)
     {
-        <div class="row" style="margin-top:40px;">
+        <div class="row" style="margin-top:30px;">
             <div class="col-md-12" style="text-align:center;">
                 <h1>Your Dashboard</h1>
-                <p style="color:#7f8c8d;"><span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:#7f8c8d;"></span> Dashboard displays the last 7 day's information by Plant</p>
+                <p style="color:#7f8c8d;"><span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:#7f8c8d;"></span> Select a start and end date to view summaries</p>
             </div>
-        </div>}
+        </div>
+        @*<div class="row">
+            <div class="col-md-12" style="text-align:center;margin-bottom:15px;">
+                <form>
+                    <p style="margin-right:50px;color:#7f8c8d;"><span class="glyphicon glyphicon-star" aria-hidden="true" style="color:#7f8c8d;"></span>Search here to update dashboard results!</p>
+                    <label for="DateFrom">Date From:</label>
+                    <input type="date" name="DateFrom" id="DateFrom" />
+                    <label for="DateFrom">Date To:</label>
+                    <input type="date" name="DateTo" id="DateTo" />
+                    <input type='submit' value='Filter' />
+                </form>
+            </div>
+        </div>**@
+    }
 
     <div class="row">
         <div class="col-md-3">
@@ -56,8 +45,20 @@
                             <li>@Html.ActionLink("View  Downtime Info", "Index", "Downtimes")</li>
                             <li>@Html.ActionLink("View Plants", "Index", "Plants")</li>
                             <li>@Html.ActionLink("View  Downtime Types", "Index", "DowntimeTypes")</li>
-                            <li>@Html.ActionLink("Custom Dashboard - Search", "Dashboard", "Home")</li>
+                            <li>@Html.ActionLink("View Last 7 Days - Dashboard", "Index", "Home")</li>
                         </ul>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">                  
+                                <form class="form-group-sm">
+                                    @*<p style="margin-right:50px;color:#7f8c8d;"><span class="glyphicon glyphicon-star" aria-hidden="true" style="color:#7f8c8d;"></span>Search here to update dashboard results!</p>*@
+                                    <label for="DateFrom">Date From:</label>
+                                    <input type="date" name="DateFrom" id="DateFrom" />
+                                    <label for="DateFrom">Date To:</label>
+                                    <input type="date" name="DateTo" id="DateTo" />
+                                    <input type='submit' value='Filter' />
+                                </form>
                     </div>
                 </div>
             }
@@ -69,8 +70,20 @@
                         <ul>
                             <li>@Html.ActionLink("View  Production Info", "Index", "Productions")</li>
                             <li>@Html.ActionLink("View  Downtime Info", "Index", "Downtimes")</li>
-                            <li>@Html.ActionLink("Custom Dashboard - Search", "Dashboard", "Home")</li>
+                            <li>@Html.ActionLink("Last 7 Days - Dashboard", "Index", "Home")</li>
                         </ul>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form class="form-group-sm">
+                            @*<p style="margin-right:50px;color:#7f8c8d;"><span class="glyphicon glyphicon-star" aria-hidden="true" style="color:#7f8c8d;"></span>Search here to update dashboard results!</p>*@
+                            <label for="DateFrom">Date From:</label>
+                            <input style="width:140px;" type="date" name="DateFrom" id="DateFrom" />
+                            <label style="padding-right:17px;" for="DateFrom">Date To:</label>
+                            <input style="width:140px;" type="date" name="DateTo" id="DateTo" />
+                            <input type='submit' value='Filter' style="margin-top: 10px; width: 224px;" />
+                        </form>
                     </div>
                 </div>
             }
@@ -91,8 +104,8 @@
                     </thead>
                     <tbody style="text-align:center">
                         @model QuickCode.ViewModels.ProductionVM
-                          
-                      
+
+
                         <tr>
                             <td>Batch</td>
                             <td>@Model.BatchTotalCrumb</td>
@@ -142,7 +155,7 @@
                             <td>@Model.PotatoTotalGenPack</td>
                             <td>@Model.PotatoTotalPack</td>
                         </tr>
-                      
+
                     </tbody>
                 </table>
             }
@@ -195,106 +208,97 @@
     </div>
     <div class="row">
         <div class="col-md-3">
-            </div>
-         <div class="col-md-3">
-                @if (Request.IsAuthenticated)
-            {
-                    <h3>Total production time per plant</h3>
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Plant</th>
-                                <th>Time (mins)</th>
-                            </tr>
-                        </thead>
-                        <tbody style="text-align:center">
-                            <tr>                            
-                                <td>Batch</td>
-                                <td>@Model.BatchTotalTime</td>
-                            </tr>
-                            <tr>
-                                <td>Pan</td>
-                                <td>@Model.PancakesTotalTime.</td>
-                            </tr>
-                            <tr>
-                                <td>Roll</td>
-                                <td>@Model.RollTotalTime</td>
-                            </tr>
-                            <tr>
-                                <td>Wheaten</td>
-                                <td>@Model.WheatenTotalTime</td>
-                            </tr>
-                            <tr>
-                                <td>Soda</td>
-                                <td>@Model.SodaTotalTime</td>
-                            </tr>
-                            <tr>
-                                <td>Pancakes</td>
-                                <td>@Model.PancakesTotalTime</td>
-                            </tr>
-                            <tr>
-                                <td>Potato</td>
-                                <td>@Model.PotatoTotalTime</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                }
-            </div>
-            <div class="col-md-3">
-                @if (Request.IsAuthenticated)
-            {
-                    <h3>Total downtime time per plant</h3>
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Plant</th>
-                                <th>Time (mins)</th>
-                            </tr>
-                        </thead>
-                        <tbody style="text-align:center">
-                            <tr>
-                                <td>Batch</td>
-                                <td>@Model.BatchTotalDowntime</td>
-                            </tr>
-                            <tr>
-                                <td>Pan</td>
-                                <td>@Model.PanTotalDowntime</td>
-                            </tr>
-                            <tr>
-                                <td>Roll</td>
-                                <td>@Model.RollTotalTime</td>
-                            </tr>
-                            <tr>
-                                <td>Wheaten</td>
-                                <td>@Model.WheatenTotalTime</td>
-                            </tr>
-                            <tr>
-                                <td>Soda</td>
-                                <td>@Model.SodaTotalDowntime</td>
-                            </tr>
-                            <tr>
-                                <td>Pancakes</td>
-                                <td>@Model.PancakesTotalDowntime</td>
-                            </tr>
-                            <tr>
-                                <td>Potato</td>
-                                <td>@Model.PotatoTotalDowntime</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                }
-            </div>
         </div>
+        <div class="col-md-3">
+            @if (Request.IsAuthenticated)
+            {
+                <h3>Total production time per plant</h3>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Plant</th>
+                            <th>Time (mins)</th>
+                        </tr>
+                    </thead>
+                    <tbody style="text-align:center">
+                        <tr>
+                            <td>Batch</td>
+                            <td>@Model.BatchTotalTime</td>
+                        </tr>
+                        <tr>
+                            <td>Pan</td>
+                            <td>@Model.PancakesTotalTime.</td>
+                        </tr>
+                        <tr>
+                            <td>Roll</td>
+                            <td>@Model.RollTotalTime</td>
+                        </tr>
+                        <tr>
+                            <td>Wheaten</td>
+                            <td>@Model.WheatenTotalTime</td>
+                        </tr>
+                        <tr>
+                            <td>Soda</td>
+                            <td>@Model.SodaTotalTime</td>
+                        </tr>
+                        <tr>
+                            <td>Pancakes</td>
+                            <td>@Model.PancakesTotalTime</td>
+                        </tr>
+                        <tr>
+                            <td>Potato</td>
+                            <td>@Model.PotatoTotalTime</td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        </div>
+        <div class="col-md-3">
+            @if (Request.IsAuthenticated)
+            {
+                <h3>Total downtime time per plant</h3>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Plant</th>
+                            <th>Time (mins)</th>
+                        </tr>
+                    </thead>
+                    <tbody style="text-align:center">
+                        <tr>
+                            <td>Batch</td>
+                            <td>@Model.BatchTotalDowntime</td>
+                        </tr>
+                        <tr>
+                            <td>Pan</td>
+                            <td>@Model.PanTotalDowntime</td>
+                        </tr>
+                        <tr>
+                            <td>Roll</td>
+                            <td>@Model.RollTotalTime</td>
+                        </tr>
+                        <tr>
+                            <td>Wheaten</td>
+                            <td>@Model.WheatenTotalTime</td>
+                        </tr>
+                        <tr>
+                            <td>Soda</td>
+                            <td>@Model.SodaTotalDowntime</td>
+                        </tr>
+                        <tr>
+                            <td>Pancakes</td>
+                            <td>@Model.PancakesTotalDowntime</td>
+                        </tr>
+                        <tr>
+                            <td>Potato</td>
+                            <td>@Model.PotatoTotalDowntime</td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
 </div>
 
-
-
-
-<script type="text/javascript">
-
-    $(function () {
-        $('#MyDate').datetimepicker();
-    });
-</script>
 
 

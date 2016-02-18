@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -20,7 +19,7 @@ namespace QuickCode.Controllers
         private User user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
 
         // GET: Downtimes
-        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page, DateTime? DateFrom, DateTime? DateTo)
         {
             //------------- sorting parameters ---------------
             ViewBag.CurrentSort = sortOrder;
@@ -45,6 +44,13 @@ namespace QuickCode.Controllers
             {
                 var downtime = db.Downtime.Include(d => d.DowntimeType).Include(d => d.Plant).Include(d => d.Shift).Include(d => d.User);
 
+                // Search by date because you're a cool dude!
+                if (DateFrom.HasValue)
+                {
+                    downtime = db.Downtime.Where(s => s.Date >= DateFrom && s.Date < DateTo);
+
+                }
+
                 // ---SEARCH FOR WHATEVER YOU FEEL LIKE HERE -------
                 if (!String.IsNullOrEmpty(searchString))
                 {
@@ -55,8 +61,10 @@ namespace QuickCode.Controllers
 
                 }
 
-                // SWITCH STATEMENT --- WHEN USER SELECTS TO SORT DATA
-                switch (sortOrder)
+              
+
+                    // SWITCH STATEMENT --- WHEN USER SELECTS TO SORT DATA
+                    switch (sortOrder)
                 {
                     case "name_desc":
                         downtime = downtime.OrderByDescending(s => s.User);
@@ -78,11 +86,20 @@ namespace QuickCode.Controllers
                 //return View(downtime.ToList());
 
             }
-            else
+            else // not admin do the following
             {
+                
                 var downtime = from s in db.Downtime
                                    where s.UserID == user.Id.ToString()
                                    select s;
+
+        
+                if (DateFrom.HasValue)
+                {
+                   downtime = db.Downtime.Where(s => s.Date >= DateFrom && s.Date < DateTo);
+                   
+                }
+               
 
                 // ---SEARCH FOR WHATEVER YOU FEEL LIKE HERE -------
                 if (!String.IsNullOrEmpty(searchString))

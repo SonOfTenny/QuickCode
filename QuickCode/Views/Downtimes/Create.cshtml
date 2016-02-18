@@ -71,7 +71,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*<input type="time" id="startTime" name="startTime" placeholder="hh:mm" required >*@
+                @*<input type="time" lass="input input-lg" id="startTime" name="startTime" placeholder="hh:mm" required >*@
                 @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
             </div>
@@ -79,7 +79,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EndTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*<input type="time" id="endTime" name="endTime"  placeholder="hh:mm" required>*@
+                @*<input type="time" class="input input-lg" id="endTime" name="endTime"  placeholder="hh:mm" required>*@
                 @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
             </div>

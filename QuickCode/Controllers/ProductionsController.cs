@@ -21,7 +21,7 @@ namespace QuickCode.Controllers
         protected UserManager<User> UserManager { get; set; }
         /// <returns></returns>
         // GET: Productions
-        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page, DateTime? FirstDate, DateTime? SecondDate)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page, DateTime? DateFrom, DateTime? DateTo)
         {
             //------------- sorting parameters ---------------
             ViewBag.CurrentSort = sortOrder;
@@ -38,29 +38,33 @@ namespace QuickCode.Controllers
             else
             {
                 searchString = currentFilter;
-            }    
+            }
 
             ViewBag.CurrentFilter = searchString;
 
             if (user.Roles.Equals("Administrator")) { var productions = db.Productions.Include(p => p.Plant).Include(p => p.Shift).Include(p => p.User);
 
-                // ---SEARCH FOR WHATEVER YOU FEEL LIKE HERE -------
+                //---Search for record by Date -------
+                if (DateFrom.HasValue)
+                {
+                    productions = db.Productions.Where(s => s.Date >= DateFrom && s.Date < DateTo);
+
+                }
+
+
+                //---SEARCH FOR WHATEVER YOU FEEL LIKE HERE -------
                 if (!String.IsNullOrEmpty(searchString))
                 {
                     productions = productions.Where(s => s.User.UserName.ToUpper().Contains(searchString.ToUpper()) ||
-                                                        s.Shift.Name.ToUpper().Contains(searchString.ToUpper()) ||                                        
-                                                        s.Plant.Name.ToUpper().Contains(searchString.ToUpper()));
+                                                        s.Shift.Name.ToUpper().Contains(searchString.ToUpper()) ||
+                                                        s.Plant.Name.ToUpper().Contains(searchString.ToUpper()) ||
+                                                        DateFrom.ToString().Contains(s.Date.ToString()) 
+                                                      );
 
                 }
 
-                //--- Date search for the cool dudes -----
-                FirstDate = null;
-                if (!FirstDate.HasValue)
-                {
-                    productions = productions.Where(s => s.Date == FirstDate);
-                }
-
-                // ViewBag.DateFilter = FirstDate;
+               
+               
 
                 // SWITCH STATEMENT --- WHEN USER SELECTS TO SORT DATA
                 switch (sortOrder)
@@ -84,11 +88,18 @@ namespace QuickCode.Controllers
                 return View(productions.ToPagedList(pageNumber, pageSize));
                 //return View(productions.ToList());
             }
+           
             else {
             
             var productions = from s in db.Productions
                               where s.UserID == user.Id.ToString()
                               select s;
+
+                if (DateFrom.HasValue)
+                {
+                    productions = db.Productions.Where(s => s.Date >= DateFrom && s.Date < DateTo);
+
+                }
 
                 // ---SEARCH FOR WHATEVER YOU FEEL LIKE HERE -------
                 if (!String.IsNullOrEmpty(searchString))
@@ -98,8 +109,7 @@ namespace QuickCode.Controllers
                                                         s.Plant.Name.ToUpper().Contains(searchString.ToUpper()));
 
                 }
-
-                // SWITCH STATEMENT --- WHEN USER SELECTS TO SORT DATA
+             
                 switch (sortOrder)
                 {
                     case "name_desc":
