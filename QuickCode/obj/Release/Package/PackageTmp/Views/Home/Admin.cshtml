@@ -1,0 +1,55 @@
+﻿@model IEnumerable<QuickCode.Models.User>
+@{
+    ViewBag.Title = "Admin";
+}
+
+<h2>Admin</h2>
+<p>Current Users and Roles</p>
+<div class="container">
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-responsive table-bordered table-striped">
+            <thead style="background-color:#16a085; color:#ffffff;">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Roles)
+                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model)
+                    </th>*@
+                    @*<th>Options</th>*@
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td style="text-align:center;">
+                            @Html.DisplayFor(modelItem => item.Roles)
+                        </td>
+                        @*<td style="text-align:center;">
+                            @Html.DisplayFor(modelItem => item.Claims)
+                        </td>*@
+                        @*<td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.PlantID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.PlantID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.PlantID })
+                        </td>*@
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+  </div>
+  
+</div>
+
+
+

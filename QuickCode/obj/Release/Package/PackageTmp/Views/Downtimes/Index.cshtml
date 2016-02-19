@@ -4,7 +4,7 @@
 
 @if (Request.IsAuthenticated)
 {
-<div class="row" style="margin-top:30px;">
+<div class="row" style="margin-top:30px;margin-bottom:20px;">
      <div class="col-md-4">
          <h2>Downtime Records</h2>
          <p>Create a New Record</p>
@@ -19,13 +19,22 @@
                 {
                     <h2>
                         @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-                        <input type="submit" value="Search" class="btn btn-primary btn-lg" style="height:37px;" />
+                        <input type="submit" value="Search" />
                     </h2>
+                    <form>
+                        <p style="margin-right:50px;color:#7f8c8d;"><span class="glyphicon glyphicon-star" aria-hidden="true" style="color:#7f8c8d;"></span>Why not use a date range? Search here</p>
+                        <label for="DateFrom">Date From:</label>
+                        <input type="date" name="DateFrom" id="DateFrom" />
+                        <label for="DateFrom">Date To:</label>
+                        <input type="date" name="DateTo" id="DateTo" />
+                        <input type='submit' value='Filter' />
+                    </form>
                 }
             
             </div>
 
         </div>
+       
 
 
         @*<p>

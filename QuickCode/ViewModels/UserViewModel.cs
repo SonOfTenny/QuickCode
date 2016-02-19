@@ -8,7 +8,8 @@ namespace QuickCode.ViewModels
 {
     public class UserViewModel
     {
-        public IEnumerable<User>Users { get; set; }
-        
+        public IEnumerable<User> Users { get; set; }
+        public IEnumerable<ApplicationIdentity> AppID { get; set; } 
+       
     }
 }

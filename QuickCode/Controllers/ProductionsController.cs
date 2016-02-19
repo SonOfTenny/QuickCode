@@ -47,7 +47,7 @@ namespace QuickCode.Controllers
                 //---Search for record by Date -------
                 if (DateFrom.HasValue)
                 {
-                    productions = db.Productions.Where(s => s.Date >= DateFrom && s.Date < DateTo);
+                    productions = db.Productions.Where(s => s.Date >= DateFrom && s.Date <= DateTo);
 
                 }
 
@@ -97,7 +97,7 @@ namespace QuickCode.Controllers
 
                 if (DateFrom.HasValue)
                 {
-                    productions = db.Productions.Where(s => s.Date >= DateFrom && s.Date < DateTo);
+                    productions = db.Productions.Where(s => s.Date >= DateFrom && s.Date <= DateTo);
 
                 }
 
