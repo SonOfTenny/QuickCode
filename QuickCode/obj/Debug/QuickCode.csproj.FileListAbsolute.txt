@@ -76,4 +76,9 @@ C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\PagedList.Mvc.xml
 C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Dapper.dll
 C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Dapper.pdb
 C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Dapper.xml
-C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.updatedefault.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.changedmodel.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.addeddesctoaccess.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.fkey.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.addeduseraccess.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.changed.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.addednew.resources

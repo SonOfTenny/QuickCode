@@ -42,8 +42,10 @@ namespace QuickCode.Controllers
 
             if (user.Roles.Equals("Administrator"))
             {
-                var downtime = db.Downtime.Include(d => d.DowntimeType).Include(d => d.Plant).Include(d => d.Shift).Include(d => d.User);
+                //var downtime = db.Downtime.Include(d => d.DowntimeType).Include(d => d.Plant).Include(d => d.Shift).Include(d => d.User);
 
+                var downtime = from s in db.Downtime                            
+                               select s;
                 // Search by date because you're a cool dude!
                 if (DateFrom.HasValue)
                 {

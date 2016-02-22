@@ -7,13 +7,13 @@ namespace QuickCode.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class updatedefault : IMigrationMetadata
+    public sealed partial class addednew : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(updatedefault));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addednew));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602181612229_update default"; }
+            get { return "201602221935313_added new"; }
         }
         
         string IMigrationMetadata.Source

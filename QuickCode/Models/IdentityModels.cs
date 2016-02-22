@@ -5,6 +5,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
 using System.Collections;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace QuickCode.Models
 {
@@ -13,11 +16,18 @@ namespace QuickCode.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+       
+        [DisplayName("Access Type")]
+        public int AccessID { get; set; }
         public virtual ICollection<Production> Production { get; set; }
         // downtime added 14/12/2015
         public virtual ICollection<Downtime> Downtime { get; set; }
-        // fancy foreign keys
-
+        // all the fancy foreign keys
+        //public virtual AccessTypes accessType { get; set; }
+        public virtual ICollection<AccessTypes> accessType { get; set; }
+        public virtual ICollection<UserAccessTypes> UserAccess { get; set; }
+        //[ForeignKey("AccessId")]
+        //public virtual AccessTypes Access { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
@@ -31,9 +41,9 @@ namespace QuickCode.Models
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext()
-            : base("WDIBPW", throwIfV1Schema: false)
+            : base("DefaultConnection", throwIfV1Schema: false)
         // CHANGE THIS FOR LOCAL IRWINS - WDIBPW
-        // DefaultConnection for local
+        // DefaultConnection for local testing - dev laptops
         {
         }
 
@@ -48,17 +58,21 @@ namespace QuickCode.Models
         public DbSet<DowntimeType> DowntimeTypes { get; set; }
         public DbSet<Production> Productions { get; set; }
         public DbSet<Downtime> Downtime { get; set; }
+        public DbSet<AccessTypes> AccessTypes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>().ToTable("User").Property(p => p.Id).HasColumnName("UserId");
+            modelBuilder.Entity<AccessTypes>().ToTable("AccessTypes").Property(p => p.AccessID).HasColumnName("AccessID");
             modelBuilder.Entity<IdentityUserRole>().ToTable("UserRole");
             modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogin");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaim").Property(p => p.Id).HasColumnName("UserClaimId");
             modelBuilder.Entity<IdentityRole>().ToTable("Role").Property(p => p.Id).HasColumnName("RoleId");
 
         }
+
+        public System.Data.Entity.DbSet<QuickCode.Models.UserAccessTypes> UserAccessTypes { get; set; }
     }
 }
