@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -15,7 +16,7 @@ namespace QuickCode.Models
         public string Description { get; set; }
        
     }
-    public class UserAccessTypes
+    public class UserAccessTypes : IdentityUser
     {
         [Key]
         public int UserAccessID { get; set; }

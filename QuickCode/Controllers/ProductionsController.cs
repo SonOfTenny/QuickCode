@@ -163,21 +163,25 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(String manning, String MyDate,String notes, String box1, String box2, String box3, DateTime startTime, DateTime endTime, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,Date,TotalWaste,TotalProdMins")] Production production)
+        public ActionResult Create(double manning, String MyDate,String notes, double box1, double box2, double box3, DateTime startTime, DateTime endTime, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,Date,TotalWaste,TotalProdMins")] Production production)
         {
             // box1 = std box2 = agency box3 = operator
-            int std = Int32.Parse(box1);
-            int agency = Int32.Parse(box2);
-            int op = Int32.Parse(box3);
+            //int std = Int32.Parse(box1);
+            //int agency = Int32.Parse(box2);
+            //int op = Int32.Parse(box3);
+            double std = box1;
+            double agency = box2;
+            double op = box3;
             DateTime st = Convert.ToDateTime(startTime);
             DateTime et = Convert.ToDateTime(endTime);
             DateTime dt = Convert.ToDateTime(MyDate);
-            int sum = production.Cmp_Waste + production.CrumbWaste + production.Pack_Waste + production.Gen_Pack_Waste;
+            double sum = production.Cmp_Waste + production.CrumbWaste + production.Pack_Waste + production.Gen_Pack_Waste;
             //TimeSpan span = (production.EndTime - production.StartTime);
             TimeSpan span = endTime - startTime;
             double totalMins = span.TotalMinutes;
             //int mann = Int32.Parse(manning);
-            String mann = manning;
+            //String mann = manning;
+            double mann = box1 + box2 + box3;
            
             try
             {
@@ -237,16 +241,17 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(String MyDate, DateTime startTime, DateTime endTime, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,StdManning,OpManning,AgencyManning,Manning,Date,TotalWaste,StartTime,EndTime")] Production production)
+        public ActionResult Edit(String MyDate, DateTime startTime, DateTime endTime, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,StdManning,OpManning,AgencyManning,Date,TotalWaste,StartTime,EndTime")] Production production)
         {
          
             DateTime st = Convert.ToDateTime(startTime);
             DateTime et = Convert.ToDateTime(endTime);
             DateTime dt = Convert.ToDateTime(MyDate);
-            int sum = production.Cmp_Waste + production.CrumbWaste + production.Pack_Waste + production.Gen_Pack_Waste;
+            double sum = production.Cmp_Waste + production.CrumbWaste + production.Pack_Waste + production.Gen_Pack_Waste;
             //TimeSpan span = (production.EndTime - production.StartTime);
             TimeSpan span = endTime - startTime;
             double totalMins = span.TotalMinutes;
+            double manning = production.OpManning + production.StdManning + production.AgencyManning;
             //int mann = Int32.Parse(manning);
             User user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
             
@@ -260,6 +265,7 @@ namespace QuickCode.Controllers
                     production.UserID = user.Id;
                     production.TotalWaste = sum;
                     production.TotalProdMins = totalMins;
+                    production.Manning = manning;
                     db.Entry(production).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");

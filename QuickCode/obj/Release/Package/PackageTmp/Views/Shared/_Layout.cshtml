@@ -11,12 +11,15 @@
     @* //----------CDN FOR BOOTSTRAP ---------------------------------------------------------- *@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
-
+    
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top"> 
         <div class="container">
             <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img alt="Brand" src="~/Content/img/IrwinsLogo.png" style="max-height: 100%; height: 100%; -o-object-fit: contain; object-fit: contain;">
+                </a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -25,55 +28,64 @@
                 @Html.ActionLink("Dashboard", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
+               
                 <ul class="nav navbar-nav">
-               @if (Request.IsAuthenticated)
-                            {
-                    <li class="dropdown">
-                        <a href = "#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Production<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("View  Production Info", "Index", "Productions")</li>
-                            <li>@Html.ActionLink("Add New Record", "Create", "Productions")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href = "#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Downtime<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("View  Downtime Info", "Index", "Downtimes")</li>
-                            <li>@Html.ActionLink("Add New Record", "Create", "Downtimes")</li>
-                        </ul>
-                    </li>
-                }
-                    @if(User.IsInRole("Administrator"))
+                    @if (Request.IsAuthenticated)
                     {
-                    <li class="dropdown">
-                        <a href = "#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plants<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("View Plants", "Index", "Plants")</li>
-                            <li>@Html.ActionLink("Add New Plant", "Create", "Plants")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href = "#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shifts<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("View Shifts", "Index", "Shifts")</li>
-                            <li>@Html.ActionLink("Add New Shift", "Create", "Shifts")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href = "#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DTypes<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("View  DTypes", "Index", "DowntimeTypes")</li>
-                            <li>@Html.ActionLink("Add New DTypes", "Create", "DowntimeTypes")</li>
-                        </ul>
-                    </li>
+                    <li>@Html.ActionLink("Production", "Index", "Productions")</li>
+                    <li>@Html.ActionLink("Downtime", "Index", "Downtimes")</li>
+                        @*<li class="dropdown">
+                    <a href = "#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Production<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("View  Production Info", "Index", "Productions")</li>
+                        <li>@Html.ActionLink("Add New Record", "Create", "Productions")</li>
+                    </ul>
+                </li>*@
+                        @*<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Downtime<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("View  Downtime Info", "Index", "Downtimes")</li>
+                                <li>@Html.ActionLink("Add New Record", "Create", "Downtimes")</li>
+                                <li><a href="../Downtimes/Index"><span class="glyphicon glyphicon-cog"></span> Log out</a></li>
+                            </ul>
+                        </li>*@
+                    }
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        @*<li>@Html.ActionLink("Production", "Index", "Productions")</li>
+                        <li>@Html.ActionLink("Downtime", "Index", "Downtimes")</li>*@
+                        <li>@Html.ActionLink("Plants", "Index", "Plants")</li>
+                        <li>@Html.ActionLink("Down. Types", "Index", "DowntimeTypes")</li>
+                        @*<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plants<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("View Plants", "Index", "Plants")</li>
+                                <li>@Html.ActionLink("Add New Plant", "Create", "Plants")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shifts<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("View Shifts", "Index", "Shifts")</li>
+                                <li>@Html.ActionLink("Add New Shift", "Create", "Shifts")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DTypes<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("View  DTypes", "Index", "DowntimeTypes")</li>
+                                <li>@Html.ActionLink("Add New DTypes", "Create", "DowntimeTypes")</li>
+                            </ul>
+                        </li>*@
                     }
                     @*<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("View  Settings", "Index", "Settings")</li>
-                        </ul>
-                    </li>*@
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("View  Settings", "Index", "Settings")</li>
                 </ul>
+            </li>*@
+                </ul>
+
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

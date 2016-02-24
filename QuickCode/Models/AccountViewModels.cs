@@ -64,6 +64,15 @@ namespace QuickCode.Models
 
     public class RegisterViewModel
     {
+        //[Required]
+        //[Display(Name = "Username")]
+        //public string UserName { get; set; }
+        //[Display(Name = "First name")]
+        //public string FirstName { get; set; }
+        //[Display(Name = "Last name")]
+        //public string LastName { get; set; }
+        //[Display(Name = "Role name")]
+        //public string RoleName { get; set; }
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

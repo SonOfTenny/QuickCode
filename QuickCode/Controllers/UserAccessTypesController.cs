@@ -17,7 +17,7 @@ namespace QuickCode.Controllers
         // GET: UserAccessTypes
         public ActionResult Index()
         {
-            var userAccessTypes = db.UserAccessTypes.Include(u => u.User);
+            var userAccessTypes = db.UserAccessTypes.Include(u => u.Access).Include(u => u.User);
             return View(userAccessTypes.ToList());
         }
 
@@ -39,6 +39,7 @@ namespace QuickCode.Controllers
         // GET: UserAccessTypes/Create
         public ActionResult Create()
         {
+            ViewBag.AccessID = new SelectList(db.AccessTypes, "AccessID", "Name");
             ViewBag.UserID = new SelectList(db.Users, "Id", "FirstName");
             return View();
         }
@@ -57,6 +58,7 @@ namespace QuickCode.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.AccessID = new SelectList(db.AccessTypes, "AccessID", "Name", userAccessTypes.AccessID);
             ViewBag.UserID = new SelectList(db.Users, "Id", "FirstName", userAccessTypes.UserID);
             return View(userAccessTypes);
         }
@@ -73,6 +75,7 @@ namespace QuickCode.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.AccessID = new SelectList(db.AccessTypes, "AccessID", "Name", userAccessTypes.AccessID);
             ViewBag.UserID = new SelectList(db.Users, "Id", "FirstName", userAccessTypes.UserID);
             return View(userAccessTypes);
         }
@@ -90,6 +93,7 @@ namespace QuickCode.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.AccessID = new SelectList(db.AccessTypes, "AccessID", "Name", userAccessTypes.AccessID);
             ViewBag.UserID = new SelectList(db.Users, "Id", "FirstName", userAccessTypes.UserID);
             return View(userAccessTypes);
         }

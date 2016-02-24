@@ -8,7 +8,7 @@
      <div class="col-md-4">
          <h2>Downtime Records</h2>
          <p>Create a New Record</p>
-             <a href="@Url.Action("Create", "Downtimes")" class="btn btn-lg btn-primary" style="margin-bottom:10px;">
+             <a href="@Url.Action("Create", "Downtimes")" class="btn btn-lg btn-primary" style="margin-bottom:10px;    box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);">
                  Add
                  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
              </a>
@@ -19,7 +19,7 @@
                 {
                     <h2>
                         @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-                        <input type="submit" value="Search" />
+                        <input style="box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);" type="submit" value="Search" />
                     </h2>
                     <form>
                         <p style="margin-right:50px;color:#7f8c8d;"><span class="glyphicon glyphicon-star" aria-hidden="true" style="color:#7f8c8d;"></span>Why not use a date range? Search here</p>
@@ -27,7 +27,7 @@
                         <input type="date" name="DateFrom" id="DateFrom" />
                         <label for="DateFrom">Date To:</label>
                         <input type="date" name="DateTo" id="DateTo" />
-                        <input type='submit' value='Filter' />
+                        <input style="box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);" type='submit' value='Filter' />
                     </form>
                 }
             

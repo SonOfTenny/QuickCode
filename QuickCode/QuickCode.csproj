@@ -184,6 +184,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DowntimesController.cs" />
     <Compile Include="Controllers\DowntimeTypesController.cs" />
+    <Compile Include="Controllers\FiscalWeeksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PlantsController.cs" />
@@ -198,35 +199,24 @@
     <Compile Include="Migrations\201601091849049_initial migration.Designer.cs">
       <DependentUpon>201601091849049_initial migration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602221848274_changed model.cs" />
-    <Compile Include="Migrations\201602221848274_changed model.Designer.cs">
-      <DependentUpon>201602221848274_changed model.cs</DependentUpon>
+    <Compile Include="Migrations\201602241756077_new mig.cs" />
+    <Compile Include="Migrations\201602241756077_new mig.Designer.cs">
+      <DependentUpon>201602241756077_new mig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602221851438_added desc to access.cs" />
-    <Compile Include="Migrations\201602221851438_added desc to access.Designer.cs">
-      <DependentUpon>201602221851438_added desc to access.cs</DependentUpon>
+    <Compile Include="Migrations\201602241800219_new tbl.cs" />
+    <Compile Include="Migrations\201602241800219_new tbl.Designer.cs">
+      <DependentUpon>201602241800219_new tbl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602221907479_fkey.cs" />
-    <Compile Include="Migrations\201602221907479_fkey.Designer.cs">
-      <DependentUpon>201602221907479_fkey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602221928420_added useraccess.cs" />
-    <Compile Include="Migrations\201602221928420_added useraccess.Designer.cs">
-      <DependentUpon>201602221928420_added useraccess.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602221930491_changed.cs" />
-    <Compile Include="Migrations\201602221930491_changed.Designer.cs">
-      <DependentUpon>201602221930491_changed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602221935313_added new.cs" />
-    <Compile Include="Migrations\201602221935313_added new.Designer.cs">
-      <DependentUpon>201602221935313_added new.cs</DependentUpon>
+    <Compile Include="Migrations\201602241841438_doubles.cs" />
+    <Compile Include="Migrations\201602241841438_doubles.Designer.cs">
+      <DependentUpon>201602241841438_doubles.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessTypes.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Downtime.cs" />
     <Compile Include="Models\DowntimeType.cs" />
+    <Compile Include="Models\FiscalWeek.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Plant.cs" />
@@ -245,6 +235,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\img\IrwinsLogo.png" />
+    <Content Include="Content\img\production.gif" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -391,6 +382,11 @@
     <Content Include="Views\UserAccessTypes\Details.cshtml" />
     <Content Include="Views\UserAccessTypes\Edit.cshtml" />
     <Content Include="Views\UserAccessTypes\Index.cshtml" />
+    <Content Include="Views\FiscalWeeks\Create.cshtml" />
+    <Content Include="Views\FiscalWeeks\Delete.cshtml" />
+    <Content Include="Views\FiscalWeeks\Details.cshtml" />
+    <Content Include="Views\FiscalWeeks\Edit.cshtml" />
+    <Content Include="Views\FiscalWeeks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -404,23 +400,14 @@
     <EmbeddedResource Include="Migrations\201601091849049_initial migration.resx">
       <DependentUpon>201601091849049_initial migration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602221848274_changed model.resx">
-      <DependentUpon>201602221848274_changed model.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602241756077_new mig.resx">
+      <DependentUpon>201602241756077_new mig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602221851438_added desc to access.resx">
-      <DependentUpon>201602221851438_added desc to access.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602241800219_new tbl.resx">
+      <DependentUpon>201602241800219_new tbl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602221907479_fkey.resx">
-      <DependentUpon>201602221907479_fkey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602221928420_added useraccess.resx">
-      <DependentUpon>201602221928420_added useraccess.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602221930491_changed.resx">
-      <DependentUpon>201602221930491_changed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602221935313_added new.resx">
-      <DependentUpon>201602221935313_added new.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602241841438_doubles.resx">
+      <DependentUpon>201602241841438_doubles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

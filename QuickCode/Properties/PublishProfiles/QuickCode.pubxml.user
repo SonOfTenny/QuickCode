@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\Mark\Desktop\Sites\TestSite11</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\Mark\Desktop\Sites\TestSite12</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
@@ -76,7 +76,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/03/2016 20:19:44</publishTime>
     </File>
     <File Include="bin/QuickCode.dll">
-      <publishTime>02/19/2016 14:10:27</publishTime>
+      <publishTime>02/24/2016 21:08:41</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>01/09/2016 18:25:14</publishTime>
@@ -162,11 +162,17 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/bootstrap.min.css">
       <publishTime>01/16/2016 15:05:36</publishTime>
     </File>
+    <File Include="Content/img/IrwinsLogo.png">
+      <publishTime>12/29/2015 13:42:04</publishTime>
+    </File>
+    <File Include="Content/img/production.gif">
+      <publishTime>02/23/2016 19:24:11</publishTime>
+    </File>
     <File Include="Content/PagedList.css">
       <publishTime>02/03/2016 20:19:45</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>01/10/2016 13:41:51</publishTime>
+      <publishTime>02/22/2016 17:09:31</publishTime>
     </File>
     <File Include="Content/themes/base/accordion.css">
       <publishTime>02/04/2016 19:12:36</publishTime>
@@ -354,6 +360,21 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/_references.js">
       <publishTime>02/04/2016 19:12:37</publishTime>
     </File>
+    <File Include="Views/AccessTypes/Create.cshtml">
+      <publishTime>02/22/2016 18:53:27</publishTime>
+    </File>
+    <File Include="Views/AccessTypes/Delete.cshtml">
+      <publishTime>02/22/2016 18:49:09</publishTime>
+    </File>
+    <File Include="Views/AccessTypes/Details.cshtml">
+      <publishTime>02/22/2016 18:53:19</publishTime>
+    </File>
+    <File Include="Views/AccessTypes/Edit.cshtml">
+      <publishTime>02/22/2016 18:53:00</publishTime>
+    </File>
+    <File Include="Views/AccessTypes/Index.cshtml">
+      <publishTime>02/22/2016 19:03:17</publishTime>
+    </File>
     <File Include="Views/Account/ConfirmEmail.cshtml">
       <publishTime>01/09/2016 18:25:08</publishTime>
     </File>
@@ -373,7 +394,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/10/2016 14:45:43</publishTime>
     </File>
     <File Include="Views/Account/Register.cshtml">
-      <publishTime>01/09/2016 18:25:08</publishTime>
+      <publishTime>02/23/2016 10:56:14</publishTime>
     </File>
     <File Include="Views/Account/ResetPassword.cshtml">
       <publishTime>01/09/2016 18:25:08</publishTime>
@@ -390,20 +411,35 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Account/_ExternalLoginsListPartial.cshtml">
       <publishTime>01/09/2016 18:25:08</publishTime>
     </File>
+    <File Include="Views/Admin/Create.cshtml">
+      <publishTime>02/23/2016 10:43:50</publishTime>
+    </File>
+    <File Include="Views/Admin/Delete.cshtml">
+      <publishTime>02/22/2016 18:15:39</publishTime>
+    </File>
+    <File Include="Views/Admin/Details.cshtml">
+      <publishTime>02/22/2016 18:15:41</publishTime>
+    </File>
+    <File Include="Views/Admin/Edit.cshtml">
+      <publishTime>02/22/2016 19:46:37</publishTime>
+    </File>
+    <File Include="Views/Admin/Index.cshtml">
+      <publishTime>02/23/2016 10:44:27</publishTime>
+    </File>
     <File Include="Views/Downtimes/Create.cshtml">
-      <publishTime>02/17/2016 17:47:55</publishTime>
+      <publishTime>02/23/2016 14:25:47</publishTime>
     </File>
     <File Include="Views/Downtimes/Delete.cshtml">
-      <publishTime>01/16/2016 16:13:49</publishTime>
+      <publishTime>02/23/2016 14:26:00</publishTime>
     </File>
     <File Include="Views/Downtimes/Details.cshtml">
       <publishTime>02/05/2016 11:40:25</publishTime>
     </File>
     <File Include="Views/Downtimes/Edit.cshtml">
-      <publishTime>02/11/2016 20:02:40</publishTime>
+      <publishTime>02/23/2016 14:29:22</publishTime>
     </File>
     <File Include="Views/Downtimes/Index.cshtml">
-      <publishTime>02/18/2016 18:38:46</publishTime>
+      <publishTime>02/23/2016 14:25:16</publishTime>
     </File>
     <File Include="Views/DowntimeTypes/Create.cshtml">
       <publishTime>01/09/2016 19:18:08</publishTime>
@@ -420,6 +456,21 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/DowntimeTypes/Index.cshtml">
       <publishTime>02/05/2016 11:50:28</publishTime>
     </File>
+    <File Include="Views/FiscalWeeks/Create.cshtml">
+      <publishTime>02/24/2016 17:59:08</publishTime>
+    </File>
+    <File Include="Views/FiscalWeeks/Delete.cshtml">
+      <publishTime>02/24/2016 17:59:10</publishTime>
+    </File>
+    <File Include="Views/FiscalWeeks/Details.cshtml">
+      <publishTime>02/24/2016 17:59:11</publishTime>
+    </File>
+    <File Include="Views/FiscalWeeks/Edit.cshtml">
+      <publishTime>02/24/2016 17:59:12</publishTime>
+    </File>
+    <File Include="Views/FiscalWeeks/Index.cshtml">
+      <publishTime>02/24/2016 17:59:13</publishTime>
+    </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>01/09/2016 18:24:57</publishTime>
     </File>
@@ -430,10 +481,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/09/2016 18:24:57</publishTime>
     </File>
     <File Include="Views/Home/Dashboard.cshtml">
-      <publishTime>02/19/2016 12:10:50</publishTime>
+      <publishTime>02/22/2016 18:14:08</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>02/18/2016 18:38:52</publishTime>
+      <publishTime>02/24/2016 20:50:35</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>01/09/2016 18:25:08</publishTime>
@@ -469,19 +520,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/05/2016 11:52:08</publishTime>
     </File>
     <File Include="Views/Productions/Create.cshtml">
-      <publishTime>02/13/2016 16:10:10</publishTime>
+      <publishTime>02/23/2016 13:18:59</publishTime>
     </File>
     <File Include="Views/Productions/Delete.cshtml">
-      <publishTime>01/16/2016 16:16:23</publishTime>
+      <publishTime>02/23/2016 14:20:04</publishTime>
     </File>
     <File Include="Views/Productions/Details.cshtml">
       <publishTime>01/09/2016 19:21:29</publishTime>
     </File>
     <File Include="Views/Productions/Edit.cshtml">
-      <publishTime>02/11/2016 20:03:42</publishTime>
+      <publishTime>02/23/2016 14:20:16</publishTime>
     </File>
     <File Include="Views/Productions/Index.cshtml">
-      <publishTime>02/18/2016 18:20:15</publishTime>
+      <publishTime>02/23/2016 14:24:49</publishTime>
     </File>
     <File Include="Views/Settings/Index.cshtml">
       <publishTime>01/10/2016 13:06:32</publishTime>
@@ -493,7 +544,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/09/2016 18:25:08</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>02/05/2016 12:31:51</publishTime>
+      <publishTime>02/24/2016 21:03:09</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>01/23/2016 16:37:25</publishTime>
@@ -512,6 +563,21 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/Shifts/Index.cshtml">
       <publishTime>01/23/2016 16:39:11</publishTime>
+    </File>
+    <File Include="Views/UserAccessTypes/Create.cshtml">
+      <publishTime>02/23/2016 11:12:23</publishTime>
+    </File>
+    <File Include="Views/UserAccessTypes/Delete.cshtml">
+      <publishTime>02/23/2016 11:09:19</publishTime>
+    </File>
+    <File Include="Views/UserAccessTypes/Details.cshtml">
+      <publishTime>02/23/2016 11:09:20</publishTime>
+    </File>
+    <File Include="Views/UserAccessTypes/Edit.cshtml">
+      <publishTime>02/23/2016 11:09:22</publishTime>
+    </File>
+    <File Include="Views/UserAccessTypes/Index.cshtml">
+      <publishTime>02/23/2016 11:11:34</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>01/09/2016 18:24:57</publishTime>

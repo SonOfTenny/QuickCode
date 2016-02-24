@@ -26,27 +26,27 @@ namespace QuickCode.Models
         [DisplayFormat(DataFormatString = "{0: HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime EndTime { get; set; }
         [DisplayName("Actual Mix")]
-        public int ActualMix { get; set; }
+        public double ActualMix { get; set; }
         [DisplayName("Crumb Waste")]
-        public int CrumbWaste { get; set; }
+        public double CrumbWaste { get; set; }
         [DisplayName("Compactor Waste")]
-        public int Cmp_Waste { get; set; }
+        public double Cmp_Waste { get; set; }
         [DisplayName("Packaging Waste")]
-        public int Pack_Waste { get; set; }
+        public double Pack_Waste { get; set; }
         [DisplayName("General Packaging Waste")]
-        public int Gen_Pack_Waste { get; set; }
+        public double Gen_Pack_Waste { get; set; }
         [DisplayName("Standard Manning")]
-        public int StdManning { get; set; }
+        public double StdManning { get; set; }
         [DisplayName("Agency Manning")]
-        public int AgencyManning { get; set; }
+        public double AgencyManning { get; set; }
         [DisplayName("Operator Manning")]
-        public int OpManning { get; set; }
-        public string Manning { get; set; }
+        public double OpManning { get; set; }
+        public double Manning { get; set; }
         public string Notes { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
-        public int TotalWaste { get; set; }
+        public double TotalWaste { get; set; }
         public double TotalProdMins { get; set; }
 
         // all the fancy foreign keys

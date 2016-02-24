@@ -16,18 +16,14 @@ namespace QuickCode.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-       
-        [DisplayName("Access Type")]
-        public int AccessID { get; set; }
+        // for temporary security only
+        public string RoleName { get; set; }   
+        public int? AccessID { get; set; }
         public virtual ICollection<Production> Production { get; set; }
         // downtime added 14/12/2015
         public virtual ICollection<Downtime> Downtime { get; set; }
         // all the fancy foreign keys
-        //public virtual AccessTypes accessType { get; set; }
-        public virtual ICollection<AccessTypes> accessType { get; set; }
         public virtual ICollection<UserAccessTypes> UserAccess { get; set; }
-        //[ForeignKey("AccessId")]
-        //public virtual AccessTypes Access { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
@@ -41,7 +37,7 @@ namespace QuickCode.Models
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("WDIBPW", throwIfV1Schema: false)
         // CHANGE THIS FOR LOCAL IRWINS - WDIBPW
         // DefaultConnection for local testing - dev laptops
         {
@@ -74,5 +70,7 @@ namespace QuickCode.Models
         }
 
         public System.Data.Entity.DbSet<QuickCode.Models.UserAccessTypes> UserAccessTypes { get; set; }
+
+        public System.Data.Entity.DbSet<QuickCode.Models.FiscalWeek> FiscalWeeks { get; set; }
     }
 }

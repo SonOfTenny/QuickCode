@@ -1,0 +1,66 @@
+﻿@model QuickCode.Models.FiscalWeek
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FiscalWeek</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FiscalYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FiscalYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WeekName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WeekName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WeekQuarter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WeekQuarter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WeekMonth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WeekMonth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WeekNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WeekNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WeekStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WeekStart)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FiscalWeekID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

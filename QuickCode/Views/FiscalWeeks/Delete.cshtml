@@ -1,0 +1,72 @@
+﻿@model QuickCode.Models.FiscalWeek
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>FiscalWeek</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FiscalYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FiscalYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WeekName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WeekName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WeekQuarter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WeekQuarter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WeekMonth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WeekMonth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WeekNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WeekNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WeekStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WeekStart)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

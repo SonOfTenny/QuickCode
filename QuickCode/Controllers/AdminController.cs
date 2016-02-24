@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using QuickCode.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace QuickCode.Controllers
 {
@@ -114,6 +116,9 @@ namespace QuickCode.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+       
+
 
         protected override void Dispose(bool disposing)
         {

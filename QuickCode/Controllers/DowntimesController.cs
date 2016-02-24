@@ -49,7 +49,7 @@ namespace QuickCode.Controllers
                 // Search by date because you're a cool dude!
                 if (DateFrom.HasValue)
                 {
-                    downtime = db.Downtime.Where(s => s.Date >= DateFrom && s.Date < DateTo);
+                    downtime = db.Downtime.Where(s => s.Date >= DateFrom && s.Date <= DateTo);
 
                 }
 
@@ -98,7 +98,7 @@ namespace QuickCode.Controllers
         
                 if (DateFrom.HasValue)
                 {
-                   downtime = db.Downtime.Where(s => s.Date >= DateFrom && s.Date < DateTo);
+                   downtime = db.Downtime.Where(s => s.Date >= DateFrom && s.Date <= DateTo);
                    
                 }
                
