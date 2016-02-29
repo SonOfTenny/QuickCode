@@ -76,6 +76,4 @@ C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.csprojResolveAss
 C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Dapper.dll
 C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Dapper.pdb
 C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Dapper.xml
-C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.Migrations.newmig.resources
-C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.Migrations.newtbl.resources
-C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.Migrations.doubles.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Release\QuickCode.Migrations.newshit.resources

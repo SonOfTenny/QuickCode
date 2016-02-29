@@ -98,7 +98,7 @@
                     Total Time (Mins)
                 </th>
                 <th class="text-align: left;padding: 8px;"style="width:100px;">
-                    @*@Html.DisplayNameFor(model => model.Date)*@
+                    @*@Html.DisplayNameFor(model => model.StartDate)*@
                     @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th class="text-align: left;padding: 8px;">
@@ -153,9 +153,8 @@
                         @Html.DisplayFor(modelItem => item.TotalProdMins)
                     </td>
                     <td class="text-align: left;padding: 8px;" style="text-align:center; width:100px;">
-                        @Html.DisplayFor(modelItem => item.Date)
-                                  
-                    
+                        @Html.DisplayFor(modelItem => item.StartDate)<br />
+                        @Html.DisplayFor(modelItem => item.EndDate)           
                     </td>
                     <td class="text-align: left;padding: 8px;" style="text-align:center;">
                         @Html.DisplayFor(modelItem => item.StartTime)

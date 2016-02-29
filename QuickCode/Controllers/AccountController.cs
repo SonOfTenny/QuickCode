@@ -157,10 +157,11 @@ namespace QuickCode.Controllers
                     Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    RoleName = model.RoleName
+                    RoleName = model.RoleName,
+                    
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
-
+               
                 // Add the Address properties:
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
@@ -169,7 +170,7 @@ namespace QuickCode.Controllers
                 // if user created return to user admin menu:
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "UsersAdmin");
                 }
 
                 //    if (result.Succeeded)

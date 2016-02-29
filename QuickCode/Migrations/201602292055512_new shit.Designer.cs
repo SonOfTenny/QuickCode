@@ -7,13 +7,13 @@ namespace QuickCode.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class news : IMigrationMetadata
+    public sealed partial class newshit : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(news));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(newshit));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602291237222_new s"; }
+            get { return "201602292055512_new shit"; }
         }
         
         string IMigrationMetadata.Source

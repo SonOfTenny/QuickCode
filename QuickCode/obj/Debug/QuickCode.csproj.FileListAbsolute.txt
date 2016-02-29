@@ -75,7 +75,4 @@ C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\PagedList.Mvc.xml
 C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Dapper.dll
 C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Dapper.pdb
 C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Dapper.xml
-C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.csprojResolveAssemblyReference.cache
-C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.news.resources
-C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.newst.resources
-C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.newfks.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.newshit.resources

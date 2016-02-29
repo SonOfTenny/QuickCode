@@ -7,17 +7,24 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using QuickCode.Models;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity;
 
 namespace QuickCode.Controllers
 {
     public class PlantsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+       
 
+        private User users = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
         // GET: Plants
+      
         public ActionResult Index()
         {
-            return View(db.Plants.ToList());
+           
+                return View(db.Plants.ToList());
+           
         }
 
         // GET: Plants/Details/5

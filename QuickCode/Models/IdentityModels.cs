@@ -39,7 +39,7 @@ namespace QuickCode.Models
                     .Format("{0} {1}", fname, lname);
             }
         }
-
+        
         //public int? AccessID { get; set; }
         public virtual ICollection<Production> Production { get; set; }
         // downtime added 14/12/2015
@@ -53,7 +53,7 @@ namespace QuickCode.Models
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("WDIBPW", throwIfV1Schema: false)
         // CHANGE THIS FOR LOCAL IRWINS - WDIBPW
         // DefaultConnection for local testing - dev laptops
         {
@@ -71,6 +71,9 @@ namespace QuickCode.Models
         public DbSet<Production> Productions { get; set; }
         public DbSet<Downtime> Downtime { get; set; }
         public DbSet<AccessTypes> AccessTypes { get; set; }
+        public DbSet<UserAccessTypes> UserAccessTypes { get; set; }
+        public DbSet<FiscalWeek> FiscalWeeks { get; set; }
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -83,10 +86,12 @@ namespace QuickCode.Models
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaim").Property(p => p.Id).HasColumnName("UserClaimId");
             modelBuilder.Entity<IdentityRole>().ToTable("Role").Property(p => p.Id).HasColumnName("RoleId");
 
+           
         }
+        //public System.Data.Entity.DbSet<QuickCode.Models.UserAccessTypes> UserAccessTypes { get; set; }
 
-        public System.Data.Entity.DbSet<QuickCode.Models.UserAccessTypes> UserAccessTypes { get; set; }
-
-        public System.Data.Entity.DbSet<QuickCode.Models.FiscalWeek> FiscalWeeks { get; set; }
+        //public System.Data.Entity.DbSet<QuickCode.Models.FiscalWeek> FiscalWeeks { get; set; }
     }
+    
+
 }
