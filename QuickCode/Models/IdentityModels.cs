@@ -14,30 +14,46 @@ namespace QuickCode.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class User : IdentityUser
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        // for temporary security only
-        public string RoleName { get; set; }   
-        public int? AccessID { get; set; }
-        public virtual ICollection<Production> Production { get; set; }
-        // downtime added 14/12/2015
-        public virtual ICollection<Downtime> Downtime { get; set; }
-        // all the fancy foreign keys
-        public virtual ICollection<UserAccessTypes> UserAccess { get; set; }
-
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
+       
+       public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
             return userIdentity;
         }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string RoleName { get; set; }
+
+        // Concatenate the fullname info for display in tables and such:
+        public string FullName
+        {
+            get
+            {
+                string fname =
+                    string.IsNullOrWhiteSpace(this.FirstName) ? "" : this.FirstName;
+                string lname =
+                    string.IsNullOrWhiteSpace(this.LastName) ? "" : this.LastName;
+                return string
+                    .Format("{0} {1}", fname, lname);
+            }
+        }
+
+        //public int? AccessID { get; set; }
+        public virtual ICollection<Production> Production { get; set; }
+        // downtime added 14/12/2015
+        public virtual ICollection<Downtime> Downtime { get; set; }
+        // all the fancy foreign keys
+        public virtual ICollection<UserAccessTypes> UserAccess { get; set; }
+        public virtual AccessTypes AccessType { get; set; }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext()
-            : base("WDIBPW", throwIfV1Schema: false)
+            : base("DefaultConnection", throwIfV1Schema: false)
         // CHANGE THIS FOR LOCAL IRWINS - WDIBPW
         // DefaultConnection for local testing - dev laptops
         {

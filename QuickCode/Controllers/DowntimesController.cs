@@ -49,7 +49,7 @@ namespace QuickCode.Controllers
                 // Search by date because you're a cool dude!
                 if (DateFrom.HasValue)
                 {
-                    downtime = db.Downtime.Where(s => s.Date >= DateFrom && s.Date <= DateTo);
+                    downtime = db.Downtime.Where(s => s.StartDate >= DateFrom && s.EndDate <= DateTo);
 
                 }
 
@@ -72,13 +72,13 @@ namespace QuickCode.Controllers
                         downtime = downtime.OrderByDescending(s => s.User);
                         break;
                     case "Date":
-                        downtime = downtime.OrderBy(s => s.Date);
+                        downtime = downtime.OrderBy(s => s.StartDate);
                         break;
                     case "date_desc":
-                        downtime = downtime.OrderByDescending(s => s.Date);
+                        downtime = downtime.OrderByDescending(s => s.StartDate);
                         break;
                     default:                 
-                        downtime = downtime.OrderBy(s => s.Date);
+                        downtime = downtime.OrderBy(s => s.StartDate);
                         break;
                 }
 
@@ -98,7 +98,7 @@ namespace QuickCode.Controllers
         
                 if (DateFrom.HasValue)
                 {
-                   downtime = db.Downtime.Where(s => s.Date >= DateFrom && s.Date <= DateTo);
+                   downtime = db.Downtime.Where(s => s.StartDate >= DateFrom && s.EndDate <= DateTo);
                    
                 }
                
@@ -120,13 +120,13 @@ namespace QuickCode.Controllers
                         downtime = downtime.OrderByDescending(s => s.User);
                         break;
                     case "Date":
-                        downtime = downtime.OrderBy(s => s.Date);
+                        downtime = downtime.OrderBy(s => s.StartDate);
                         break;
                     case "date_desc":
-                        downtime = downtime.OrderByDescending(s => s.Date);
+                        downtime = downtime.OrderByDescending(s => s.StartDate);
                         break;
                     default:
-                        downtime = downtime.OrderBy(s => s.Date);
+                        downtime = downtime.OrderBy(s => s.StartDate);
                         break;
                 }
 
@@ -168,7 +168,7 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(String MyDate, DateTime startTime, DateTime endTime, [Bind(Include = "DowntimeID,UserID,ShiftID,DowntimeTypeID,PlantID,Reason,Action,Date,TotalDownMins")] Downtime downtime)
+        public ActionResult Create(String MyDate, String EndDate, DateTime startTime, DateTime endTime, [Bind(Include = "DowntimeID,UserID,ShiftID,DowntimeTypeID,PlantID,Reason,Action,Date,TotalDownMins")] Downtime downtime)
         {
             DateTime dt = Convert.ToDateTime(MyDate);
             DateTime st = Convert.ToDateTime(startTime);
@@ -181,14 +181,14 @@ namespace QuickCode.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    downtime.Date = dt;
+                    downtime.StartDate = dt;
                     downtime.StartTime = st;
                     downtime.EndTime = et;
                     downtime.TotalDownMins = totalMins;
                     downtime.UserID = user.Id;
                     db.Downtime.Add(downtime);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Create");
                 }
             }
             catch (DataException /* dex */)
@@ -228,7 +228,7 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(String MyDate, DateTime startTime, DateTime endTime, [Bind(Include = "DowntimeID,UserID,ShiftID,DowntimeTypeID,PlantID,Reason,Action,Date,TotalDownMins")] Downtime downtime)
+        public ActionResult Edit(String MyDate, String EndDate, DateTime startTime, DateTime endTime, [Bind(Include = "DowntimeID,UserID,ShiftID,DowntimeTypeID,PlantID,Reason,Action,Date,TotalDownMins")] Downtime downtime)
         {
             DateTime dt = Convert.ToDateTime(MyDate);
             DateTime st = Convert.ToDateTime(startTime);
@@ -240,7 +240,7 @@ namespace QuickCode.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    downtime.Date = dt;
+                    downtime.StartDate = dt;
                     downtime.StartTime = st;
                     downtime.EndTime = et;
                     downtime.TotalDownMins = totalMins;

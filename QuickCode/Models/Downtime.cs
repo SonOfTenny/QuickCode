@@ -31,7 +31,10 @@ namespace QuickCode.Models
         public string Action { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yy}", ApplyFormatInEditMode = true)]
-        public DateTime Date { get; set; }
+        public DateTime StartDate { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yy}", ApplyFormatInEditMode = true)]
+        public DateTime EndDate { get; set; }
         public double TotalDownMins { get; set; }
 
         // all the fancy foreign keys

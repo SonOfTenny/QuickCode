@@ -17,10 +17,10 @@
       <p style="margin-right:50px;color:#7f8c8d;"><span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:#7f8c8d;"></span>  Can't find what you're looking for? Search here</p>
                 @using (Html.BeginForm("Index", "Downtimes", FormMethod.Get))
                 {
-                    <h2>
+                    <h3>
                         @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
                         <input style="box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);" type="submit" value="Search" />
-                    </h2>
+                    </h3>
                     <form>
                         <p style="margin-right:50px;color:#7f8c8d;"><span class="glyphicon glyphicon-star" aria-hidden="true" style="color:#7f8c8d;"></span>Why not use a date range? Search here</p>
                         <label for="DateFrom">Date From:</label>
@@ -82,7 +82,7 @@
                                 Total Time (Mins)
                             </th>
                             <th class="text-align: left;padding: 8px;">
-                                @*@Html.DisplayNameFor(model => model.Date)*@
+                                @*@Html.DisplayNameFor(model => model.StartDate)*@
                                 @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
                             </th>
                             <th class="text-align: left;padding: 8px;">
@@ -121,7 +121,8 @@
                                 @Html.DisplayFor(modelItem => item.TotalDownMins)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Date)
+                                @Html.DisplayFor(modelItem => item.StartDate)<br />
+                                Html.DisplayFor(modelItem => item.EndDate)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.StartTime)

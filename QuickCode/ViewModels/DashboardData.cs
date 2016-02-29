@@ -21,6 +21,8 @@ namespace QuickCode.ViewModels
         public int LastFiscalWeekNo { get; set; }
         public DateTime LastFiscalWeek { get; set; }
         public string Last2FiscalWeeks { get; set; }
+        public DateTime FutreFiscalWeek { get; set; }
+        public int FutureFiscalWeekNo { get; set; }
         /// <summary>
         /// BATCH
         /// </summary>

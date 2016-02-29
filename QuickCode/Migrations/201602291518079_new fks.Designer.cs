@@ -7,13 +7,13 @@ namespace QuickCode.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class doubles : IMigrationMetadata
+    public sealed partial class newfks : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(doubles));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(newfks));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602241841438_doubles"; }
+            get { return "201602291518079_new fks"; }
         }
         
         string IMigrationMetadata.Source

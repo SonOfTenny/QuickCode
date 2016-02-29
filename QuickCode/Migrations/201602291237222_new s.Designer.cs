@@ -7,13 +7,13 @@ namespace QuickCode.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class newtbl : IMigrationMetadata
+    public sealed partial class news : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(newtbl));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(news));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602241800219_new tbl"; }
+            get { return "201602291237222_new s"; }
         }
         
         string IMigrationMetadata.Source

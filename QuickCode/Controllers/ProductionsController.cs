@@ -47,7 +47,7 @@ namespace QuickCode.Controllers
                 //---Search for record by Date -------
                 if (DateFrom.HasValue)
                 {
-                    productions = db.Productions.Where(s => s.Date >= DateFrom && s.Date <= DateTo);
+                    productions = db.Productions.Where(s => s.StartDate >= DateFrom && s.EndDate <= DateTo);
 
                 }
 
@@ -57,8 +57,8 @@ namespace QuickCode.Controllers
                 {
                     productions = productions.Where(s => s.User.UserName.ToUpper().Contains(searchString.ToUpper()) ||
                                                         s.Shift.Name.ToUpper().Contains(searchString.ToUpper()) ||
-                                                        s.Plant.Name.ToUpper().Contains(searchString.ToUpper()) ||
-                                                        DateFrom.ToString().Contains(s.Date.ToString()) 
+                                                        s.Plant.Name.ToUpper().Contains(searchString.ToUpper()) 
+                                                      
                                                       );
 
                 }
@@ -73,13 +73,13 @@ namespace QuickCode.Controllers
                         productions = productions.OrderByDescending(s => s.User);
                         break;
                     case "Date":
-                        productions = productions.OrderBy(s => s.Date);
+                        productions = productions.OrderBy(s => s.StartDate);
                         break;
                     case "date_desc":
-                        productions = productions.OrderByDescending(s => s.Date);
+                        productions = productions.OrderByDescending(s => s.StartDate);
                         break;
                     default:
-                        productions = productions.OrderBy(s => s.Date);
+                        productions = productions.OrderBy(s => s.StartDate);
                         break;
                 }
 
@@ -97,7 +97,7 @@ namespace QuickCode.Controllers
 
                 if (DateFrom.HasValue)
                 {
-                    productions = db.Productions.Where(s => s.Date >= DateFrom && s.Date <= DateTo);
+                    productions = db.Productions.Where(s => s.StartDate >= DateFrom && s.EndDate <= DateTo);
 
                 }
 
@@ -116,13 +116,13 @@ namespace QuickCode.Controllers
                         productions = productions.OrderByDescending(s => s.User);
                         break;
                     case "Date":
-                        productions = productions.OrderBy(s => s.Date);
+                        productions = productions.OrderBy(s => s.StartDate);
                         break;
                     case "date_desc":
-                        productions = productions.OrderByDescending(s => s.Date);
+                        productions = productions.OrderByDescending(s => s.StartDate);
                         break;
                     default:
-                        productions = productions.OrderBy(s => s.Date);
+                        productions = productions.OrderBy(s => s.StartDate);
                         break;
                 }
 
@@ -163,7 +163,7 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(double manning, String MyDate,String notes, double box1, double box2, double box3, DateTime startTime, DateTime endTime, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,Date,TotalWaste,TotalProdMins")] Production production)
+        public ActionResult Create(double manning, String MyDate, String EndDate, String notes, double box1, double box2, double box3, DateTime startTime, DateTime endTime, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,Date,TotalWaste,TotalProdMins")] Production production)
         {
             // box1 = std box2 = agency box3 = operator
             //int std = Int32.Parse(box1);
@@ -188,7 +188,7 @@ namespace QuickCode.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    production.Date = dt;
+                    production.StartDate = dt;
                     production.StartTime = st;
                     production.EndTime = et;
                     production.TotalWaste = sum;
@@ -201,7 +201,7 @@ namespace QuickCode.Controllers
                     production.Notes = notes;
                     db.Productions.Add(production);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Create");
                 }
             }
             catch (DataException /* dex */)
@@ -241,7 +241,7 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(String MyDate, DateTime startTime, DateTime endTime, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,StdManning,OpManning,AgencyManning,Date,TotalWaste,StartTime,EndTime")] Production production)
+        public ActionResult Edit(String MyDate, String EndDate, DateTime startTime, DateTime endTime, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,StdManning,OpManning,AgencyManning,Date,TotalWaste,StartTime,EndTime")] Production production)
         {
          
             DateTime st = Convert.ToDateTime(startTime);
@@ -259,7 +259,7 @@ namespace QuickCode.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    production.Date = dt;
+                    production.StartDate = dt;
                     production.StartTime = st;
                     production.EndTime = et;
                     production.UserID = user.Id;

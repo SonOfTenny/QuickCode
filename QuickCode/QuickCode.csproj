@@ -192,6 +192,7 @@
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\ShiftsController.cs" />
     <Compile Include="Controllers\UserAccessTypesController.cs" />
+    <Compile Include="Controllers\UsersAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -199,17 +200,17 @@
     <Compile Include="Migrations\201601091849049_initial migration.Designer.cs">
       <DependentUpon>201601091849049_initial migration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602241756077_new mig.cs" />
-    <Compile Include="Migrations\201602241756077_new mig.Designer.cs">
-      <DependentUpon>201602241756077_new mig.cs</DependentUpon>
+    <Compile Include="Migrations\201602291237222_new s.cs" />
+    <Compile Include="Migrations\201602291237222_new s.Designer.cs">
+      <DependentUpon>201602291237222_new s.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602241800219_new tbl.cs" />
-    <Compile Include="Migrations\201602241800219_new tbl.Designer.cs">
-      <DependentUpon>201602241800219_new tbl.cs</DependentUpon>
+    <Compile Include="Migrations\201602291320484_new st.cs" />
+    <Compile Include="Migrations\201602291320484_new st.Designer.cs">
+      <DependentUpon>201602291320484_new st.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602241841438_doubles.cs" />
-    <Compile Include="Migrations\201602241841438_doubles.Designer.cs">
-      <DependentUpon>201602241841438_doubles.cs</DependentUpon>
+    <Compile Include="Migrations\201602291518079_new fks.cs" />
+    <Compile Include="Migrations\201602291518079_new fks.Designer.cs">
+      <DependentUpon>201602291518079_new fks.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessTypes.cs" />
@@ -387,6 +388,12 @@
     <Content Include="Views\FiscalWeeks\Details.cshtml" />
     <Content Include="Views\FiscalWeeks\Edit.cshtml" />
     <Content Include="Views\FiscalWeeks\Index.cshtml" />
+    <Content Include="Views\UsersAdmin\Create.cshtml" />
+    <Content Include="Views\UsersAdmin\Delete.cshtml" />
+    <Content Include="Views\UsersAdmin\Details.cshtml" />
+    <Content Include="Views\UsersAdmin\Edit.cshtml" />
+    <Content Include="Views\UsersAdmin\Index.cshtml" />
+    <Content Include="Views\UsersAdmin\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -400,14 +407,14 @@
     <EmbeddedResource Include="Migrations\201601091849049_initial migration.resx">
       <DependentUpon>201601091849049_initial migration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602241756077_new mig.resx">
-      <DependentUpon>201602241756077_new mig.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602291237222_new s.resx">
+      <DependentUpon>201602291237222_new s.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602241800219_new tbl.resx">
-      <DependentUpon>201602241800219_new tbl.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602291320484_new st.resx">
+      <DependentUpon>201602291320484_new st.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602241841438_doubles.resx">
-      <DependentUpon>201602241841438_doubles.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602291518079_new fks.resx">
+      <DependentUpon>201602291518079_new fks.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

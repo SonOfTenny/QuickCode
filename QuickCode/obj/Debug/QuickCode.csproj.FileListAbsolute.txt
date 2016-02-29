@@ -64,7 +64,6 @@ C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.csprojResolveAssemblyReference.cache
 C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.dll
 C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.pdb
 C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.initialmigration.resources
@@ -76,6 +75,7 @@ C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\PagedList.Mvc.xml
 C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Dapper.dll
 C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Dapper.pdb
 C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Dapper.xml
-C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.newmig.resources
-C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.newtbl.resources
-C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.doubles.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.csprojResolveAssemblyReference.cache
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.news.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.newst.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.newfks.resources
