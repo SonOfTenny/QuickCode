@@ -23,6 +23,12 @@ namespace QuickCode.ViewModels
         public string Last2FiscalWeeks { get; set; }
         public DateTime FutreFiscalWeek { get; set; }
         public int FutureFiscalWeekNo { get; set; }
+        public IEnumerable<Downtime> Downtime { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public string PlantName { get; set; }
         /// <summary>
         /// BATCH
         /// </summary>

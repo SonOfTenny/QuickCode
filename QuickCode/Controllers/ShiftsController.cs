@@ -15,6 +15,7 @@ namespace QuickCode.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Shifts
+
         public ActionResult Index()
         {
             return View(db.Shifts.ToList());

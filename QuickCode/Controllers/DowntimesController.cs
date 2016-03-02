@@ -19,6 +19,7 @@ namespace QuickCode.Controllers
         private User user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
 
         // GET: Downtimes
+        
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page, DateTime? DateFrom, DateTime? DateTo)
         {
             //------------- sorting parameters ---------------
@@ -37,10 +38,11 @@ namespace QuickCode.Controllers
             {
                 searchString = currentFilter;
             }
-
+            // sets the current filter in the table to searchString:
             ViewBag.CurrentFilter = searchString;
 
-            if (user.Roles.Equals("Administrator"))
+            /*--- Allow access for the process owner or plant managers ----*/
+            if (user.RoleName.Equals("ProcessOwner") || user.RoleName.Equals("Manager"))
             {
                 //var downtime = db.Downtime.Include(d => d.DowntimeType).Include(d => d.Plant).Include(d => d.Shift).Include(d => d.User);
 
@@ -50,7 +52,6 @@ namespace QuickCode.Controllers
                 if (DateFrom.HasValue)
                 {
                     downtime = db.Downtime.Where(s => s.StartDate >= DateFrom && s.EndDate <= DateTo);
-
                 }
 
                 // ---SEARCH FOR WHATEVER YOU FEEL LIKE HERE -------
@@ -75,7 +76,7 @@ namespace QuickCode.Controllers
                         downtime = downtime.OrderBy(s => s.StartDate);
                         break;
                     case "date_desc":
-                        downtime = downtime.OrderByDescending(s => s.StartDate);
+                        downtime = downtime.OrderByDescending(s => s.EndDate);
                         break;
                     default:                 
                         downtime = downtime.OrderBy(s => s.StartDate);
@@ -168,20 +169,26 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(String MyDate, String EndDate, DateTime startTime, DateTime endTime, [Bind(Include = "DowntimeID,UserID,ShiftID,DowntimeTypeID,PlantID,Reason,Action,Date,TotalDownMins")] Downtime downtime)
+        public ActionResult Create(DateTime MyDate, DateTime EndDate, [Bind(Include = "DowntimeID,UserID,ShiftID,DowntimeTypeID,PlantID,Reason,Action,Date,TotalDownMins")] Downtime downtime)
         {
-            DateTime dt = Convert.ToDateTime(MyDate);
-            DateTime st = Convert.ToDateTime(startTime);
-            DateTime et = Convert.ToDateTime(endTime);
+            // Date config:
+            DateTime edt = EndDate;
+            DateTime dt = MyDate;
+            string a = dt.ToString("HH:mm");
+            string b = edt.ToString("HH:mm");
+            DateTime st = DateTime.Parse(a); /*Convert.ToDateTime(startTime);*/
+            DateTime et = DateTime.Parse(b);
             //TimeSpan span = (downtime.EndTime - downtime.StartTime);
-            TimeSpan span = endTime - startTime;
+            TimeSpan span = MyDate - EndDate;
             double totalMins = span.TotalMinutes;
+            totalMins = Math.Abs(totalMins);
             try
             {
 
                 if (ModelState.IsValid)
                 {
-                    downtime.StartDate = dt;
+                    downtime.StartDate = MyDate;
+                    downtime.EndDate = EndDate;
                     downtime.StartTime = st;
                     downtime.EndTime = et;
                     downtime.TotalDownMins = totalMins;
@@ -228,19 +235,25 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(String MyDate, String EndDate, DateTime startTime, DateTime endTime, [Bind(Include = "DowntimeID,UserID,ShiftID,DowntimeTypeID,PlantID,Reason,Action,Date,TotalDownMins")] Downtime downtime)
+        public ActionResult Edit(DateTime MyDate, DateTime EndDate, DateTime startTime, DateTime endTime, [Bind(Include = "DowntimeID,UserID,ShiftID,DowntimeTypeID,PlantID,Reason,Action,Date,TotalDownMins")] Downtime downtime)
         {
-            DateTime dt = Convert.ToDateTime(MyDate);
-            DateTime st = Convert.ToDateTime(startTime);
-            DateTime et = Convert.ToDateTime(endTime);
+            // Date config:
+            DateTime edt = EndDate;
+            DateTime dt = MyDate;
+            string a = dt.ToString("HH:mm");
+            string b = edt.ToString("HH:mm");
+            DateTime st = DateTime.Parse(a); /*Convert.ToDateTime(startTime);*/
+            DateTime et = DateTime.Parse(b);
             //TimeSpan span = (downtime.EndTime - downtime.StartTime);
-            TimeSpan span = endTime - startTime;
+            TimeSpan span = MyDate - EndDate;
             double totalMins = span.TotalMinutes;
+            totalMins = Math.Abs(totalMins);
             try
             {
                 if (ModelState.IsValid)
                 {
-                    downtime.StartDate = dt;
+                    downtime.StartDate = MyDate;
+                    downtime.EndDate = EndDate;
                     downtime.StartTime = st;
                     downtime.EndTime = et;
                     downtime.TotalDownMins = totalMins;

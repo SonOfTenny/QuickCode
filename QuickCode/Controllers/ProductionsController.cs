@@ -39,10 +39,13 @@ namespace QuickCode.Controllers
             {
                 searchString = currentFilter;
             }
-
+            // sets the current filter in the table to searchString:
             ViewBag.CurrentFilter = searchString;
 
-            if (user.Roles.Equals("Administrator")) { var productions = db.Productions.Include(p => p.Plant).Include(p => p.Shift).Include(p => p.User);
+            /*--- Allow access for the process owner or plant managers ----*/
+            if (user.RoleName.Equals("ProcessOwner") || user.RoleName.Equals("Manager")) { /*var productions = db.Productions.Include(p => p.Plant).Include(p => p.Shift).Include(p => p.User);*/
+                var productions = from s in db.Productions
+                                  select s;
 
                 //---Search for record by Date -------
                 if (DateFrom.HasValue)
@@ -76,7 +79,7 @@ namespace QuickCode.Controllers
                         productions = productions.OrderBy(s => s.StartDate);
                         break;
                     case "date_desc":
-                        productions = productions.OrderByDescending(s => s.StartDate);
+                        productions = productions.OrderByDescending(s => s.EndDate);
                         break;
                     default:
                         productions = productions.OrderBy(s => s.StartDate);
@@ -163,7 +166,7 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(double manning, String MyDate, String EndDate, String notes, double box1, double box2, double box3, DateTime startTime, DateTime endTime, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,Date,TotalWaste,TotalProdMins")] Production production)
+        public ActionResult Create(double manning, DateTime MyDate, DateTime EndDate, String notes, double box1, double box2, double box3, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,Date,TotalWaste,TotalProdMins")] Production production)
         {
             // box1 = std box2 = agency box3 = operator
             //int std = Int32.Parse(box1);
@@ -172,13 +175,20 @@ namespace QuickCode.Controllers
             double std = box1;
             double agency = box2;
             double op = box3;
-            DateTime st = Convert.ToDateTime(startTime);
-            DateTime et = Convert.ToDateTime(endTime);
-            DateTime dt = Convert.ToDateTime(MyDate);
+
+            // Date config:
+            DateTime edt = EndDate;
+            DateTime dt = MyDate;
+            string a = dt.ToString("HH:mm");
+            string b = edt.ToString("HH:mm");
+            DateTime st = DateTime.Parse(a); /*Convert.ToDateTime(startTime);*/
+            DateTime et = DateTime.Parse(b);
+
             double sum = production.Cmp_Waste + production.CrumbWaste + production.Pack_Waste + production.Gen_Pack_Waste;
             //TimeSpan span = (production.EndTime - production.StartTime);
-            TimeSpan span = endTime - startTime;
+            TimeSpan span = MyDate - EndDate;
             double totalMins = span.TotalMinutes;
+            totalMins = Math.Abs(totalMins);
             //int mann = Int32.Parse(manning);
             //String mann = manning;
             double mann = box1 + box2 + box3;
@@ -188,7 +198,8 @@ namespace QuickCode.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    production.StartDate = dt;
+                    production.StartDate = MyDate;
+                    production.EndDate = EndDate;
                     production.StartTime = st;
                     production.EndTime = et;
                     production.TotalWaste = sum;
@@ -241,16 +252,21 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(String MyDate, String EndDate, DateTime startTime, DateTime endTime, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,StdManning,OpManning,AgencyManning,Date,TotalWaste,StartTime,EndTime")] Production production)
+        public ActionResult Edit(DateTime MyDate, DateTime EndDate, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,StdManning,OpManning,AgencyManning,Date,TotalWaste,StartTime,EndTime")] Production production)
         {
-         
-            DateTime st = Convert.ToDateTime(startTime);
-            DateTime et = Convert.ToDateTime(endTime);
-            DateTime dt = Convert.ToDateTime(MyDate);
+
+            // Date config:
+            DateTime edt = EndDate;
+            DateTime dt = MyDate;
+            string a = dt.ToString("HH:mm");
+            string b = edt.ToString("HH:mm");
+            DateTime st = DateTime.Parse(a); /*Convert.ToDateTime(startTime);*/
+            DateTime et = DateTime.Parse(b);
             double sum = production.Cmp_Waste + production.CrumbWaste + production.Pack_Waste + production.Gen_Pack_Waste;
             //TimeSpan span = (production.EndTime - production.StartTime);
-            TimeSpan span = endTime - startTime;
+            TimeSpan span = MyDate - EndDate;
             double totalMins = span.TotalMinutes;
+            totalMins = Math.Abs(totalMins);
             double manning = production.OpManning + production.StdManning + production.AgencyManning;
             //int mann = Int32.Parse(manning);
             User user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
@@ -259,7 +275,8 @@ namespace QuickCode.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    production.StartDate = dt;
+                    production.StartDate = MyDate;
+                    production.EndDate = EndDate;
                     production.StartTime = st;
                     production.EndTime = et;
                     production.UserID = user.Id;

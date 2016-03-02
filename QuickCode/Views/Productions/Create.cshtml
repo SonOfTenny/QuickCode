@@ -98,7 +98,7 @@
                                     <tr style="margin-left:30px;">
                                         <td>Standard</td>
                                         <td><input value="0" placeholder="0"   required style="width:100px;" id="box1" name="box1" type="number" oninput="calculate(box1.value, box2.value, box3.value)" /></td>
-                                        <td><input   style="border-color: #27ae60;width:100px;" type="number" name="manning" id="manning" /></td>
+                                        <td><input value="0"  style="border-color: #27ae60;width:100px;" type="number" name="manning" id="manning" /></td>
                                     </tr>
                                     <tr style="margin-left:20px;">
                                         <td>Agency</td>
@@ -155,36 +155,38 @@
                 <div class="col-md-10">
                     @*@Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })*@
+                    <label class="label-info label-pill label">Select Shift starting date and time</label><br /><br />
                        <input type="text" id="MyDate" placeholder="dd/mm/yy" name="MyDate" />
                 </div>
             </div>
 
 
-            <div class="form-group">
+            @*<div class="form-group">
                 @Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @*<input type="time" id="startTime" name="startTime" placeholder="hh:mm" required>*@
+                    @*<input type="time" id="startTime" name="startTime" placeholder="hh:mm" required>
                     @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
                 </div>
-            </div>
+            </div>*@
         <div class="form-group">
             @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @*@Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })*@
+                <label class="label-info label-pill label"> Select Shift Ending date and time</label><br /><br />
                 <input type="text" id="EndDate" placeholder="dd/mm/yy" name="EndDate" />
             </div>
         </div>
 
-            <div class="form-group">
+            @*<div class="form-group">
                 @Html.LabelFor(model => model.EndTime, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @*<input type="time" id="endTime" name="endTime" placeholder="hh:mm" required>*@
+                    @*<input type="time" id="endTime" name="endTime" placeholder="hh:mm" required>
                     @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
                 </div>
-            </div>
+            </div>*@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
@@ -206,6 +208,7 @@
 
         $(function () {
             $('#MyDate').datetimepicker();
+            $('#EndDate').datetimepicker();
 
         });
       

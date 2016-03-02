@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System.Web.Security;
 
 namespace QuickCode.Controllers
 {
@@ -34,12 +35,14 @@ namespace QuickCode.Controllers
         }
 
         // GET: UsersAdmin
+        //[Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(db.Users.ToList());
         }
 
         // GET: UsersAdmin/Details/5
+        //[Authorize(Roles = "Admin")]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -55,6 +58,7 @@ namespace QuickCode.Controllers
         }
 
         // GET: UsersAdmin/Create
+        //[Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -73,11 +77,15 @@ namespace QuickCode.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            Roles.RoleExists("Admin");
+            Roles.CreateRole("Admin");
+            Roles.AddUserToRole(user.UserName, "Admin");
 
             return View(user);
         }
 
         // GET: UsersAdmin/Edit/5
+        //[Authorize(Roles = "Admin")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -96,6 +104,7 @@ namespace QuickCode.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        //[Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,RoleName,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] User user)
         {
@@ -109,6 +118,7 @@ namespace QuickCode.Controllers
         }
 
         // GET: UsersAdmin/Delete/5
+        //[Authorize(Roles = "Admin")]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -124,6 +134,7 @@ namespace QuickCode.Controllers
         }
 
         // POST: UsersAdmin/Delete/5
+       // [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
@@ -135,7 +146,7 @@ namespace QuickCode.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        //[Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {

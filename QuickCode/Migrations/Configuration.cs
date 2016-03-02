@@ -1,5 +1,6 @@
 namespace QuickCode.Migrations
 {
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -26,6 +27,13 @@ namespace QuickCode.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            //context.Roles.Add(new IdentityRole { Name = "Admin" });
+            //context.Roles.Add(new IdentityRole { Name = "Basic" });
+            //context.Roles.Add(new IdentityRole { Name = "ProcessOwner" });
+            //context.SaveChanges();
+            //var role = context.Roles.SingleOrDefault(m => m.Name == "Admin");
+            //user.Roles.Add(new IdentityUserRole { RoleId = role.Id });
+
         }
     }
 }

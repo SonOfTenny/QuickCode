@@ -1,40 +1,51 @@
 ﻿@model PagedList.IPagedList<QuickCode.Models.Downtime>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.js"></script>
+@* //----------CDN FOR BOOTSTRAP ---------------------------------------------------------- *@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
+
 
 @if (Request.IsAuthenticated)
 {
-<div class="row" style="margin-top:30px;margin-bottom:20px;">
-     <div class="col-md-4">
-         <h2>Downtime Records</h2>
-         <p>Create a New Record</p>
-             <a href="@Url.Action("Create", "Downtimes")" class="btn btn-lg btn-primary" style="margin-bottom:10px;    box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);">
-                 Add
-                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-             </a>
-     </div>
-    <div class="col-md-8" style="text-align:right;">
-      <p style="margin-right:50px;color:#7f8c8d;"><span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:#7f8c8d;"></span>  Can't find what you're looking for? Search here</p>
-                @using (Html.BeginForm("Index", "Downtimes", FormMethod.Get))
+    <div class="row" style="margin-top:30px;margin-bottom:20px;">
+        <div class="col-md-4">
+            <h2>Downtime Records</h2>
+            <p>Create a New Record</p>
+            <a href="@Url.Action("Create", "Downtimes")" class="btn btn-lg btn-primary" style="margin-bottom:10px;    box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);">
+                Add
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="col-md-8" style="text-align:right;">
+            <p style="margin-right:50px;color:#7f8c8d;">
+                <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:#7f8c8d;"></span>
+               Enter a Name, Shift, Plant or Downtime Type below:
+            </p>
+            @using (Html.BeginForm("Index", "Downtimes", FormMethod.Get))
                 {
-                    <h3>
-                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-                        <input style="box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);" type="submit" value="Search" />
-                    </h3>
-                    <form>
-                        <p style="margin-right:50px;color:#7f8c8d;"><span class="glyphicon glyphicon-star" aria-hidden="true" style="color:#7f8c8d;"></span>Why not use a date range? Search here</p>
+                <h3>
+                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                    <input style="box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);" type="submit" value="Search" />
+                </h3>
+                    <form class="form-group-sm">
+                        <p style="margin-right:50px;color:#7f8c8d;"><span class="glyphicon glyphicon-star" aria-hidden="true" style="color:#7f8c8d;"></span>Date Range Search below:</p>
                         <label for="DateFrom">Date From:</label>
-                        <input type="date" name="DateFrom" id="DateFrom" />
+                        <input type="text" name="DateFrom" id="DateFrom" />
+                        <br />
                         <label for="DateFrom">Date To:</label>
-                        <input type="date" name="DateTo" id="DateTo" />
+                        <input type="text" name="DateTo" id="DateTo" />
+                        <br />
                         <input style="box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);" type='submit' value='Filter' />
                     </form>
-                }
-            
-            </div>
+            }
 
         </div>
-       
+
+    </div>
+
 
 
         @*<p>
@@ -50,50 +61,50 @@
                 </div>
             </div>*@
         <div class="row" style="overflow-x:scroll;">
-            <div class="col-lg-12" >
-                <table class="table table table-bordered table-responsive table-striped">
+            <div class="col-lg-12">
+                <table class="table table-bordered tableBig left horizontal-scroll table-striped">
                     <thead style="background-color:#bdc3c7; color:#ffffff;">
                         <tr>
-                            <th class="text-align: left;padding: 8px;">
+                            <th>
                                 @*@Html.DisplayNameFor(model => model.User.UserName)*@
                                 @Html.ActionLink("Username", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
                             </th>
-                            <th class="text-align: left;padding: 8px;">
+                            <th>
                                 @*@Html.DisplayNameFor(model => model.DowntimeType.Name)*@
                                 @Html.ActionLink("Downtime Type", "Index", new { sortOrder = ViewBag.DownSortParm, currentFilter = ViewBag.CurrentFilter })
                             </th>
-                            <th class="text-align: left;padding: 8px;">
+                            <th>
                                 @*@Html.DisplayNameFor(model => model.Plant.Name)*@
                                 @Html.ActionLink("Plant Name", "Index", new { sortOrder = ViewBag.PlantSortParm, currentFilter = ViewBag.CurrentFilter })
                             </th>
-                            <th class="text-align: left;padding: 8px;">
+                            <th>
                                 @*@Html.DisplayNameFor(model => model.Shift.Name)*@
                                 @Html.ActionLink("Shift Type", "Index", new { sortOrder = ViewBag.ShiftSortParm, currentFilter = ViewBag.CurrentFilter })
                             </th>
-                            <th class="text-align: left;padding: 8px;">
+                            <th>
                                 @*@Html.DisplayNameFor(model => model.Reason)*@
                                 Reason
                             </th>
-                            <th class="text-align: left;padding: 8px;">
+                            <th>
                                 @*@Html.DisplayNameFor(model => model.Action)*@
                                 Action
                             </th>
-                            <th class="text-align: left;padding: 8px;">
+                            <th>
                                 Total Time (Mins)
                             </th>
-                            <th class="text-align: left;padding: 8px;">
+                            <th>
                                 @*@Html.DisplayNameFor(model => model.StartDate)*@
                                 @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
                             </th>
-                            <th class="text-align: left;padding: 8px;">
+                            <th>
                                 @*@Html.DisplayNameFor(model => model.StartTime)*@
                                 Start Time
                             </th>
-                            <th class="text-align: left;padding: 8px;">
+                            <th>
                                 @*@Html.DisplayNameFor(model => model.EndTime)*@
                                 End Time
                             </th>
-                            <th class="text-align: left;padding: 8px;">Options</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     @foreach (var item in Model)
@@ -121,8 +132,13 @@
                                 @Html.DisplayFor(modelItem => item.TotalDownMins)
                             </td>
                             <td>
+                                <p>Start Date:</p>
+
                                 @Html.DisplayFor(modelItem => item.StartDate)<br />
-                                Html.DisplayFor(modelItem => item.EndDate)
+                                <p>End Date:</p>
+
+                                @Html.DisplayFor(modelItem => item.EndDate)
+
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.StartTime)
@@ -155,4 +171,13 @@
                 <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" style="color:dodgerblue"></span>&nbsp;&nbsp;@Html.ActionLink("Back to Homepage", "Index", "Home")
             </div>
         </div>
-        }
+}
+<!-- Code to wire up  DatePicker -->
+<script type="text/javascript">
+
+    $(function () {
+        $('#DateTo').datetimepicker();
+        $('#DateFrom').datetimepicker();
+
+    });
+</script>
