@@ -216,6 +216,10 @@
     <Compile Include="Migrations\201603011325500_ha.Designer.cs">
       <DependentUpon>201603011325500_ha.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603031633564_new field.cs" />
+    <Compile Include="Migrations\201603031633564_new field.Designer.cs">
+      <DependentUpon>201603031633564_new field.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessTypes.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -425,6 +429,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603011325500_ha.resx">
       <DependentUpon>201603011325500_ha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603031633564_new field.resx">
+      <DependentUpon>201603031633564_new field.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

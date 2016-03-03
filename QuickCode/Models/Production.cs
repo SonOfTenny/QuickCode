@@ -43,6 +43,8 @@ namespace QuickCode.Models
         public double OpManning { get; set; }
         public double Manning { get; set; }
         public string Notes { get; set; }
+        [DisplayName("Quality Issues")]
+        public string QualityIssues  { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yy}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }

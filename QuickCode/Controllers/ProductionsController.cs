@@ -166,7 +166,7 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(double manning, DateTime MyDate, DateTime EndDate, String notes, double box1, double box2, double box3, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,Date,TotalWaste,TotalProdMins")] Production production)
+        public ActionResult Create(double manning, DateTime MyDate, DateTime EndDate, String notes, String qualityIssues, double box1, double box2, double box3, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,Date,TotalWaste,TotalProdMins")] Production production)
         {
             // box1 = std box2 = agency box3 = operator
             //int std = Int32.Parse(box1);
@@ -210,6 +210,7 @@ namespace QuickCode.Controllers
                     production.AgencyManning = agency;
                     production.OpManning = op;
                     production.Notes = notes;
+                    production.QualityIssues = qualityIssues;
                     db.Productions.Add(production);
                     db.SaveChanges();
                     return RedirectToAction("Create");
@@ -252,7 +253,7 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(DateTime MyDate, DateTime EndDate, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,StdManning,OpManning,AgencyManning,Date,TotalWaste,StartTime,EndTime")] Production production)
+        public ActionResult Edit(DateTime MyDate, DateTime EndDate, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,StdManning,OpManning,AgencyManning,QualityIssues,Date,TotalWaste,StartTime,EndTime")] Production production)
         {
 
             // Date config:

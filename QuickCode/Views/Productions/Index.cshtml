@@ -103,6 +103,10 @@
                             Notes
                         </th>
                         <th>
+                            @*@Html.DisplayNameFor(model => model.Notes)*@
+                            Quality Issues
+                        </th>
+                        <th>
                             Total Waste (Kg)
                         </th>
                         <th>
@@ -156,6 +160,9 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Notes)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.QualityIssues)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.TotalWaste)
