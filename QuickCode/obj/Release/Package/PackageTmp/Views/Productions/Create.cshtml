@@ -12,17 +12,37 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
 
 <h2>Create</h2>
-
-
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-    @Html.Hidden("~/Productions/Create", this.Request.RawUrl)
-    <div class="form-horizontal">
-        <h4>New Production Information</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>New Production Information</h4>
+            <p class="grey">Please enter all your details for production below. If you don't have any details for certain field you can leave it blank.</p>
+        </div>
+        <div class="col-md-6 rightside">
+            <button type="submit" class="btn btn-success btn-lg btn-embossed">
+                Create <i class="glyphicon glyphicon-pencil"></i>
+            </button>
+            <a href="@Url.Action("Index", "Productions")" class="btn btn-lg btn-embossed btn-warning">
+                Cancel
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
+    <hr />
+    </div>
+<div class="container">
+<div class="row">
+   
+   
+        @Html.AntiForgeryToken()
+        @Html.Hidden("~/Productions/Create", this.Request.RawUrl)
+        <div class="col-md-6">
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
                 <div class="form-group">
                     @Html.LabelFor(model => model.ShiftID, "Shift Type", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
@@ -38,7 +58,7 @@
                         @Html.ValidationMessageFor(model => model.PlantID, "", new { @class = "text-danger" })
                     </div>
                 </div>
-            
+
                 <div class="form-group">
                     @Html.LabelFor(model => model.ActualMix, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
@@ -69,150 +89,149 @@
                         @Html.ValidationMessageFor(model => model.Pack_Waste, "", new { @class = "text-danger" })
                     </div>
                 </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Gen_Pack_Waste, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Gen_Pack_Waste, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Gen_Pack_Waste, "", new { @class = "text-danger" })
-            </div>
-        </div>
-                
-        <div class="row">
-            <div class="col-md-offset-2 col-md-4">
                 <div class="form-group">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <p><b>Calculate your manning here</b></p>
-                            <p style="font-size: 9pt;">How it works: Enter manning for each category and your total will be calculated</p>
-                        </div>
-                        <div class="panel-body">
-                            <table border="0" class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th style="margin: 10px;">Type</th>
-                                        <th style="margin: 10px;">Hours</th>                                 
-                                        <th style="color: #27ae60;">Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr style="margin-left:30px;">
-                                        <td>Standard</td>
-                                        <td><input value="0" placeholder="0"   required style="width:100px;" id="box1" name="box1" type="number" oninput="calculate(box1.value, box2.value, box3.value)" /></td>
-                                        <td><input   style="border-color: #27ae60;width:100px;" type="number" name="manning" id="manning" /></td>
-                                    </tr>
-                                    <tr style="margin-left:20px;">
-                                        <td>Agency</td>
-                                        <td><input value="0" placeholder="0"  required style="width:100px;" id="box2" name="box2" type="number" oninput="calculate(box1.value, box2.value, box3.value)" /></td>
-                                        <td><input  type="button" class="btn btn-primary" value="Calculate" onClick="calculate(box1.value,box2.value,box3.value)" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Operator<br /> cover
-                                        </td>
-                                        <td><input value="0" placeholder="0"  required style="width:100px;" id="box3" name="box3" type="number" oninput="calculate(box1.value, box2.value, box3.value)" /></td>
-                                    </tr>   
-                                </tbody>
-                            </table>
-                            <hr />
-                            <div>
-                                <p style="margin-top:10px;"><b>Additional Notes:</b></p>
-                                <textarea style="width: 400px; height: 100px;" id="notes" name="notes"></textarea>
-                            </div>
-                        </div>
+                    @Html.LabelFor(model => model.Gen_Pack_Waste, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Gen_Pack_Waste, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Gen_Pack_Waste, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.QualityIssues, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @*<p style = "margin-top:10px;" >< b > Additional Notes:</b></p>*@
+                    <div class="col-md-10">
+                        <div>
+                            <textarea placeholder="Enter notes on quality issues here.." style="width: 400px; height: 100px;" id="qualityIssues" name="qualityIssues"></textarea>
                         </div>
                     </div>
                 </div>
-            </div>
-            <script type="text/javascript">
-                function calculate(b1, b2, b3) {
-                    var n1 = parseFloat(b1);
-                    var n2 = parseFloat(b2);
-                    var n3 = parseFloat(b3);
-                    var res = n1 + n2 + n3;
-                    manning.value = res;
-                    //var stand = document.getElementById('box1').value;
-                    //var agency = document.getElementById('box2').value;
-                    //var oper = document.getElementById('box3').value;
-                    ////var result = document.getElementById('result');
-                    //var myResult = stand + agency + oper;
-                    //document.getElementById("manning").value = myResult;
-                    //manning.value = myResult;
-                }
-                
-                </script>
-                
-            @*<div class="form-group">
-                
-                @Html.LabelFor(model => model.Manning, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextBox("",Model, new { htmlAttributes = new { id = "manning", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Manning, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @*@Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })*@
-                       <input type="text" id="MyDate" placeholder="dd/mm/yy" name="MyDate" />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @* @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })*@
+                        <label class="label-info label-pill label">Select Shift starting date and time</label><br /><br />
+                        <input type="text" id="MyDate" placeholder="dd/mm/yy" name="MyDate" />
+                    </div>
                 </div>
-            </div>
 
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @*<input type="time" id="startTime" name="startTime" placeholder="hh:mm" required>*@
-                    @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @* @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })*@
+                        <label class="label-info label-pill label"> Select Shift Ending date and time</label><br /><br />
+                        <input type="text" id="EndDate" placeholder="dd/mm/yy" name="EndDate" />
+                    </div>
                 </div>
-            </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*@Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })*@
-                <input type="text" id="EndDate" placeholder="dd/mm/yy" name="EndDate" />
+
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.EndTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @*<input type = "time" id="endTime" name="endTime" placeholder="hh:mm" required>
+                            @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+              
             </div>
         </div>
-
+       <!--Manning start div-->
+        <div class="col-md-4">
             <div class="form-group">
-                @Html.LabelFor(model => model.EndTime, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @*<input type="time" id="endTime" name="endTime" placeholder="hh:mm" required>*@
-                    @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <p><b>Calculate your manning here</b></p>
+                        <p style="font-size: 9pt;">How it works: Enter manning for each category and your total will be calculated</p>
+                    </div>
+                    <div class="panel-body">
+                        <table border="0" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th style="margin: 10px;">Type</th>
+                                    <th style="margin: 10px;">Hours</th>
+                                    <th style="color: #27ae60;">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="margin-left:30px;">
+                                    <td>Standard</td>
+                                    <td><input value="0" class="center" placeholder="0" required style="width:100px;" id="box1" name="box1" type="number" oninput="calculate(box1.value, box2.value, box3.value)" /></td>
+                                    <td><input value="0" class="center" style="border-color: #27ae60;width:100px;" type="number" name="manning" id="manning" /></td>
+                                </tr>
+                                <tr style="margin-left:20px;">
+                                    <td>Agency</td>
+                                    <td><input value="0" class="center" placeholder="0" required style="width:100px;" id="box2" name="box2" type="number" oninput="calculate(box1.value, box2.value, box3.value)" /></td>
+                                    <td><input type="button" class="btn btn-primary" value="Calculate" onClick="calculate(box1.value,box2.value,box3.value)" /></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Operator<br /> cover
+                                    </td>
+                                    <td><input value="0" class="center" placeholder="0" required style="width:100px;" id="box3" name="box3" type="number" oninput="calculate(box1.value, box2.value, box3.value)" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr />
+                        <div>
+                            <p style="margin-top:10px;"><b>Additional Notes:</b></p>
+                            <textarea placeholder="Enter any additional notes on manning here.." style="width: 400px; height: 100px;" id="notes" name="notes"></textarea>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                   
-                    <a href="~/Productions/Create">
-                        <input type="submit" value="Create" class="btn btn-success" />
-                    </a>
-                </div>
-            </div>
+            </div>        
         </div>
+    @*<div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
 
-}
+            <a href="~/Productions/Create">
+                <input type="submit" value="Create" class="btn btn-lg btn-success" />
+            </a>
+        </div>
+    </div>*@
 
-<div>
-    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" style="color:dodgerblue"></span>&nbsp;&nbsp;@Html.ActionLink("Back to Production Menu", "Index")
-</div>
-<!-- Code to wire up  DatePicker -->
-<script type="text/javascript">
+    </div>
+ </div>
+    }
+        <!--Form end-->
+   <hr />
+    <div>
+        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" style="color:dodgerblue"></span>&nbsp;&nbsp;@Html.ActionLink("Back to Production Menu", "Index")
+    </div>
+    <script type="text/javascript">
+        function calculate(b1, b2, b3) {
+            var n1 = parseFloat(b1);
+            var n2 = parseFloat(b2);
+            var n3 = parseFloat(b3);
+            var res = n1 + n2 + n3;
+            manning.value = res;
+            //var stand = document.getElementById('box1').value;
+            //var agency = document.getElementById('box2').value;
+            //var oper = document.getElementById('box3').value;
+            ////var result = document.getElementById('result');
+            //var myResult = stand + agency + oper;
+            //document.getElementById("manning").value = myResult;
+            //manning.value = myResult;
+        }
+
+    </script>
+    <!-- Code to wire up  DatePicker -->
+    <script type="text/javascript">
 
         $(function () {
             $('#MyDate').datetimepicker();
+            $('#EndDate').datetimepicker();
 
         });
-      
 
-</script>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    </script>
 
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+
+    }

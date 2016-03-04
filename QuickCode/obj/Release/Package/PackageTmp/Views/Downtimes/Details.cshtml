@@ -6,102 +6,116 @@
 
 <h2>Details</h2>
 
-<div>
+<div class="container">
     <h4>Downtime</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @*@Html.DisplayNameFor(model => model.DowntimeType.Name)*@
-            Downtime Type
-        </dt>
+   <div class="row">
+       <div class="col-md-4">
+           <dl>
+               <dt>
+                   Employee
+               </dt>
+               <dt>
+                   Downtime Type
+               </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DowntimeType.Name)
-        </dd>
+               <dt>
+                   @*@Html.DisplayNameFor(model => model.Plant.Name)*@
+                   Plant Name
+               </dt>
 
-        <dt>
-            @*@Html.DisplayNameFor(model => model.Plant.Name)*@
-            Plant Name
-        </dt>
+               <dt>
+                   @*@Html.DisplayNameFor(model => model.Shift.Name)*@
+                   Shift Type
+               </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Plant.Name)
-        </dd>
+               <dt>
+                   @*@Html.DisplayNameFor(model => model.Reason)*@
+                   Reason
+               </dt>
+             
+               <dt>
+                   @*@Html.DisplayNameFor(model => model.Action)*@
+                   Action
+               </dt>
 
-        <dt>
-            @*@Html.DisplayNameFor(model => model.Shift.Name)*@
-            Shift Type
-        </dt>
+               <dt>
+                   @*@Html.DisplayNameFor(model => model.StartTime)*@
+                   Start Time (Mins)
+               </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Shift.Name)
-        </dd>
+               <dt>
+                   @*@Html.DisplayNameFor(model => model.EndTime)*@
+                   End Time (Mins)
+               </dt>
 
-        <dt>
-            @*@Html.DisplayNameFor(model => model.User.FirstName)*@
-            Username
-        </dt>
+               <dt>
+                   @*@Html.DisplayNameFor(model => model.Date)*@
+                   Start Date
+               </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.User.FirstName)
-        </dd>
+               <dt>
+                   @*@Html.DisplayNameFor(model => model.Date)*@
+                   End Date
+               </dt>
 
-        <dt>
-            @*@Html.DisplayNameFor(model => model.StartTime)*@
-            Start Time (Mins)
-        </dt>
+               <dt>
+                   @*@Html.DisplayNameFor(model => model.TotalDownMins)*@
+                   Total Mins (Downtime)
+               </dt>
+           </dl>
+       </div>
+       <div class="col-md-4">
+           <dl>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartTime)
-        </dd>
+               <dd>
+                   @Html.DisplayFor(model => model.User.FullName)
+               </dd>
+ 
+               <dd>
+                   @Html.DisplayFor(model => model.DowntimeType.Name)
+               </dd>
 
-        <dt>
-            @*@Html.DisplayNameFor(model => model.EndTime)*@
-            End Time (Mins)
-        </dt>
+               <dd>
+                   @Html.DisplayFor(model => model.Plant.Name)
+               </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.EndTime)
-        </dd>
+               <dd>
+                   @Html.DisplayFor(model => model.Shift.Name)
+               </dd>
+ 
+               <dd>
+                   @Html.DisplayFor(model => model.Reason)
+               </dd>
 
-        <dt>
-            @*@Html.DisplayNameFor(model => model.Reason)*@
-            Reason
-        </dt>
+               <dd>
+                   @Html.DisplayFor(model => model.Action)
+               </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Reason)
-        </dd>
+               <dd>
+                   @Html.DisplayFor(model => model.StartTime)
+               </dd>
 
-        <dt>
-            @*@Html.DisplayNameFor(model => model.Action)*@
-            Action
-        </dt>
+               <dd>
+                   @Html.DisplayFor(model => model.EndTime)
+               </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Action)
-        </dd>
+               <dd>
+                   @Html.DisplayFor(model => model.StartDate)
+               </dd>
 
-        <dt>
-            @*@Html.DisplayNameFor(model => model.Date)*@
-            Date
-        </dt>
+               <dd>
+                   @Html.DisplayFor(model => model.EndDate)
+               </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-
-        <dt>
-            @*@Html.DisplayNameFor(model => model.TotalDownMins)*@
-            Total Mins (Downtime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TotalDownMins)
-        </dd>
-
-    </dl>
+               <dd>
+                   @Html.DisplayFor(model => model.TotalDownMins)
+               </dd>
+           </dl>
+       </div>
+   </div>
 </div>
+<hr />
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.DowntimeID }) |
     @Html.ActionLink("Back to List", "Index")

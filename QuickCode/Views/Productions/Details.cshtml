@@ -6,108 +6,149 @@
 
 <h2>Details</h2>
 
-<div>
+<div class="container">
     <h4>Production</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Plant.Name)
-        </dt>
+    <div class="row">
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Plant.Name)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Plant.Name)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Shift.Name)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Shift.Name)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.User.FirstName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Shift.Name)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.StartTime)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.User.FirstName)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EndTime)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.User.FirstName)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ActualMix)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CrumbWaste)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartTime)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Cmp_Waste)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.AgencyManning)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EndTime)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.OpManning)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ActualMix)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.StdManning)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ActualMix)
-        </dd>
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.Manning)*@
+                    Total Manning
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CrumbWaste)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TotalWaste)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CrumbWaste)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TotalProdMins)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cmp_Waste)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cmp_Waste)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </dt>
+            </dl>
+        </div>
+        <div class="col-md-6">
+            <dl>
+             
+                <dd>
+                    @Html.DisplayFor(model => model.Plant.Name)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Manning)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Shift.Name)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Manning)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.User.FirstName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.StartTime)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.EndTime)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TotalWaste)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ActualMix)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TotalWaste)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.CrumbWaste)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TotalProdMins)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Cmp_Waste)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TotalProdMins)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.AgencyManning)
+                </dd>
+ 
+                <dd>
+                    @Html.DisplayFor(model => model.OpManning)
+                </dd>
+              
+                <dd>
+                    @Html.DisplayFor(model => model.StdManning)
+                </dd>
+              
+                <dd>
+                    @Html.DisplayFor(model => model.Manning)
+                </dd>
 
-    </dl>
+                <dd>
+                    @Html.DisplayFor(model => model.TotalWaste)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TotalProdMins)
+                </dd>
+              
+                <dd>
+                    @Html.DisplayFor(model => model.StartDate)
+                </dd>
+              
+                <dd>
+                    @Html.DisplayFor(model => model.EndDate)
+                </dd>
+            </dl>
+        </div>
+    </div>  
 </div>
+<hr />
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ProductionID }) |
     @Html.ActionLink("Back to List", "Index")

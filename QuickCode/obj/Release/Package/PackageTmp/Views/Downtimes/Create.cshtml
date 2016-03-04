@@ -9,112 +9,154 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.js"></script>
 
 <h2>Create</h2>
-
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Downtime</h4>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>New Downtime Information</h4>
+            <p class="grey">Please enter all your details for downtime below. If you don't have any details for certain field you can leave it blank.</p>
+        </div>
+        <div class="col-md-6 rightside">
+            <button type="submit" class="btn btn-success btn-lg btn-embossed">
+                Create <i class="glyphicon glyphicon-pencil"></i>
+            </button>
+            <a href="@Url.Action("Index", "Downtimes")" class="btn btn-lg btn-embossed btn-warning">
+                Cancel
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            </a>
+        </div>
+      </div>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ShiftID, "Shift Type", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ShiftID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ShiftID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Plant.PlantID, "Plant Name", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("PlantID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Plant.PlantID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.DowntimeType.DowntimeTypeID, "Downtime Type", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("DowntimeTypeID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.DowntimeType.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Reason, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Reason, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Reason, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Action, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Action, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Action, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*@Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })*@
-                <input type="text" id="MyDate" placeholder="dd/mm/yy" name="MyDate" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*<input type="time" lass="input input-lg" id="startTime" name="startTime" placeholder="hh:mm" required >*@
-                @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*@Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })*@
-                <input type="text" id="EndDate" placeholder="dd/mm/yy" name="EndDate" />
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.EndTime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*<input type="time" class="input input-lg" id="endTime" name="endTime"  placeholder="hh:mm" required>*@
-                @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-success" />
-            </div>
-        </div>
     </div>
-}
-<div>
-    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" style="color:dodgerblue;box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);"></span>&nbsp;&nbsp;@Html.ActionLink("Back to Downtime Menu", "Index")
-</div>
 
-<!-- Code to wire up  DatePicker -->
-<script type="text/javascript">
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-horizontal">
 
-        $(function () {
-            $('#MyDate').datetimepicker();
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        });
-        
-</script>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ShiftID, "Shift Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("ShiftID", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ShiftID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Plant.PlantID, "Plant Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("PlantID", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Plant.PlantID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DowntimeType.DowntimeTypeID, "Downtime Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("DowntimeTypeID", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DowntimeType.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @*@Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })*@
+                            <label class="label-info label-pill label">Select Shift starting date and time</label><br /><br />
+                            <input type="text" class="Datetextbox" id="MyDate" placeholder="dd/mm/yy" name="MyDate" />
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                            @Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @*<input type="time" lass="input input-lg" id="startTime" name="startTime" placeholder="hh:mm" required >
+                                @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @*@Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })*@
+                            <label class="label-info label-pill label"> Select Shift Ending date and time</label><br /><br />
+                            <input type="text" class="Datetextbox" id="EndDate" placeholder="dd/mm/yy" name="EndDate" />
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                            @Html.LabelFor(model => model.EndTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @*<input type="time" class="input input-lg" id="endTime" name="endTime"  placeholder="hh:mm" required>
+                                @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+
+                </div>
+                </div>
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Reason, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @*@Html.TextAreaFor(model => model.Reason, new { htmlAttributes = new { @class = "form-control textareanew" } })*@
+                            <div>
+                                <textarea placeholder="Enter the reason for the downtime here.." class="textareanew" id="reason" name="reason"></textarea>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Reason, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Action, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @*@Html.TextAreaFor(model => model.Action, new { htmlAttributes = new { @class = "form-control textareanew" } })*@
+                            <div>
+                                <textarea placeholder="Enter the action taken for the downtime here.." class="textareanew" id="action" name="action"></textarea>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Action, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                        <div style="margin-left:350px;">
+                            <input type="submit" value="Create" class="btn btn-embossed btn-success" />
+                        </div>
+                    </div>*@
+                </div>
+
+          
+            </div>
+        <div class="row">
+            @*<div class="form-group">
+                <div >
+                    <input type="submit" value="Create" class="btn btn-embossed btn-success" />
+                </div>
+            </div>*@
+        </div>
+        </div>      
+                }
+<hr />
+                <div>
+                    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" style="color:dodgerblue;"></span>&nbsp;&nbsp;@Html.ActionLink("Back to Downtime Menu", "Index")
+                </div>
+
+                <!-- Code to wire up  DatePicker -->
+                <script type="text/javascript">
+
+                    $(function () {
+                        $('#MyDate').datetimepicker();
+                        $('#EndDate').datetimepicker();
+
+                    });
+
+                </script>
+
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                }

@@ -31,7 +31,7 @@
             <div class="navbar-collapse collapse">
                
                 <ul class="nav navbar-nav">
-                    @if (User.IsInRole("Basic"))
+                    @if (Request.IsAuthenticated)
                     {
                     <li>@Html.ActionLink("Production", "Index", "Productions")</li>
                     <li>@Html.ActionLink("Downtime", "Index", "Downtimes")</li>
@@ -50,18 +50,15 @@
                                 <li><a href="../Downtimes/Index"><span class="glyphicon glyphicon-cog"></span> Log out</a></li>
                             </ul>
                         </li>*@
-                    }
-                    @if (User.IsInRole("ProcessOwner"))
-                    {
-                        <li>@Html.ActionLink("Production", "Index", "Productions")</li>
-                        <li>@Html.ActionLink("Downtime", "Index", "Downtimes")</li>
+
+
+                        @*<li>@Html.ActionLink("Production", "Index", "Productions")</li>
+                        <li>@Html.ActionLink("Downtime", "Index", "Downtimes")</li>*@
                         <li>@Html.ActionLink("Plants", "Index", "Plants")</li>
                         <li>@Html.ActionLink("Down. Types", "Index", "DowntimeTypes")</li>
-                       
                     }
-                     @if (User.IsInRole("Admin"))
-                        {
-                      
+                     @if (User.IsInRole("Administrator"))
+                     {
                             <li>@Html.ActionLink("User Admin", "Index", "UsersAdmin")</li>
                        
                         }

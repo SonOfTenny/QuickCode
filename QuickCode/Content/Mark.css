@@ -15,6 +15,10 @@ td, th {
      font-family: 'Montserrat', sans-serif;
      
 }
+dt, dl, dd {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+}
 .tableBig td, th{
     min-width: 155px;
 }
@@ -98,4 +102,12 @@ td, th {
     border-radius: 6px;
     transition: border .25s linear,color .25s linear,background-color .25s linear;
     -webkit-font-smoothing: subpixel-antialiased;
+}
+.grey {
+    color:dimgrey;
+}
+
+.red {
+    color: red;
+    font-weight:500;
 }

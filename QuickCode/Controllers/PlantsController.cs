@@ -19,14 +19,14 @@ namespace QuickCode.Controllers
 
         private User users = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
         // GET: Plants
-        [Authorize(Roles = "ProcessOwner")]
+        //[Authorize(Roles = "ProcessOwner")]
         public ActionResult Index()
         {
            
                 return View(db.Plants.ToList());
            
         }
-        [Authorize(Roles = "ProcessOwner")]
+        //[Authorize(Roles = "ProcessOwner")]
         // GET: Plants/Details/5
         public ActionResult Details(int? id)
         {
@@ -41,7 +41,7 @@ namespace QuickCode.Controllers
             }
             return View(plant);
         }
-        [Authorize(Roles = "ProcessOwner")]
+        //[Authorize(Roles = "ProcessOwner")]
         // GET: Plants/Create
         public ActionResult Create()
         {
@@ -52,7 +52,7 @@ namespace QuickCode.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize(Roles = "ProcessOwner")]
+        //[Authorize(Roles = "ProcessOwner")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PlantID,Name,MixRatePerHour")] Plant plant)
         {
@@ -67,7 +67,7 @@ namespace QuickCode.Controllers
         }
 
         // GET: Plants/Edit/5
-        [Authorize(Roles = "ProcessOwner")]
+        //[Authorize(Roles = "ProcessOwner")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -86,7 +86,7 @@ namespace QuickCode.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize(Roles = "ProcessOwner")]
+       // [Authorize(Roles = "ProcessOwner")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PlantID,Name,MixRatePerHour")] Plant plant)
         {
@@ -100,7 +100,7 @@ namespace QuickCode.Controllers
         }
 
         // GET: Plants/Delete/5
-        [Authorize(Roles = "ProcessOwner")]
+        //[Authorize(Roles = "ProcessOwner")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -117,7 +117,7 @@ namespace QuickCode.Controllers
 
         // POST: Plants/Delete/5
         [HttpPost, ActionName("Delete")]
-        [Authorize(Roles = "ProcessOwner")]
+        //[Authorize(Roles = "ProcessOwner")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

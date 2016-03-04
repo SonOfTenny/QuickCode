@@ -3,121 +3,183 @@
 @{
     ViewBag.Title = "Delete";
 }
-
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Production</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Plant.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Plant.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Shift.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Shift.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.User.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EndTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ActualMix)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ActualMix)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CrumbWaste)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CrumbWaste)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cmp_Waste)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cmp_Waste)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Manning)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Manning)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TotalWaste)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TotalWaste)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TotalProdMins)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TotalProdMins)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <button type="submit" class="btn btn-danger" style="box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);">
-                Delete
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            </button> |
-            @Html.ActionLink("Back to List", "Index")
+<div class="container">
+    <h2>Delete</h2>
+    <div class="row">
+        <div class="col-md-8">        
+            <h3 class="red">Are you sure you want to delete this?</h3>
         </div>
-    }
+        <div class="col-md-4 rightside">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <button type="submit" class="btn btn-danger btn-lg btn-embossed">
+                        Delete
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                    @*@Html.ActionLink("Back to List", "Index")*@
+                    <a href="@Url.Action("Index", "Productions")" class="btn btn-lg btn-embossed btn-warning">
+                        Cancel
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="container">
+    <h4>Production Record</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Plant.Name)
+                </dt>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Shift.Name)
+                </dt>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.User.FirstName)
+                </dt>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.StartTime)
+                </dt>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.EndTime)
+                </dt>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ActualMix)
+                </dt>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CrumbWaste)
+                </dt>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Cmp_Waste)
+                </dt>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.AgencyManning)
+                </dt>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.OpManning)
+                </dt>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.StdManning)
+                </dt>
+
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.Manning)*@
+                    Total Manning
+                </dt>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TotalWaste)
+                </dt>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TotalProdMins)
+                </dt>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </dt>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </dt>
+            </dl>
+        </div>
+        <div class="col-md-6">
+            <dl>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Plant.Name)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Shift.Name)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.User.FirstName)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.StartTime)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.EndTime)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ActualMix)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CrumbWaste)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Cmp_Waste)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AgencyManning)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.OpManning)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.StdManning)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Manning)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TotalWaste)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TotalProdMins)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.StartDate)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.EndDate)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    @*@using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <button type="submit" class="btn btn-danger btn-lg btn-embossed" >
+                    Delete
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }*@
 </div>
