@@ -45,12 +45,13 @@ namespace QuickCode.Controllers
             /*--- Allow access for the process owner or plant managers ----*/
             if (user.RoleName.Equals("ProcessOwner") || user.RoleName.Equals("Manager")) { /*var productions = db.Productions.Include(p => p.Plant).Include(p => p.Shift).Include(p => p.User);*/
                 var productions = from s in db.Productions
+                                  orderby s.StartDate descending                                
                                   select s;
 
                 //---Search for record by Date -------
                 if (DateFrom.HasValue)
                 {
-                    productions = db.Productions.Where(s => s.StartDate >= DateFrom && s.EndDate <= DateTo);
+                    productions = db.Productions.Where(s => s.StartDate >= DateFrom && s.EndDate <= DateTo).OrderByDescending(s => s.StartDate).ThenByDescending(s => s.ProductionID);
 
                 }
 
@@ -62,7 +63,7 @@ namespace QuickCode.Controllers
                                                         s.Shift.Name.ToUpper().Contains(searchString.ToUpper()) ||
                                                         s.Plant.Name.ToUpper().Contains(searchString.ToUpper()) 
                                                       
-                                                      );
+                                                      ).OrderByDescending(s => s.StartDate).ThenByDescending(s => s.ProductionID);
 
                 }
 
@@ -72,23 +73,29 @@ namespace QuickCode.Controllers
                 // SWITCH STATEMENT --- WHEN USER SELECTS TO SORT DATA
                 switch (sortOrder)
                 {
-                    case "name_desc":
+                    case "user_desc":
                         productions = productions.OrderByDescending(s => s.User);
+                        break;
+                    case "shift_desc":
+                        productions = productions.OrderByDescending(s => s.Shift);
+                        break;
+                    case "Plant_desc":
+                        productions = productions.OrderByDescending(s => s.Plant);
                         break;
                     case "Date":
                         productions = productions.OrderBy(s => s.StartDate);
                         break;
                     case "date_desc":
-                        productions = productions.OrderByDescending(s => s.EndDate);
+                        productions = productions.OrderBy(s => s.EndDate);
                         break;
                     default:
-                        productions = productions.OrderBy(s => s.StartDate);
+                        productions = productions.OrderByDescending(s => s.StartDate);
                         break;
                 }
 
                 int pageSize = 20;
                 int pageNumber = (page ?? 1);
-                return View(productions.ToPagedList(pageNumber, pageSize));
+                return View(productions.OrderByDescending(s => s.StartDate).ToPagedList(pageNumber, pageSize));
                 //return View(productions.ToList());
             }
            
@@ -96,11 +103,12 @@ namespace QuickCode.Controllers
             
             var productions = from s in db.Productions
                               where s.UserID == user.Id.ToString()
+                              orderby s.StartDate descending
                               select s;
 
                 if (DateFrom.HasValue)
                 {
-                    productions = db.Productions.Where(s => s.StartDate >= DateFrom && s.EndDate <= DateTo);
+                    productions = db.Productions.Where(s => s.StartDate >= DateFrom && s.EndDate <= DateTo).OrderByDescending(s => s.StartDate).ThenByDescending(s => s.ProductionID);
 
                 }
 
@@ -109,20 +117,26 @@ namespace QuickCode.Controllers
                 {
                     productions = productions.Where(s => s.User.UserName.ToUpper().Contains(searchString.ToUpper()) ||
                                                         s.Shift.Name.ToUpper().Contains(searchString.ToUpper()) ||
-                                                        s.Plant.Name.ToUpper().Contains(searchString.ToUpper()));
+                                                        s.Plant.Name.ToUpper().Contains(searchString.ToUpper())).OrderByDescending(s => s.StartDate).ThenByDescending(s => s.ProductionID);
 
                 }
              
                 switch (sortOrder)
                 {
-                    case "name_desc":
+                    case "user_desc":
                         productions = productions.OrderByDescending(s => s.User);
+                        break;
+                    case "shift_desc":
+                        productions = productions.OrderByDescending(s => s.Shift);
+                        break;
+                    case "Plant_desc":
+                        productions = productions.OrderByDescending(s => s.Plant);
                         break;
                     case "Date":
                         productions = productions.OrderBy(s => s.StartDate);
                         break;
                     case "date_desc":
-                        productions = productions.OrderByDescending(s => s.StartDate);
+                        productions = productions.OrderBy(s => s.EndDate);
                         break;
                     default:
                         productions = productions.OrderBy(s => s.StartDate);
@@ -131,7 +145,7 @@ namespace QuickCode.Controllers
 
                 int pageSize = 20;
                 int pageNumber = (page ?? 1);
-                return View(productions.ToPagedList(pageNumber, pageSize));
+                return View(productions.OrderByDescending(s => s.StartDate).ToPagedList(pageNumber, pageSize));
                 //return View(productions.ToList());
             }
            

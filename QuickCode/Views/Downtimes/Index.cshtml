@@ -11,34 +11,44 @@
 @if (Request.IsAuthenticated)
 {
     <div class="row" style="margin-top:30px;margin-bottom:20px;">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <h2>Downtime Records</h2>
             <p>Create a New Record</p>
             <a href="@Url.Action("Create", "Downtimes")" class="btn btn-lg btn-primary" style="margin-bottom:10px;    box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);">
                 Add
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
             </a>
+            <p>All downtime records can be found in the table below</p>
         </div>
-        <div class="col-md-8" style="text-align:right;">
-            <p style="margin-right:50px;color:#7f8c8d;">
-                <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:#7f8c8d;"></span>
+        <div class="col-md-3">
+            <div class="col-md-3">
+                <div class="col-md-4 center">
+                    <img src="http://i.imgur.com/5AQvctz.png" style="width:120px;height:auto" />
+                </div>
+               
+            </div>
+        </div>
+        <div class="col-md-6" style="text-align:right;">
+            <p>
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                Enter a Name, Shift, Plant or Downtime Type below:
             </p>
             @using (Html.BeginForm("Index", "Downtimes", FormMethod.Get))
                 {
-                <h3>
-                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-                    <input style="box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);" type="submit" value="Search" />
-                </h3>
+                <form class="form-group-lg">
+                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "textbox" })
+                    <input class="btn btn-embossed btn-primary" type="submit" value="Search" />
+                </form>
+                <br />
                     <form class="form-group-sm">
-                        <p style="margin-right:50px;color:#7f8c8d;"><span class="glyphicon glyphicon-star" aria-hidden="true" style="color:#7f8c8d;"></span>Date Range Search below:</p>
+                        <p><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Date Range Search below:</p>
                         <label for="DateFrom">Date From:</label>
-                        <input type="text" name="DateFrom" id="DateFrom" />
+                        <input type="text" class="Datetextbox center" name="DateFrom" id="DateFrom" />
                         <br />
                         <label for="DateFrom">Date To:</label>
-                        <input type="text" name="DateTo" id="DateTo" />
+                        <input type="text" class="Datetextbox center" name="DateTo" id="DateTo" />
                         <br />
-                        <input style="box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);" type='submit' value='Filter' />
+                        <input class="btn btn-embossed btn-primary" type='submit' value='Filter' />
                     </form>
             }
 

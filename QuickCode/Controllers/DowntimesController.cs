@@ -46,12 +46,13 @@ namespace QuickCode.Controllers
             {
                 //var downtime = db.Downtime.Include(d => d.DowntimeType).Include(d => d.Plant).Include(d => d.Shift).Include(d => d.User);
 
-                var downtime = from s in db.Downtime                            
+                var downtime = from s in db.Downtime 
+                               orderby s.StartDate  descending                         
                                select s;
                 // Search by date because you're a cool dude!
                 if (DateFrom.HasValue)
                 {
-                    downtime = db.Downtime.Where(s => s.StartDate >= DateFrom && s.EndDate <= DateTo);
+                    downtime = db.Downtime.Where(s => s.StartDate >= DateFrom && s.EndDate <= DateTo).OrderByDescending(s => s.StartDate).ThenByDescending(s => s.DowntimeID);
                 }
 
                 // ---SEARCH FOR WHATEVER YOU FEEL LIKE HERE -------
@@ -60,32 +61,37 @@ namespace QuickCode.Controllers
                     downtime = downtime.Where(s => s.User.UserName.ToUpper().Contains(searchString.ToUpper()) ||
                                                         s.Shift.Name.ToUpper().Contains(searchString.ToUpper()) ||
                                                         s.DowntimeType.Name.ToUpper().Contains(searchString.ToUpper()) ||
-                                                        s.Plant.Name.ToUpper().Contains(searchString.ToUpper()));
-
+                                                        s.Plant.Name.ToUpper().Contains(searchString.ToUpper())).OrderByDescending(s => s.StartDate).ThenByDescending(s => s.DowntimeID);
                 }
-
-              
-
                     // SWITCH STATEMENT --- WHEN USER SELECTS TO SORT DATA
                     switch (sortOrder)
                 {
-                    case "name_desc":
+                    case "user_desc":
                         downtime = downtime.OrderByDescending(s => s.User);
+                        break;
+                    case "shift_desc":
+                        downtime = downtime.OrderByDescending(s => s.Shift);
+                        break;
+                    case "Plant_desc":
+                        downtime = downtime.OrderByDescending(s => s.Plant);
+                        break;
+                    case "Down_desc":
+                        downtime = downtime.OrderByDescending(s => s.DowntimeType);
                         break;
                     case "Date":
                         downtime = downtime.OrderBy(s => s.StartDate);
                         break;
                     case "date_desc":
-                        downtime = downtime.OrderByDescending(s => s.EndDate);
+                        downtime = downtime.OrderBy(s => s.EndDate);
                         break;
                     default:                 
-                        downtime = downtime.OrderBy(s => s.StartDate);
+                        downtime = downtime.OrderByDescending(s => s.StartDate);
                         break;
                 }
 
                 int pageSize = 15;
                 int pageNumber = (page ?? 1);
-                return View(downtime.ToPagedList(pageNumber, pageSize));
+                return View(downtime.OrderByDescending(s => s.StartDate).ToPagedList(pageNumber, pageSize));
                 //return View(downtime.ToList());
 
             }
@@ -94,13 +100,14 @@ namespace QuickCode.Controllers
                 
                 var downtime = from s in db.Downtime
                                    where s.UserID == user.Id.ToString()
+                                   orderby s.StartDate descending
                                    select s;
 
         
                 if (DateFrom.HasValue)
                 {
-                   downtime = db.Downtime.Where(s => s.StartDate >= DateFrom && s.EndDate <= DateTo);
-                   
+                   downtime = db.Downtime.Where(s => s.StartDate >= DateFrom && s.EndDate <= DateTo).OrderByDescending(s => s.StartDate).ThenByDescending(s => s.DowntimeID);
+
                 }
                
 
@@ -110,30 +117,38 @@ namespace QuickCode.Controllers
                     downtime = downtime.Where(s => s.User.UserName.ToUpper().Contains(searchString.ToUpper()) ||
                                                         s.Shift.Name.ToUpper().Contains(searchString.ToUpper()) ||
                                                         s.DowntimeType.Name.ToUpper().Contains(searchString.ToUpper()) ||
-                                                        s.Plant.Name.ToUpper().Contains(searchString.ToUpper()));
-
+                                                        s.Plant.Name.ToUpper().Contains(searchString.ToUpper())).OrderByDescending(s => s.StartDate).ThenByDescending(s => s.DowntimeID);
                 }
 
                 // SWITCH STATEMENT --- WHEN USER SELECTS TO SORT DATA
                 switch (sortOrder)
                 {
-                    case "name_desc":
+                    case "user_desc":
                         downtime = downtime.OrderByDescending(s => s.User);
+                        break;
+                    case "shift_desc":
+                        downtime = downtime.OrderByDescending(s => s.Shift);
+                        break;
+                    case "Plant_desc":
+                        downtime = downtime.OrderByDescending(s => s.Plant);
+                        break;
+                    case "Down_desc":
+                        downtime = downtime.OrderByDescending(s => s.DowntimeType);
                         break;
                     case "Date":
                         downtime = downtime.OrderBy(s => s.StartDate);
                         break;
                     case "date_desc":
-                        downtime = downtime.OrderByDescending(s => s.StartDate);
+                        downtime = downtime.OrderBy(s => s.EndDate);
                         break;
                     default:
-                        downtime = downtime.OrderBy(s => s.StartDate);
+                        downtime = downtime.OrderByDescending(s => s.StartDate);
                         break;
                 }
 
                 int pageSize = 20;
                 int pageNumber = (page ?? 1);
-                return View(downtime.ToPagedList(pageNumber, pageSize));
+                return View(downtime.OrderByDescending(s => s.StartDate).ToPagedList(pageNumber, pageSize));
                 //return View(downtime.ToList());
 
             }                      
@@ -169,7 +184,7 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(DateTime MyDate, DateTime EndDate, [Bind(Include = "DowntimeID,UserID,ShiftID,DowntimeTypeID,PlantID,Reason,Action,Date,TotalDownMins")] Downtime downtime)
+        public ActionResult Create(DateTime MyDate, DateTime EndDate, String reason, String action, [Bind(Include = "DowntimeID,UserID,ShiftID,DowntimeTypeID,PlantID,Date,TotalDownMins")] Downtime downtime)
         {
             // Date config:
             DateTime edt = EndDate;
@@ -193,6 +208,8 @@ namespace QuickCode.Controllers
                     downtime.EndTime = et;
                     downtime.TotalDownMins = totalMins;
                     downtime.UserID = user.Id;
+                    downtime.Reason = reason;
+                    downtime.Action = action;
                     db.Downtime.Add(downtime);
                     db.SaveChanges();
                     return RedirectToAction("Create");

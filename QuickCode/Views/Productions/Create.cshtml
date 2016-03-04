@@ -14,10 +14,27 @@
 <h2>Create</h2>
 @using (Html.BeginForm())
 {
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>New Production Information</h4>
+
+        </div>
+        <div class="col-md-6 rightside">
+            <button type="submit" class="btn btn-success btn-lg btn-embossed">
+                Create <i class="glyphicon glyphicon-pencil"></i>
+            </button>
+            <a href="@Url.Action("Index", "Productions")" class="btn btn-lg btn-embossed btn-warning">
+                Cancel
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
+    <hr />
+    </div>
 <div class="container">
 <div class="row">
-    <h4>New Production Information</h4>
-    <hr />
+   
    
         @Html.AntiForgeryToken()
         @Html.Hidden("~/Productions/Create", this.Request.RawUrl)
@@ -80,14 +97,16 @@
                     </div>
                 </div>
 
-                @*<div class="form-group">
 
-                        @Html.LabelFor(model => model.Manning, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.TextBox("",Model, new { htmlAttributes = new { id = "manning", @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Manning, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.QualityIssues, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @*<p style = "margin-top:10px;" >< b > Additional Notes:</b></p>*@
+                    <div class="col-md-10">
+                        <div>
+                            <textarea placeholder="Enter notes on quality issues here.." style="width: 400px; height: 100px;" id="qualityIssues" name="qualityIssues"></textarea>
                         </div>
-                    </div>*@
+                    </div>
+                </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -100,15 +119,6 @@
                 </div>
 
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.QualityIssues, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @*<p style = "margin-top:10px;" >< b > Additional Notes:</b></p>*@
-                    <div class="col-md-10">
-                        <div>
-                            <textarea placeholder="Enter notes on quality issues here.." style="width: 400px; height: 100px;" id="qualityIssues" name="qualityIssues"></textarea>
-                        </div>
-                    </div>
-                </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
@@ -175,20 +185,20 @@
                 </div>
             </div>        
         </div>
-    <div class="form-group">
+    @*<div class="form-group">
         <div class="col-md-offset-2 col-md-10">
 
             <a href="~/Productions/Create">
-                <input type="submit" value="Create" class="btn btn-success" />
+                <input type="submit" value="Create" class="btn btn-lg btn-success" />
             </a>
         </div>
-    </div>
+    </div>*@
 
     </div>
  </div>
     }
         <!--Form end-->
-   
+   <hr />
     <div>
         <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" style="color:dodgerblue"></span>&nbsp;&nbsp;@Html.ActionLink("Back to Production Menu", "Index")
     </div>
