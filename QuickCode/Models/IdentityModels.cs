@@ -53,7 +53,7 @@ namespace QuickCode.Models
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext()
-            : base("WDIBPW", throwIfV1Schema: false)
+            : base("DefaultConnection", throwIfV1Schema: false)
         // CHANGE THIS FOR LOCAL IRWINS - WDIBPW
         // DefaultConnection for local testing - dev laptops only
         {

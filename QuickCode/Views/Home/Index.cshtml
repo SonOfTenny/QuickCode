@@ -9,22 +9,50 @@
 @* //----------CDN FOR BOOTSTRAP ---------------------------------------------------------- *@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
+<style>
+    html, body { 
+      background: url("http://i.imgur.com/nK0rgZi.jpg") no-repeat center center fixed; 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+}
+</style>
 @if (!Request.IsAuthenticated)
 {
 
     <div>
         <div class="container">
-           
             <div class="row">
-               
-                <div class="col-md-12" style="text-align:center; vertical-align:middle;">
-                    <div style="margin-top:45px; padding:15px; ">
-                        <div>
-                            <h1>Welcome</h1>
+                <div class="col-md-12 center">
+                    <h1 class="flatOrange">Welcome to</h1>
+                    <h2 class="flatOrange">Irwin's Production Database</h2>
+                    <img src="http://i.imgur.com/Cx4orcw.png" style="width:100px;height:auto" />
+                </div>
+            </div>
+            <div class="row top">
+                <div class="col-sm-4 center fadedBox">
+                    <h4>Record <i class="glyphicon glyphicon-pencil"></i></h4>
+                    <h6>Production waste and Downtime Information</h6>
+                </div>
+                <div class="col-sm-4 center fadedBox">
+                    <h4>View Dashboards <i class="glyphicon glyphicon-stats"></i></h4>
+                    <h6>View plants efficieny for waste, downtime and manning</h6>
+                </div>
+                <div class="col-sm-4 center fadedBox">
+                    <h4>Improve Efficiency <i class="glyphicon glyphicon-leaf"></i></h4>
+                <h6>Make decisions based on the information provided</h6></div>
+            </div>
+            <div class="row">
 
-                            <h3>Login to use this Application</h3>
+                <div class="col-md-12 center" >
+                    <div>
+                        <div>
+                           
+
+                            <h3 class="flatCarrot">Login to use this Application here</h3>
                             <br />
-                            <p>@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-primary btn-lg" })</p>
+                            <p>@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-primary btn-lg btn-embossed" })</p>
                         </div>
                     </div>
                 </div>
@@ -53,22 +81,22 @@
             </div>
         </div>}
     <div class="row">
-@if (Request.IsAuthenticated)
-{
-        <div class="col-md-12">
-            <h2>Summary by plant</h2>
-        </div>
-}
+        @if (Request.IsAuthenticated)
+        {
+            <div class="col-md-12">
+                <h2>Summary by plant</h2>
+            </div>
+        }
     </div>
 </div>
-<div class="container" >
-    <div class="row" >    
+<div class="container">
+    <div class="row">
         <div class="col-md-9">
             @if (Request.IsAuthenticated)
             {
-              <p>Current Week No:  @Model.FiscalWeekNo | Fiscal WeekDate: @Model.FiscalWeek.ToShortDateString()</p>
+                <p>Current Week No:  @Model.FiscalWeekNo | Fiscal WeekDate: @Model.FiscalWeek.ToShortDateString()</p>
                 <table class="table table-striped dash table-bordered center">
-                    <thead >
+                    <thead>
                         <tr>
                             <th style="text-align:center;">Plant</th>
                             <th>Crumb</th>
@@ -82,9 +110,9 @@
                         </tr>
                     </thead>
                     <tbody style="text-align:center">
-                      
-                          
-                      
+
+
+
                         <tr>
                             <td>Batch</td>
                             <td>@Model.BatchTotalCrumb</td>
@@ -162,7 +190,7 @@
                             <td>@Model.PotatoTotalDowntime</td>
                             <td>@Model.PotatoTotalManning</td>
                         </tr>
-                      
+
                     </tbody>
                 </table>
             }
@@ -175,7 +203,7 @@
                     <div class="panel-heading">
                         <h5 style="text-align:center;">Menu</h5>
                     </div>
-                    <div class="panel-body">                       
+                    <div class="panel-body">
                         <ul>
                             <li>@Html.ActionLink("View  Production Info", "Index", "Productions")</li>
                             <li>@Html.ActionLink("View  Downtime Info", "Index", "Downtimes")</li>
@@ -189,10 +217,10 @@
             @if (Request.IsAuthenticated && !User.IsInRole("Administrator"))
             {
                 <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h5 style="text-align:center;">Menu</h5>
-                        </div>
-                    <div class="panel-body">                     
+                    <div class="panel-heading">
+                        <h5 style="text-align:center;">Menu</h5>
+                    </div>
+                    <div class="panel-body">
                         <h4>Select one of the following</h4>
                         <ul>
                             <li>@Html.ActionLink("View  Production Info", "Index", "Productions")</li>
@@ -204,50 +232,50 @@
             }
         </div>
         @*<div class="col-md-3">
-            @if (Request.IsAuthenticated)
-            {
-                <h3>Total mixes by plant</h3>
-                <table class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Plant</th>
-                            <th>Actual Mix</th>
-                        </tr>
-                    </thead>
-                    <tbody style="text-align:center">
-                        <tr>
-                            <td>Batch</td>
-                            <td>@Model.BatchTotalMixes</td>
-                        </tr>
-                        <tr>
-                            <td>Pan</td>
-                            <td>@Model.PanTotalMixes</td>
-                        </tr>
-                        <tr>
-                            <td>Roll</td>
-                            <td>@Model.RollTotalMixes</td>
-                        </tr>
-                        <tr>
-                            <td>Wheaten</td>
-                            <td>@Model.WheatenTotalMixes</td>
-                        </tr>
-                        <tr>
-                            <td>Soda</td>
-                            <td>@Model.SodaTotalMixes</td>
-                        </tr>
-                        <tr>
-                            <td>Pancakes</td>
-                            <td>@Model.PancakesTotalMixes</td>
-                        </tr>
-                        <tr>
-                            <td>Potato</td>
-                            <td>@Model.PotatoTotalMixes</td>
-                        </tr>
+                @if (Request.IsAuthenticated)
+                {
+                    <h3>Total mixes by plant</h3>
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Plant</th>
+                                <th>Actual Mix</th>
+                            </tr>
+                        </thead>
+                        <tbody style="text-align:center">
+                            <tr>
+                                <td>Batch</td>
+                                <td>@Model.BatchTotalMixes</td>
+                            </tr>
+                            <tr>
+                                <td>Pan</td>
+                                <td>@Model.PanTotalMixes</td>
+                            </tr>
+                            <tr>
+                                <td>Roll</td>
+                                <td>@Model.RollTotalMixes</td>
+                            </tr>
+                            <tr>
+                                <td>Wheaten</td>
+                                <td>@Model.WheatenTotalMixes</td>
+                            </tr>
+                            <tr>
+                                <td>Soda</td>
+                                <td>@Model.SodaTotalMixes</td>
+                            </tr>
+                            <tr>
+                                <td>Pancakes</td>
+                                <td>@Model.PancakesTotalMixes</td>
+                            </tr>
+                            <tr>
+                                <td>Potato</td>
+                                <td>@Model.PotatoTotalMixes</td>
+                            </tr>
 
-                    </tbody>
-                </table>
-            }
-        </div>*@
+                        </tbody>
+                    </table>
+                }
+            </div>*@
     </div>
     @*<div class="row">
         @*<div class="col-md-3">
@@ -264,7 +292,7 @@
                             </tr>
                         </thead>
                         <tbody style="text-align:center">
-                            <tr>                            
+                            <tr>
                                 <td>Batch</td>
                                 <td>@Model.BatchTotalTime</td>
                             </tr>
@@ -296,51 +324,51 @@
                     </table>
                 }
             </div>*@
-            @*<div class="col-md-3">
-                @if (Request.IsAuthenticated)
-            {
-                    <h3>Total downtime time per plant</h3>
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Plant</th>
-                                <th>Time (mins)</th>
-                            </tr>
-                        </thead>
-                        <tbody style="text-align:center">
-                            <tr>
-                                <td>Batch</td>
-                                <td>@Model.BatchTotalDowntime</td>
-                            </tr>
-                            <tr>
-                                <td>Pan</td>
-                                <td>@Model.PanTotalDowntime</td>
-                            </tr>
-                            <tr>
-                                <td>Roll</td>
-                                <td>@Model.RollTotalTime</td>
-                            </tr>
-                            <tr>
-                                <td>Wheaten</td>
-                                <td>@Model.WheatenTotalTime</td>
-                            </tr>
-                            <tr>
-                                <td>Soda</td>
-                                <td>@Model.SodaTotalDowntime</td>
-                            </tr>
-                            <tr>
-                                <td>Pancakes</td>
-                                <td>@Model.PancakesTotalDowntime</td>
-                            </tr>
-                            <tr>
-                                <td>Potato</td>
-                                <td>@Model.PotatoTotalDowntime</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                }
-            </div>*@
-      
+    @*<div class="col-md-3">
+            @if (Request.IsAuthenticated)
+        {
+                <h3>Total downtime time per plant</h3>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Plant</th>
+                            <th>Time (mins)</th>
+                        </tr>
+                    </thead>
+                    <tbody style="text-align:center">
+                        <tr>
+                            <td>Batch</td>
+                            <td>@Model.BatchTotalDowntime</td>
+                        </tr>
+                        <tr>
+                            <td>Pan</td>
+                            <td>@Model.PanTotalDowntime</td>
+                        </tr>
+                        <tr>
+                            <td>Roll</td>
+                            <td>@Model.RollTotalTime</td>
+                        </tr>
+                        <tr>
+                            <td>Wheaten</td>
+                            <td>@Model.WheatenTotalTime</td>
+                        </tr>
+                        <tr>
+                            <td>Soda</td>
+                            <td>@Model.SodaTotalDowntime</td>
+                        </tr>
+                        <tr>
+                            <td>Pancakes</td>
+                            <td>@Model.PancakesTotalDowntime</td>
+                        </tr>
+                        <tr>
+                            <td>Potato</td>
+                            <td>@Model.PotatoTotalDowntime</td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        </div>*@
+
 </div>
 
 
@@ -348,7 +376,7 @@
 
 <script type="text/javascript">
 
-  
+
 </script>
 
 

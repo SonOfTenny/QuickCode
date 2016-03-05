@@ -1,4 +1,6 @@
 ﻿@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,700,300);
+
 body {
   
   font-family: 'Montserrat', sans-serif;
@@ -110,4 +112,28 @@ dt, dl, dd {
 .red {
     color: red;
     font-weight:500;
+}
+
+.fadedBox {
+    opacity: 0.8;
+    background-color: black;
+    border-radius: 4px;
+    margin: 5px;
+    padding: 10px;
+    max-height: 150px;
+    max-width: 370px;
+}
+
+.flatOrange {
+    color: #f39c12;
+     font-family: 'Oswald', sans-serif;
+     font-weight:700;
+}
+.flatCarrot {
+    color: #e67e22;
+      font-family: 'Oswald', sans-serif;
+}
+
+.top{
+    margin-top:45px;
 }
