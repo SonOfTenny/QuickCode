@@ -12,6 +12,10 @@ p , input, label {
    
 }
 
+h1, h2,h3,h4,h5,h6 {
+      font-family: 'Montserrat', sans-serif;
+}
+
 td, th {
     
      font-family: 'Montserrat', sans-serif;
@@ -115,7 +119,7 @@ dt, dl, dd {
 }
 
 .fadedBox {
-    opacity: 0.8;
+    opacity: 0.85;
     background-color: black;
     border-radius: 4px;
     margin: 5px;
@@ -123,7 +127,35 @@ dt, dl, dd {
     max-height: 150px;
     max-width: 370px;
 }
-
+.fadedBlackBox {
+    opacity: 0.85;
+    background-color: black;
+    border-radius: 4px;
+    margin: 2px;
+    padding: 5px;
+   
+}
+.fadedGreyBox {
+    opacity: 0.85;
+    background-color: lightgrey;
+    border-radius: 4px;
+    margin: 5px;
+    padding: 10px;
+   
+}
+.loginBox {
+    opacity: 0.8;
+    background-color: lightgrey;
+    border-radius: 15px;
+    margin: 15px;
+    padding: 10px;
+    max-height: 150px;
+    max-width: 350px;
+}
+.titleFont {
+     font-family: 'Oswald', sans-serif;
+     font-weight:500;
+}
 .flatOrange {
     color: #f39c12;
      font-family: 'Oswald', sans-serif;
@@ -133,7 +165,32 @@ dt, dl, dd {
     color: #e67e22;
       font-family: 'Oswald', sans-serif;
 }
+.inner {
+     width: 50%;
+    margin: 0 auto; 
+}
+.loginBtn {
+    display: table-cell;
+}
 
 .top{
     margin-top:45px;
+}
+.top20 {
+    margin-top:20px;
+}
+tr:nth-child(even) {
+    background-color: whitesmoke;
+}
+
+thead {
+    background-color: lightgrey;
+}
+
+.back {
+     background: url("http://i.imgur.com/2JbMKmd.jpg") no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
 }

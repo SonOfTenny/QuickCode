@@ -26,11 +26,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+@if (!Request.IsAuthenticated)
+{
+    @Html.ActionLink("Production Database", "Login", "Account", new { area = "" }, new { @class = "navbar-brand flatOrange" })
+}
+@if (Request.IsAuthenticated)
+{
                 @Html.ActionLink("Dashboard", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+}
             </div>
             <div class="navbar-collapse collapse">
                
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav flatOrange">
                     @if (Request.IsAuthenticated)
                     {
                     <li>@Html.ActionLink("Production", "Index", "Productions")</li>

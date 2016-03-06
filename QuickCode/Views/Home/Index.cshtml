@@ -30,6 +30,19 @@
                     <img src="http://i.imgur.com/Cx4orcw.png" style="width:100px;height:auto" />
                 </div>
             </div>
+          
+            <div class="row top20">
+                <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div>
+                            <div class="inner center loginBox">
+                                <h3 class="flatCarrot">Login to use this Application here</h3>        
+                                <p>@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-primary btn-lg btn-embossed loginBtn" })</p>
+                            </div>
+                        </div>
+                    </div>
+                <div class="col-md-4"></div>
+                </div>
             <div class="row top">
                 <div class="col-sm-4 center fadedBox">
                     <h4>Record <i class="glyphicon glyphicon-pencil"></i></h4>
@@ -41,20 +54,7 @@
                 </div>
                 <div class="col-sm-4 center fadedBox">
                     <h4>Improve Efficiency <i class="glyphicon glyphicon-leaf"></i></h4>
-                <h6>Make decisions based on the information provided</h6></div>
-            </div>
-            <div class="row">
-
-                <div class="col-md-12 center" >
-                    <div>
-                        <div>
-                           
-
-                            <h3 class="flatCarrot">Login to use this Application here</h3>
-                            <br />
-                            <p>@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-primary btn-lg btn-embossed" })</p>
-                        </div>
-                    </div>
+                    <h6>Make decisions based on the information provided</h6>
                 </div>
             </div>
         </div>
@@ -70,14 +70,14 @@
             <div class="col-md-4">
                 <img class="center" src="http://i.imgur.com/AipKiF7.png" style="width:300px;height:auto" />
             </div>
-            <div class="col-md-4 center">
+            <div class="col-md-4 center fadedGreyBox">
                 <h1>Production Dashboard</h1>
                 <p style="color:#7f8c8d;"><span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:#7f8c8d;"></span> Dashboard displays the last 7 day's information by Plant</p>
                 <p style="color:orange;">Current Fiscal Week: @Model.FiscalWeek.ToShortDateString() | Week No: @Model.FiscalWeekNo.ToString()</p>
 
             </div>
-            <div class="col-md-4 center">
-                <img src="http://i.imgur.com/Cx4orcw.png" style="width:120px;height:auto" />
+            <div class="col-md-3 center">
+                <img src="http://i.imgur.com/Cx4orcw.png"  style="width:120px;height:auto" />
             </div>
         </div>}
     <div class="row">

@@ -3,6 +3,15 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    body {
+        background: url("http://i.imgur.com/2JbMKmd.jpg") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+</style>
 @if (Request.IsAuthenticated)
 {
     @*<h2>Plant Information</h2>
@@ -14,9 +23,9 @@
     <div class="container">
         <div class="row" style="margin-bottom: 10px;">
             <div class="col-lg-12">
-                <h2>Downtime Records</h2>
+                <h2>Plants</h2>
                 <p>Create a New Record</p>
-                <a href="@Url.Action("Create", "Plants")" class="btn btn-primary">
+                <a href="@Url.Action("Create", "Plants")" class="btn btn-primary btn-lg btn-embossed">
                     Add
                     <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                 </a>

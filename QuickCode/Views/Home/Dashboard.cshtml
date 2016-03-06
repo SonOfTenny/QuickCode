@@ -8,7 +8,15 @@
 @* //----------CDN FOR BOOTSTRAP ---------------------------------------------------------- *@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
-
+<style>
+    html, body {
+      background: url("http://i.imgur.com/mzk0S8M.png") no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+}
+</style>
 <div class="container">
     @if (Request.IsAuthenticated)
     {
@@ -16,7 +24,7 @@
             <div class="col-md-4">
                 <img class="center" src="http://i.imgur.com/AipKiF7.png" style="width:300px;height:auto" />
             </div>
-            <div class="col-md-4 center" >
+            <div class="col-md-4 center " >
                 <h1>Custom Production Dashboard</h1>
                 <p style="color:#7f8c8d;"><span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:#7f8c8d;"></span> Select a start and end date to view summaries</p>
             </div>
@@ -49,14 +57,15 @@
         <div class="col-md-9">
             @if (Request.IsAuthenticated)
             {
-                <table id="DateTimeTable">
-                    <tr>
+                <table id="DateTimeTable" style="border: darkgrey solid 1px;margin-bottom:5px;padding:2px;">
+                    <tr style="background-color:lightgrey;">
                         <td>Date: @Model.StartDate.ToShortDateString() - @Model.EndTime.ToShortDateString()</td>
                     </tr>
                     <tr>
                         <td>Time: @Model.StartDate.ToShortTimeString() - @Model.EndTime.ToShortTimeString()</td>
                     </tr>
                 </table>
+
                 <table class="table table-striped dash table-bordered">
                     <thead>
                         <tr>
@@ -161,14 +170,14 @@
                         <form class="form-group-sm">
                             @*<p style="margin-right:50px;color:#7f8c8d;"><span class="glyphicon glyphicon-star" aria-hidden="true" style="color:#7f8c8d;"></span>Search here to update dashboard results!</p>*@
                             <label for="DateFrom">Date From:</label>
-                            <input type="text" id="DateFrom" placeholder="dd/mm/yy" name="DateFrom" />
+                            <input class="Datetextbox center" type="text" id="DateFrom" placeholder="dd/mm/yy" name="DateFrom" />
                             <br />
                             <label style="padding-right:17px;" for="DateFrom">Date To:</label>
-                            <input type="text" id="DateTo" placeholder="dd/mm/yy" name="DateTo" />
+                            <input  class="Datetextbox center" type="text" id="DateTo" placeholder="dd/mm/yy" name="DateTo" />
                             <br />
                             <label for="PlantName">Plant Name:</label>
-                            <input type="text" placeholder="Enter Plant Name" name="PlantName" id="PlantName" required/>
-                            <input type='submit' value='Filter' style="margin-top: 10px; width: 224px;" />
+                            <input class="textbox" type="text" placeholder="Enter Plant Name" name="PlantName" id="PlantName" required/>
+                            <input class="btn btn-embossed" type='submit' value='Filter' style="margin-top: 10px; width: 224px;" />
                         </form>
                     </div>
                 </div>
@@ -193,7 +202,7 @@
             {
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h5 style="text-align:center">Filter by Date Range</h5>      
+                        <h5 style="text-align:center">Filter by Date Range</h5>
                     </div>
                     <div class="panel-body">
                         <form class="form-group-sm">
@@ -204,7 +213,7 @@
                             <label style="padding-right:17px;" for="DateFrom">Date To:</label>
                             <input type="text" id="DateTo" placeholder="dd/mm/yy" name="DateTo" />
                             <br />
-                         
+
                             <label for="PlantName">Plant Name:</label>
                             <input type="text" placeholder="Enter Plant Name" name="PlantName" id="PlantName" required />
                             <input type='submit' value='Filter' style="margin-top: 10px; width: 224px;" />
@@ -246,7 +255,7 @@
             //get the text from the first child node - which should be a text node
             var currentText = node.childNodes[0].nodeValue;
 
-            //check for 'one' and assign this table cell's background color accordingly 
+            //check for 'one' and assign this table cell's background color accordingly
             if (currentText >= 2000)
                 node.style.backgroundColor = "OrangeRed";
             else if (currentText >= 1000)
