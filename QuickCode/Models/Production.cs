@@ -54,6 +54,8 @@ namespace QuickCode.Models
         public double TotalWaste { get; set; }
         public double TotalProdMins { get; set; }
 
+        public DateTime sDate { get; set; }
+
         // all the fancy foreign keys
         public virtual User User { get; set; }
         public virtual Shift Shift { get; set; }

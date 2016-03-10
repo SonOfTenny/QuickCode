@@ -34,6 +34,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <PublishDatabases>false</PublishDatabases>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -200,25 +202,9 @@
     <Compile Include="Migrations\201601091849049_initial migration.Designer.cs">
       <DependentUpon>201601091849049_initial migration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603011051328_update-database.cs" />
-    <Compile Include="Migrations\201603011051328_update-database.Designer.cs">
-      <DependentUpon>201603011051328_update-database.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603011221249_new crap.cs" />
-    <Compile Include="Migrations\201603011221249_new crap.Designer.cs">
-      <DependentUpon>201603011221249_new crap.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603011237532_j.cs" />
-    <Compile Include="Migrations\201603011237532_j.Designer.cs">
-      <DependentUpon>201603011237532_j.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603011325500_ha.cs" />
-    <Compile Include="Migrations\201603011325500_ha.Designer.cs">
-      <DependentUpon>201603011325500_ha.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603031633564_new field.cs" />
-    <Compile Include="Migrations\201603031633564_new field.Designer.cs">
-      <DependentUpon>201603031633564_new field.cs</DependentUpon>
+    <Compile Include="Migrations\201603091415023_new shit.cs" />
+    <Compile Include="Migrations\201603091415023_new shit.Designer.cs">
+      <DependentUpon>201603091415023_new shit.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessTypes.cs" />
@@ -246,7 +232,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\img\IrwinsLogo.png" />
-    <Content Include="Content\img\production.gif" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -293,6 +278,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\QuickCode.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="irwins.ico" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -418,20 +404,8 @@
     <EmbeddedResource Include="Migrations\201601091849049_initial migration.resx">
       <DependentUpon>201601091849049_initial migration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603011051328_update-database.resx">
-      <DependentUpon>201603011051328_update-database.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603011221249_new crap.resx">
-      <DependentUpon>201603011221249_new crap.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603011237532_j.resx">
-      <DependentUpon>201603011237532_j.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603011325500_ha.resx">
-      <DependentUpon>201603011325500_ha.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603031633564_new field.resx">
-      <DependentUpon>201603031633564_new field.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603091415023_new shit.resx">
+      <DependentUpon>201603091415023_new shit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -439,7 +413,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <ApplicationIcon>irwins.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

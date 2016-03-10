@@ -54,7 +54,7 @@ namespace QuickCode.Models
     {
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
-        // CHANGE THIS FOR LOCAL IRWINS - WDIBPW
+        // CHANGE THIS FOR LOCAL IRWINS - WDIBPW - IRWSQL1
         // DefaultConnection for local testing - dev laptops only
         {
         }

@@ -197,6 +197,7 @@ namespace QuickCode.Controllers
             string b = edt.ToString("HH:mm");
             DateTime st = DateTime.Parse(a); /*Convert.ToDateTime(startTime);*/
             DateTime et = DateTime.Parse(b);
+            DateTime nt = dt.Date;
 
             double sum = production.Cmp_Waste + production.CrumbWaste + production.Pack_Waste + production.Gen_Pack_Waste;
             //TimeSpan span = (production.EndTime - production.StartTime);
@@ -212,6 +213,7 @@ namespace QuickCode.Controllers
 
                 if (ModelState.IsValid)
                 {
+                    production.sDate = nt;
                     production.StartDate = MyDate;
                     production.EndDate = EndDate;
                     production.StartTime = st;

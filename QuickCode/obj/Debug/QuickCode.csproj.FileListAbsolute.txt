@@ -76,8 +76,4 @@ C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Dapper.dll
 C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Dapper.pdb
 C:\Users\Mark\Desktop\QuickCode\QuickCode\bin\Dapper.xml
 C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.csprojResolveAssemblyReference.cache
-C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.updatedatabase.resources
-C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.newcrap.resources
-C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.j.resources
-C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.ha.resources
-C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.newfield.resources
+C:\Users\Mark\Desktop\QuickCode\QuickCode\obj\Debug\QuickCode.Migrations.newshit.resources

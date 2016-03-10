@@ -149,8 +149,8 @@ dt, dl, dd {
     border-radius: 15px;
     margin: 15px;
     padding: 10px;
-    max-height: 150px;
-    max-width: 350px;
+    height: 160px;
+    width: auto;
 }
 .titleFont {
      font-family: 'Oswald', sans-serif;

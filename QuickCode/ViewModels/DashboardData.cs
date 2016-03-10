@@ -28,6 +28,7 @@ namespace QuickCode.ViewModels
         public DateTime EndDate { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
+        public DateTime TestDate { get; set; }
         public string PlantName { get; set; }
         /// <summary>
         /// BATCH

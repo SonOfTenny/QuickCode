@@ -24,7 +24,7 @@
     <div>
         <div class="container">
             <div class="row">
-                <div class="col-md-12 center">
+                <div class="col-sm-12 col-md-12 center">
                     <h1 class="flatOrange">Welcome to</h1>
                     <h2 class="flatOrange">Irwin's Production Database</h2>
                     <img src="http://i.imgur.com/Cx4orcw.png" style="width:100px;height:auto" />
@@ -32,8 +32,8 @@
             </div>
           
             <div class="row top20">
-                <div class="col-md-4"></div>
-                    <div class="col-md-4">
+                <div class="col-sm-4 col-md-4"></div>
+                    <div class="col-sm-4 col-md-4">
                         <div>
                             <div class="inner center loginBox">
                                 <h3 class="flatCarrot">Login to use this Application here</h3>        
@@ -41,18 +41,18 @@
                             </div>
                         </div>
                     </div>
-                <div class="col-md-4"></div>
+                <div class="col-sm-4 col-md-4"></div>
                 </div>
             <div class="row top">
-                <div class="col-sm-4 center fadedBox">
+                <div class="col-sm-4 col-sm-4 center fadedBox">
                     <h4>Record <i class="glyphicon glyphicon-pencil"></i></h4>
                     <h6>Production waste and Downtime Information</h6>
                 </div>
-                <div class="col-sm-4 center fadedBox">
+                <div class="col-sm-4 col-sm-4 center fadedBox">
                     <h4>View Dashboards <i class="glyphicon glyphicon-stats"></i></h4>
                     <h6>View plants efficieny for waste, downtime and manning</h6>
                 </div>
-                <div class="col-sm-4 center fadedBox">
+                <div class="col-sm-4 col-sm-4 center fadedBox">
                     <h4>Improve Efficiency <i class="glyphicon glyphicon-leaf"></i></h4>
                     <h6>Make decisions based on the information provided</h6>
                 </div>
@@ -67,16 +67,16 @@
     @if (Request.IsAuthenticated)
     {
         <div class="row" style="margin-top:40px;">
-            <div class="col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <img class="center" src="http://i.imgur.com/AipKiF7.png" style="width:300px;height:auto" />
             </div>
-            <div class="col-md-4 center fadedGreyBox">
+            <div class="col-sm-4 col-md-4 center fadedGreyBox">
                 <h1>Production Dashboard</h1>
                 <p style="color:#7f8c8d;"><span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:#7f8c8d;"></span> Dashboard displays the last 7 day's information by Plant</p>
                 <p style="color:orange;">Current Fiscal Week: @Model.FiscalWeek.ToShortDateString() | Week No: @Model.FiscalWeekNo.ToString()</p>
 
             </div>
-            <div class="col-md-3 center">
+            <div class="col-sm-3 col-md-3 center">
                 <img src="http://i.imgur.com/Cx4orcw.png"  style="width:120px;height:auto" />
             </div>
         </div>}
@@ -131,7 +131,7 @@
                             <td>@Model.PanTotalGenPack</td>
                             <td>@Model.PanTotalPack</td>
                             <td>@Model.PanTotalMixes</td>
-                            <td>@Model.PancakesTotalTime.</td>
+                            <td>@Model.PancakesTotalTime</td>
                             <td>@Model.PancakesTotalDowntime</td>
                             <td>@Model.PancakesTotalManning</td>
                         </tr>
