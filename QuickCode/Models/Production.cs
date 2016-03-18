@@ -35,6 +35,8 @@ namespace QuickCode.Models
         public double Pack_Waste { get; set; }
         [DisplayName("General Packaging Waste")]
         public double Gen_Pack_Waste { get; set; }
+        [DisplayName("Cleaner's bin waste")]
+        public double cleaner_Waste { get; set; }
         [DisplayName("Standard Manning")]
         public double StdManning { get; set; }
         [DisplayName("Agency Manning")]

@@ -180,7 +180,7 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(double manning, DateTime MyDate, DateTime EndDate, String notes, String qualityIssues, double box1, double box2, double box3, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,Date,TotalWaste,TotalProdMins")] Production production)
+        public ActionResult Create(double manning, DateTime MyDate, DateTime EndDate, String notes, String qualityIssues, double box1, double box2, double box3, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,Date,TotalWaste,cleaner_Waste,TotalProdMins")] Production production)
         {
             // box1 = std box2 = agency box3 = operator
             //int std = Int32.Parse(box1);
@@ -199,7 +199,7 @@ namespace QuickCode.Controllers
             DateTime et = DateTime.Parse(b);
             DateTime nt = dt.Date;
 
-            double sum = production.Cmp_Waste + production.CrumbWaste + production.Pack_Waste + production.Gen_Pack_Waste;
+            double sum = production.Cmp_Waste + production.CrumbWaste + production.Pack_Waste + production.Gen_Pack_Waste + production.cleaner_Waste;
             //TimeSpan span = (production.EndTime - production.StartTime);
             TimeSpan span = MyDate - EndDate;
             double totalMins = span.TotalMinutes;
@@ -269,7 +269,7 @@ namespace QuickCode.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(DateTime MyDate, DateTime EndDate, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,StdManning,OpManning,AgencyManning,QualityIssues,Date,TotalWaste,StartTime,EndTime")] Production production)
+        public ActionResult Edit(DateTime MyDate, DateTime EndDate, [Bind(Include = "ProductionID,UserID,ShiftID,PlantID,ActualMix,CrumbWaste,Cmp_Waste,Pack_Waste,Gen_Pack_Waste,StdManning,OpManning,AgencyManning,QualityIssues,Date,TotalWaste,cleaner_Waste,StartTime,EndTime")] Production production)
         {
 
             // Date config:
@@ -279,7 +279,7 @@ namespace QuickCode.Controllers
             string b = edt.ToString("HH:mm");
             DateTime st = DateTime.Parse(a); /*Convert.ToDateTime(startTime);*/
             DateTime et = DateTime.Parse(b);
-            double sum = production.Cmp_Waste + production.CrumbWaste + production.Pack_Waste + production.Gen_Pack_Waste;
+            double sum = production.Cmp_Waste + production.CrumbWaste + production.Pack_Waste + production.Gen_Pack_Waste + production.cleaner_Waste;
             //TimeSpan span = (production.EndTime - production.StartTime);
             TimeSpan span = MyDate - EndDate;
             double totalMins = span.TotalMinutes;

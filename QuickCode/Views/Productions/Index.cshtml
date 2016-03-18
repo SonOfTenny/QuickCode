@@ -110,6 +110,10 @@
                             Gen. Waste
                         </th>
                         <th>
+                            @*@Html.DisplayNameFor(model => model.Gen_Pack_Waste)*@
+                           Cleaner Waste
+                        </th>
+                        <th>
                             @*@Html.DisplayNameFor(model => model.Manning)*@
                             Manning
                         </th>
@@ -169,6 +173,9 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Gen_Pack_Waste)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.cleaner_Waste)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Manning)

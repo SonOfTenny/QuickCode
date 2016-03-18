@@ -202,9 +202,9 @@
     <Compile Include="Migrations\201601091849049_initial migration.Designer.cs">
       <DependentUpon>201601091849049_initial migration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603091415023_new shit.cs" />
-    <Compile Include="Migrations\201603091415023_new shit.Designer.cs">
-      <DependentUpon>201603091415023_new shit.cs</DependentUpon>
+    <Compile Include="Migrations\201603181022100_new shit.cs" />
+    <Compile Include="Migrations\201603181022100_new shit.Designer.cs">
+      <DependentUpon>201603181022100_new shit.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessTypes.cs" />
@@ -404,8 +404,8 @@
     <EmbeddedResource Include="Migrations\201601091849049_initial migration.resx">
       <DependentUpon>201601091849049_initial migration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603091415023_new shit.resx">
-      <DependentUpon>201603091415023_new shit.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603181022100_new shit.resx">
+      <DependentUpon>201603181022100_new shit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
